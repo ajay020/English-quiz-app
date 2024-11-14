@@ -7,9 +7,17 @@
     android:gravity="center"
     android:padding="16dp">
 
-    <Button
-        android:id="@+id/btn_start_quiz"
+    <TextView
+        android:id="@+id/tv_score"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Start Quiz" />
+        android:text="Your Score: 0"
+        android:textSize="22sp"
+        android:layout_marginBottom="16dp" />
+
+    <Button
+        android:id="@+id/btn_retry"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Retry" />
 </LinearLayout>

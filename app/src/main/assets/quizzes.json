@@ -1,0 +1,91 @@
+[
+  {
+    "level": 1,
+    "questions": [
+      {
+        "question": "What is the capital of France?",
+        "options": ["Paris", "Rome", "Berlin", "Madrid"],
+        "correctAnswer": "Paris"
+      },
+      {
+        "question": "What is the synonym of 'quick'?",
+        "options": ["Fast", "Slow", "Dull", "Weak"],
+        "correctAnswer": "Fast"
+      }
+    ]
+  },
+  {
+    "level": 2,
+    "questions": [
+      {
+        "question": "Who wrote 'Hamlet'?",
+        "options": ["Shakespeare", "Dickens", "Austen", "Twain"],
+        "correctAnswer": "Shakespeare"
+      },
+      {
+        "question": "What is the antonym of 'bright'?",
+        "options": ["Dark", "Clear", "Shiny", "Gleaming"],
+        "correctAnswer": "Dark"
+      }
+    ]
+  },
+  {
+    "level": 3,
+    "questions": [
+      {
+        "question": "Who wrote 'Hamlet'?",
+        "options": ["Shakespeare", "Dickens", "Austen", "Twain"],
+        "correctAnswer": "Shakespeare"
+      },
+      {
+        "question": "Whatis the antonym of 'bright'?",
+        "options": ["Dark", "Clear", "Shiny", "Gleaming"],
+        "correctAnswer": "Dark"
+      },
+      {
+        "question": "Which word is a synonym for 'happy'?",
+        "options": ["Joyful", "Sad", "Angry", "Tired"],
+        "correctAnswer": "Joyful"
+      }
+    ]
+  },
+  {
+    "level": 4,
+    "questions": [
+      {
+        "question": "Which word is an adjective?",
+        "options": ["Big", "House", "Jump", "Slowly"],
+        "correctAnswer": "Big"
+      },
+      {
+        "question": "What is the opposite of 'hot'?",
+        "options": ["Cold", "Warm", "Sunny", "Rainy"],
+        "correctAnswer": "Cold"},
+      {
+        "question": "Which word is a verb?",
+        "options": ["Sing", "Music", "Loudly", "Happy"],
+        "correctAnswer": "Sing"
+      }
+    ]
+  },
+  {
+    "level": 5,
+    "questions": [
+      {
+        "question": "What is the past tense of 'eat'?",
+        "options": ["Ate", "Eaten", "Eat", "Eating"],
+        "correctAnswer": "Ate"
+      },
+      {
+        "question": "Which word is a noun?",
+        "options": ["Table", "Run", "Quickly", "Beautiful"],
+        "correctAnswer": "Table"
+      },
+      {
+        "question": "What is the plural of 'child'?",
+        "options": ["Children", "Childs", "Childes", "Childrin"],
+        "correctAnswer": "Children"
+      }
+    ]
+  }
+]
