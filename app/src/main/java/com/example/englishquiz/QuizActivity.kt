@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
+import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
@@ -29,11 +30,14 @@ class QuizActivity : AppCompatActivity() {
         loadProgress()
         displayQuestion()
 
-        if (currentLevelIndex < levels.size)
-            {
-                binding.tvLevel.text = "Level ${levels[currentLevelIndex].level}"
-            }
+        if (currentLevelIndex < levels.size) {
+            binding.tvLevel.text = "Level ${levels[currentLevelIndex].level}"
+        }
         binding.tvCoins.text = "Coins: ${getCoins()}"
+
+        binding.btnHint.setOnClickListener {
+            useHint()
+        }
 
         val optionButtons =
             listOf(
@@ -80,6 +84,10 @@ class QuizActivity : AppCompatActivity() {
             binding.btnOption3.text = question.options[2]
             binding.btnOption4.text = question.options[3]
         }
+
+        // Reset hint button
+        binding.btnHint.isEnabled = true
+        binding.btnHint.setBackgroundColor(ContextCompat.getColor(this, R.color.default_button))
     }
 
     private fun showNextLevelScreen() {
@@ -137,6 +145,7 @@ class QuizActivity : AppCompatActivity() {
 
         // Show the "Next" button
         binding.btnNext.visibility = View.VISIBLE
+        binding.btnHint.isEnabled = false // Disable hint after answering
     }
 
     private fun resetOptions(optionButtons: List<Button>) {
@@ -145,6 +154,40 @@ class QuizActivity : AppCompatActivity() {
             it.setBackgroundColor(ContextCompat.getColor(this, android.R.color.transparent))
         }
         binding.btnNext.visibility = View.GONE
+    }
+
+    private fun useHint() {
+        val cost = 5
+        val currentCoins = getCoins()
+
+        if (currentCoins >= cost) {
+            saveCoins(currentCoins - cost)
+            updateCoinDisplay()
+
+            // Highlight the correct option
+            val currentQuestion = levels[currentLevelIndex].questions[currentQuestionIndex]
+            val correctAnswer = currentQuestion.correctAnswer
+
+            val optionButtons =
+                listOf(
+                    binding.btnOption1,
+                    binding.btnOption2,
+                    binding.btnOption3,
+                    binding.btnOption4,
+                )
+
+            optionButtons.forEach { button ->
+                if (button.text == correctAnswer) {
+                    button.setBackgroundColor(ContextCompat.getColor(this, R.color.green))
+                }
+            }
+
+            // Disable the hint button to prevent reuse for this question
+            binding.btnHint.isEnabled = false
+        } else {
+            // Show a message if the user doesn't have enough coins
+            Toast.makeText(this, "Not enough coins for a hint!", Toast.LENGTH_SHORT).show()
+        }
     }
 
     private fun loadLevels(): List<Level> {
@@ -168,6 +211,11 @@ class QuizActivity : AppCompatActivity() {
     private fun getCoins(): Int {
         val prefs = getSharedPreferences("QuizApp", Context.MODE_PRIVATE)
         return prefs.getInt("coins", 0)
+    }
+
+    private fun updateCoinDisplay() {
+        val coins = getCoins()
+        binding.tvCoins.text = "Coins: $coins"
     }
 
     private fun saveCoins(coins: Int) {
