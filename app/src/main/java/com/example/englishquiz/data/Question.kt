@@ -1,12 +1,13 @@
 package com.example.englishquiz.data
 
-data class Level(
-    val level: Int,
-    val questions: List<Quiz>,
-)
-
-data class Quiz(
+data class Question(
+    val id: Int,
     val question: String,
     val options: List<String>,
     val correctAnswer: String,
+)
+
+data class Level(
+    var level: Int,
+    val questions: List<Question>,
 )

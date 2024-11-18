@@ -1,45 +1,38 @@
 package com.example.englishquiz
 
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.Toast
+import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
-import com.example.englishquiz.data.Level
+import com.example.englishquiz.data.Question
 import com.example.englishquiz.databinding.ActivityQuizBinding
-import com.google.gson.Gson
-import com.google.gson.reflect.TypeToken
 
 class QuizActivity : AppCompatActivity() {
     private lateinit var binding: ActivityQuizBinding
-    private lateinit var levels: List<Level>
-    private var currentLevelIndex = 0
-    private var currentQuestionIndex = 0
-    private var score = 0
+    private val viewModel: QuizViewModel by viewModels()
+    private lateinit var optionButtons: List<Button>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityQuizBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        levels = loadLevels()
-        loadProgress()
-        displayQuestion()
+        setupViews()
+        setupObservers()
+    }
 
-        if (currentLevelIndex < levels.size) {
-            binding.tvLevel.text = "Level ${levels[currentLevelIndex].level}"
-        }
-        binding.tvCoins.text = "Coins: ${getCoins()}"
-
-        binding.btnHint.setOnClickListener {
-            useHint()
+    private fun setupViews() {
+        binding.tvTimer.apply {
+            setTextColor(ContextCompat.getColor(context, android.R.color.black))
         }
 
-        val optionButtons =
+        optionButtons =
             listOf(
                 binding.btnOption1,
                 binding.btnOption2,
@@ -49,180 +42,152 @@ class QuizActivity : AppCompatActivity() {
 
         optionButtons.forEach { button ->
             button.setOnClickListener {
-                checkAnswer(button, optionButtons)
+                handleOptionClick(button)
             }
+        }
+
+        binding.btnHint.setOnClickListener {
+            viewModel.useHint()
+        }
+
+        binding.btnTimerBooster.setOnClickListener {
+            viewModel.buyMoreTime()
         }
 
         binding.btnNext.setOnClickListener {
-            currentQuestionIndex++
-            resetOptions(optionButtons)
-            if (currentQuestionIndex >= levels[currentLevelIndex].questions.size) {
-                currentQuestionIndex = 0
-                currentLevelIndex++
-                binding.tvLevel.text = "Level ${ currentLevelIndex + 1 }"
-                saveProgress()
+            resetOptions()
+            viewModel.onNextQuestion()
+        }
 
-                if (currentLevelIndex >= levels.size) {
-                    showCompletionScreen()
-                } else {
-                    showNextLevelScreen()
-                }
+        binding.btnQuestionNum.setOnClickListener {
+            showQuestionCountDialog()
+        }
+    }
+
+    private fun setupObservers() {
+        viewModel.timeLeft.observe(this) { seconds ->
+            binding.tvTimer.text = "Time: $seconds s"
+
+            // Change color to red when time is running out
+            if (seconds <= 5) {
+                binding.tvTimer.setTextColor(ContextCompat.getColor(this, android.R.color.holo_red_dark))
             } else {
-                resetOptions(optionButtons)
-                displayQuestion()
+                binding.tvTimer.setTextColor(ContextCompat.getColor(this, android.R.color.black))
+            }
+        }
+
+        viewModel.showTimeUpDialog.observe(this) { show ->
+            if (show) {
+                showTimeUpDialog()
+            }
+        }
+
+        viewModel.areAnswerButtonsEnabled.observe(this) { enabled ->
+            optionButtons.forEach { it.isEnabled = enabled }
+        }
+
+        viewModel.currentQuestion.observe(this) { question ->
+            question?.let { displayQuestion(it) }
+        }
+
+        viewModel.currentLevel.observe(this) { level ->
+            binding.tvLevel.text = "Level ${level?.level}"
+        }
+
+        viewModel.coins.observe(this) { coins ->
+            binding.tvCoins.text = "Coins: $coins"
+            binding.btnHint.isEnabled = coins >= 5
+        }
+
+        viewModel.isNextButtonVisible.observe(this) { isVisible ->
+            binding.btnNext.visibility = if (isVisible) View.VISIBLE else View.GONE
+        }
+
+        viewModel.navigationEvent.observe(this) { event ->
+            handleNavigationEvent(event)
+        }
+    }
+
+    private fun displayQuestion(question: Question) {
+        binding.tvQuestion.text = question.question
+        optionButtons.forEachIndexed { index, button ->
+            button.text = question.options[index]
+        }
+        binding.btnHint.isEnabled = true
+        resetOptions()
+    }
+
+    private fun handleOptionClick(selectedButton: Button) {
+        optionButtons.forEach { it.isEnabled = false }
+        viewModel.checkAnswer(selectedButton.text.toString())
+
+        // Update UI to show correct/incorrect answer
+        val currentQuestion = viewModel.currentQuestion.value
+        if (currentQuestion?.correctAnswer == selectedButton.text) {
+            selectedButton.setBackgroundColor(
+                ContextCompat.getColor(this, android.R.color.holo_green_light),
+            )
+        } else {
+            selectedButton.setBackgroundColor(
+                ContextCompat.getColor(this, android.R.color.holo_red_light),
+            )
+        }
+        binding.btnHint.isEnabled = false
+    }
+
+    private fun resetOptions() {
+        optionButtons.forEach { button ->
+            button.isEnabled = true
+            button.setBackgroundColor(ContextCompat.getColor(this, android.R.color.transparent))
+        }
+    }
+
+    private fun handleNavigationEvent(event: QuizViewModel.NavigationEvent) {
+        when (event) {
+            is QuizViewModel.NavigationEvent.ShowToast -> {
+                Toast.makeText(this, event.message, Toast.LENGTH_SHORT).show()
+            }
+            is QuizViewModel.NavigationEvent.ShowLevelComplete -> {
+                AlertDialog
+                    .Builder(this)
+                    .setTitle("Level Complete!")
+                    .setMessage("You have completed Level ${event.level}!")
+                    .setPositiveButton("Start Level ${event.level + 1}") { _, _ ->
+                        Log.d("quizActivity", "start next level")
+                        viewModel.generateLevel()
+                    }.setCancelable(false)
+                    .show()
+            }
+            is QuizViewModel.NavigationEvent.NavigateToResult -> {
+                val intent = Intent(this, ResultActivity::class.java)
+                intent.putExtra("score", event.score)
+                startActivity(intent)
+                finish()
             }
         }
     }
 
-    private fun displayQuestion() {
-        if (currentLevelIndex < levels.size) {
-            val currentLevel = levels[currentLevelIndex]
-            val question = currentLevel.questions[currentQuestionIndex]
-            binding.tvQuestion.text = question.question
-            binding.btnOption1.text = question.options[0]
-            binding.btnOption2.text = question.options[1]
-            binding.btnOption3.text = question.options[2]
-            binding.btnOption4.text = question.options[3]
-        }
-
-        // Reset hint button
-        binding.btnHint.isEnabled = true
-        binding.btnHint.setBackgroundColor(ContextCompat.getColor(this, R.color.default_button))
-    }
-
-    private fun showNextLevelScreen() {
-        val coins = getCoins() + 5
-        saveCoins(coins)
-        binding.tvCoins.text = "Coins: $coins"
-
-        // Display a congratulatory message and the option to proceed to the next level.
+    private fun showQuestionCountDialog() {
+        val options = arrayOf("2", "3", "4")
         AlertDialog
             .Builder(this)
-            .setTitle("Level Complete!")
-            .setMessage(
-                "You have completed Level ${levels[currentLevelIndex - 1].level}!",
-            ).setPositiveButton("Next Level") { _, _ ->
-                displayQuestion()
+            .setTitle("Choose Number of Questions")
+            .setItems(options) { _, which ->
+                val count = options[which].toInt()
+                viewModel.setUpQuestionCount(count)
+            }.show()
+    }
+
+    private fun showTimeUpDialog() {
+        AlertDialog
+            .Builder(this)
+            .setTitle("Time's Up!")
+            .setMessage("Would you like to restart the level or buy more time for 10 coins?")
+            .setPositiveButton("Buy More Time") { _, _ ->
+                viewModel.buyMoreTime()
+            }.setNegativeButton("Restart Level") { _, _ ->
+                viewModel.restartLevel()
             }.setCancelable(false)
             .show()
-    }
-
-    private fun showCompletionScreen() {
-        // Display a final completion message and score.
-        val intent = Intent(this, ResultActivity::class.java)
-        intent.putExtra("score", score)
-        startActivity(intent)
-        finish()
-    }
-
-    private fun checkAnswer(
-        button: Button,
-        optionButtons: List<Button>,
-    ) {
-        val currentLevel = levels[currentLevelIndex]
-        val question = currentLevel.questions[currentQuestionIndex]
-        val correctAnswer = question.correctAnswer
-
-        // Disable all buttons after selection
-        optionButtons.forEach { it.isEnabled = false }
-
-        // Check if the selected answer is correct
-        if (button.text == correctAnswer) {
-            button.setBackgroundColor(
-                ContextCompat.getColor(
-                    this,
-                    android.R.color.holo_green_light,
-                ),
-            )
-            score++
-        } else {
-            button.setBackgroundColor(ContextCompat.getColor(this, android.R.color.holo_red_light))
-            // Highlight the correct answer
-            optionButtons
-                .find { it.text == correctAnswer }
-                ?.setBackgroundColor(ContextCompat.getColor(this, android.R.color.holo_green_light))
-        }
-
-        // Show the "Next" button
-        binding.btnNext.visibility = View.VISIBLE
-        binding.btnHint.isEnabled = false // Disable hint after answering
-    }
-
-    private fun resetOptions(optionButtons: List<Button>) {
-        optionButtons.forEach {
-            it.isEnabled = true
-            it.setBackgroundColor(ContextCompat.getColor(this, android.R.color.transparent))
-        }
-        binding.btnNext.visibility = View.GONE
-    }
-
-    private fun useHint() {
-        val cost = 5
-        val currentCoins = getCoins()
-
-        if (currentCoins >= cost) {
-            saveCoins(currentCoins - cost)
-            updateCoinDisplay()
-
-            // Highlight the correct option
-            val currentQuestion = levels[currentLevelIndex].questions[currentQuestionIndex]
-            val correctAnswer = currentQuestion.correctAnswer
-
-            val optionButtons =
-                listOf(
-                    binding.btnOption1,
-                    binding.btnOption2,
-                    binding.btnOption3,
-                    binding.btnOption4,
-                )
-
-            optionButtons.forEach { button ->
-                if (button.text == correctAnswer) {
-                    button.setBackgroundColor(ContextCompat.getColor(this, R.color.green))
-                }
-            }
-
-            // Disable the hint button to prevent reuse for this question
-            binding.btnHint.isEnabled = false
-        } else {
-            // Show a message if the user doesn't have enough coins
-            Toast.makeText(this, "Not enough coins for a hint!", Toast.LENGTH_SHORT).show()
-        }
-    }
-
-    private fun loadLevels(): List<Level> {
-        val jsonString = assets.open("quizzes.json").bufferedReader().use { it.readText() }
-        return Gson().fromJson(jsonString, object : TypeToken<List<Level>>() {}.type)
-    }
-
-    private fun saveProgress() {
-        val prefs = getSharedPreferences("QuizApp", Context.MODE_PRIVATE)
-        with(prefs.edit()) {
-            putInt("currentLevelIndex", currentLevelIndex)
-            apply()
-        }
-    }
-
-    private fun loadProgress() {
-        val prefs = getSharedPreferences("QuizApp", Context.MODE_PRIVATE)
-        currentLevelIndex = prefs.getInt("currentLevelIndex", 0)
-    }
-
-    private fun getCoins(): Int {
-        val prefs = getSharedPreferences("QuizApp", Context.MODE_PRIVATE)
-        return prefs.getInt("coins", 0)
-    }
-
-    private fun updateCoinDisplay() {
-        val coins = getCoins()
-        binding.tvCoins.text = "Coins: $coins"
-    }
-
-    private fun saveCoins(coins: Int) {
-        val prefs = getSharedPreferences("QuizApp", Context.MODE_PRIVATE)
-        with(prefs.edit()) {
-            putInt("coins", coins)
-            apply()
-        }
     }
 }

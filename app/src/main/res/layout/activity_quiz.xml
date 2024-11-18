@@ -1,10 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:padding="16dp">
+
+    <TextView
+        android:id="@+id/tvTimer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:layout_margin="16dp"
+        tools:text="Time: 25 s" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -89,12 +98,36 @@
         android:visibility="gone" />
 
 <!--    hint button -->
+
+
     <Button
-        android:id="@+id/btn_hint"
+        android:id="@+id/btn_question_num"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Use Hint (5 Coins)"
+        android:text="Choose question number"
         android:layout_gravity="center"
         android:enabled="true" />
+
+    <LinearLayout
+        android:layout_marginTop="20dp"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <Button
+            android:layout_marginRight="16dp"
+            android:id="@+id/btn_timer_booster"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Timer Booster"
+            android:layout_gravity="center"
+            android:enabled="true" />
+        <Button
+            android:id="@+id/btn_hint"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Use Hint (5 Coins)"
+            android:layout_gravity="center"
+            android:enabled="true" />
+    </LinearLayout>
 
 </LinearLayout>
