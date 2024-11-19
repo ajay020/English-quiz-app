@@ -58,10 +58,6 @@ class QuizActivity : AppCompatActivity() {
             resetOptions()
             viewModel.onNextQuestion()
         }
-
-        binding.btnQuestionNum.setOnClickListener {
-            showQuestionCountDialog()
-        }
     }
 
     private fun setupObservers() {

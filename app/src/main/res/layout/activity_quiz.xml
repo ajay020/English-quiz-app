@@ -1,92 +1,113 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
-    android:padding="16dp">
+    android:gravity="center"
+    android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/tvTimer"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        android:layout_margin="16dp"
-        tools:text="Time: 25 s" />
-
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center_vertical"
-        android:padding="8dp">
+        android:paddingHorizontal="16dp">
 
         <TextView
             android:id="@+id/tv_level"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Level 1"
+            tools:text="Level 1"
+            android:layout_centerVertical="true"
             android:textSize="16sp"
-            android:layout_weight="1"
             android:textColor="@color/black"
             android:layout_gravity="center" />
 
-        <ImageView
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:src="@drawable/ic_coin"
-            android:contentDescription="Coins" />
-
         <TextView
-            android:id="@+id/tv_coins"
+            android:id="@+id/tvTimer"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:text="Coins: 0"
-            android:textSize="16sp"
-            android:textColor="@color/black" />
-    </LinearLayout>
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:layout_centerHorizontal="true"
+            android:layout_margin="16dp"
+            tools:text="Time: 25 s" />
+
+       <LinearLayout
+           android:layout_alignParentEnd="true"
+           android:layout_centerVertical="true"
+           android:orientation="horizontal"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content">
+           <ImageView
+               android:layout_width="24dp"
+               android:layout_height="24dp"
+               android:src="@drawable/ic_coin"
+               android:contentDescription="Coins" />
+
+           <TextView
+               android:id="@+id/tv_coins"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:layout_marginStart="8dp"
+               tools:text="Coins: 0"
+               android:textSize="16sp"
+               android:textColor="@color/black" />
+       </LinearLayout>
+    </RelativeLayout>
 
     <TextView
         android:id="@+id/tv_question"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Question Text"
+        tools:text="Which of the following options is correct ?"
         android:textSize="18sp"
-        android:layout_marginBottom="16dp" />
+        android:textAlignment="center"
+        android:layout_marginTop="30dp"
+        />
 
-    <Button
-        android:id="@+id/btn_option_1"
-        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+    <Space
+        android:layout_width="match_parent"
+        android:layout_weight="1"
+        android:layout_height="0dp"/>
+
+    <LinearLayout
+        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Option 1"
-        android:layout_marginBottom="8dp" />
+        android:paddingHorizontal="20dp"
+        android:paddingVertical="8dp"
+        >
+        <Button
+            android:id="@+id/btn_option_1"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Option 1"
+            android:layout_marginBottom="8dp" />
 
-    <Button
-        android:id="@+id/btn_option_2"
-        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Option 2"
-        android:layout_marginBottom="8dp" />
+        <Button
+            android:id="@+id/btn_option_2"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Option 2"
+            android:layout_marginBottom="8dp" />
 
-    <Button
-        android:id="@+id/btn_option_3"
-        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Option 3"
-        android:layout_marginBottom="8dp" />
+        <Button
+            android:id="@+id/btn_option_3"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Option 3"
+            android:layout_marginBottom="8dp" />
 
-    <Button
-        android:id="@+id/btn_option_4"
-        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Option 4"
-        android:layout_marginBottom="16dp" />
+        <Button
+            android:id="@+id/btn_option_4"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Option 4"
+            android:layout_marginBottom="16dp" />
+    </LinearLayout>
 
     <Button
         android:id="@+id/btn_next"
@@ -97,35 +118,34 @@
         android:layout_marginTop="16dp"
         android:visibility="gone" />
 
-<!--    hint button -->
+    <Space
+        android:layout_width="match_parent"
+        android:layout_weight="1"
+        android:layout_height="0dp"/>
 
-
-    <Button
-        android:id="@+id/btn_question_num"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Choose question number"
-        android:layout_gravity="center"
-        android:enabled="true" />
+<!--     hint and timer boost controls -->
 
     <LinearLayout
-        android:layout_marginTop="20dp"
         android:orientation="horizontal"
+        android:layout_height="wrap_content"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <Button
-            android:layout_marginRight="16dp"
+        android:gravity="center"
+        android:layout_marginBottom="54dp"
+        >
+        <ImageButton
+            android:src="@drawable/ic_timer"
+            android:layout_marginEnd="16dp"
             android:id="@+id/btn_timer_booster"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Timer Booster"
             android:layout_gravity="center"
             android:enabled="true" />
-        <Button
+        <ImageButton
+            android:src="@drawable/ic_hint"
             android:id="@+id/btn_hint"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Use Hint (5 Coins)"
             android:layout_gravity="center"
             android:enabled="true" />
     </LinearLayout>

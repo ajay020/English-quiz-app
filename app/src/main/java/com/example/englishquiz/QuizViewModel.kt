@@ -69,10 +69,7 @@ class QuizViewModel(
 
     fun generateLevel() {
         solvedQuestions.clear()
-        if (questionCountPerLevel > questions.size) {
-            _navigationEvent.value = NavigationEvent.ShowToast("Not enough questions available!")
-            return
-        }
+        solvedQuestions.addAll(repository.getSolvedQuestions())
 
         val unsolvedQuestions = questions.filter { it.id !in solvedQuestions }
         val currLevelQuestions = unsolvedQuestions.take(questionCountPerLevel)
