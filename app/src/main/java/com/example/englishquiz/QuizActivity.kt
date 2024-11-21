@@ -1,27 +1,34 @@
 package com.example.englishquiz
 
+import android.app.Dialog
 import android.content.Intent
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.Toast
 import androidx.activity.viewModels
-import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
+import androidx.lifecycle.lifecycleScope
 import com.example.englishquiz.data.Question
 import com.example.englishquiz.databinding.ActivityQuizBinding
+import com.example.englishquiz.databinding.DialogRecoveryBinding
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
 class QuizActivity : AppCompatActivity() {
     private lateinit var binding: ActivityQuizBinding
     private val viewModel: QuizViewModel by viewModels()
     private lateinit var optionButtons: List<Button>
+    private lateinit var dialogManager: DialogManager
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityQuizBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        dialogManager = DialogManager(this)
 
         setupViews()
         setupObservers()
@@ -46,17 +53,20 @@ class QuizActivity : AppCompatActivity() {
             }
         }
 
+        binding.btnPause.setOnClickListener {
+            viewModel.pauseGame()
+            dialogManager.showPauseDialog(
+                onResume = { viewModel.resumeGame() },
+                onQuit = { finish() },
+            )
+        }
+
         binding.btnHint.setOnClickListener {
-            viewModel.useHint()
+            viewModel.useHint(optionButtons)
         }
 
         binding.btnTimerBooster.setOnClickListener {
             viewModel.buyMoreTime()
-        }
-
-        binding.btnNext.setOnClickListener {
-            resetOptions()
-            viewModel.onNextQuestion()
         }
     }
 
@@ -95,10 +105,6 @@ class QuizActivity : AppCompatActivity() {
             binding.btnHint.isEnabled = coins >= 5
         }
 
-        viewModel.isNextButtonVisible.observe(this) { isVisible ->
-            binding.btnNext.visibility = if (isVisible) View.VISIBLE else View.GONE
-        }
-
         viewModel.navigationEvent.observe(this) { event ->
             handleNavigationEvent(event)
         }
@@ -119,21 +125,34 @@ class QuizActivity : AppCompatActivity() {
 
         // Update UI to show correct/incorrect answer
         val currentQuestion = viewModel.currentQuestion.value
-        if (currentQuestion?.correctAnswer == selectedButton.text) {
-            selectedButton.setBackgroundColor(
-                ContextCompat.getColor(this, android.R.color.holo_green_light),
-            )
-        } else {
-            selectedButton.setBackgroundColor(
-                ContextCompat.getColor(this, android.R.color.holo_red_light),
-            )
+
+        lifecycleScope.launch {
+            if (currentQuestion?.correctAnswer == selectedButton.text) {
+                viewModel.animateButtonColor(
+                    this@QuizActivity,
+                    selectedButton,
+                    android.R.color.transparent,
+                    android.R.color.holo_green_light,
+                )
+                delay(800) // Wait for 1 second
+                viewModel.onNextQuestion()
+            } else {
+                viewModel.animateButtonColor(
+                    this@QuizActivity,
+                    selectedButton,
+                    android.R.color.transparent,
+                    android.R.color.holo_red_light,
+                )
+                delay(800) // Wait for 1 second
+                showRecoveryDialog()
+            }
         }
-        binding.btnHint.isEnabled = false
     }
 
     private fun resetOptions() {
         optionButtons.forEach { button ->
             button.isEnabled = true
+            button.visibility = View.VISIBLE
             button.setBackgroundColor(ContextCompat.getColor(this, android.R.color.transparent))
         }
     }
@@ -144,15 +163,9 @@ class QuizActivity : AppCompatActivity() {
                 Toast.makeText(this, event.message, Toast.LENGTH_SHORT).show()
             }
             is QuizViewModel.NavigationEvent.ShowLevelComplete -> {
-                AlertDialog
-                    .Builder(this)
-                    .setTitle("Level Complete!")
-                    .setMessage("You have completed Level ${event.level}!")
-                    .setPositiveButton("Start Level ${event.level + 1}") { _, _ ->
-                        Log.d("quizActivity", "start next level")
-                        viewModel.generateLevel()
-                    }.setCancelable(false)
-                    .show()
+                dialogManager.showLevelCompleteDialog(event.level) {
+                    viewModel.generateLevel()
+                }
             }
             is QuizViewModel.NavigationEvent.NavigateToResult -> {
                 val intent = Intent(this, ResultActivity::class.java)
@@ -163,27 +176,37 @@ class QuizActivity : AppCompatActivity() {
         }
     }
 
-    private fun showQuestionCountDialog() {
-        val options = arrayOf("2", "3", "4")
-        AlertDialog
-            .Builder(this)
-            .setTitle("Choose Number of Questions")
-            .setItems(options) { _, which ->
-                val count = options[which].toInt()
-                viewModel.setUpQuestionCount(count)
-            }.show()
+    private fun showTimeUpDialog() {
+        dialogManager.showTimeUpDialog(
+            onBuyMoreTime = { viewModel.buyMoreTime() },
+            onRestartLevel = { viewModel.restartLevel() },
+        )
     }
 
-    private fun showTimeUpDialog() {
-        AlertDialog
-            .Builder(this)
-            .setTitle("Time's Up!")
-            .setMessage("Would you like to restart the level or buy more time for 10 coins?")
-            .setPositiveButton("Buy More Time") { _, _ ->
-                viewModel.buyMoreTime()
-            }.setNegativeButton("Restart Level") { _, _ ->
-                viewModel.restartLevel()
-            }.setCancelable(false)
-            .show()
+    private fun showRecoveryDialog() {
+        val dialog = Dialog(this)
+        dialog.setCancelable(false)
+        dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+
+        val binding = DialogRecoveryBinding.inflate(layoutInflater)
+        dialog.setContentView(binding.root)
+
+        // Handle recovery button
+        binding.btnRecover.setOnClickListener {
+            if (viewModel.hasEnoughCoins(10)) {
+                viewModel.deductCoins(10)
+                dialog.dismiss()
+            } else {
+                Toast.makeText(this, "Not enough coins!", Toast.LENGTH_SHORT).show()
+            }
+        }
+
+        // Handle restart button
+        binding.btnRestart.setOnClickListener {
+            viewModel.restartLevel()
+            dialog.dismiss()
+        }
+
+        dialog.show()
     }
 }

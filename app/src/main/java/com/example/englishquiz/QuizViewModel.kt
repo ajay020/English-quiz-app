@@ -1,6 +1,12 @@
 package com.example.englishquiz
 
+import android.animation.ObjectAnimator
 import android.app.Application
+import android.content.Context
+import android.util.Log
+import android.view.View
+import android.widget.Button
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -8,6 +14,7 @@ import com.example.englishquiz.data.Level
 import com.example.englishquiz.data.Question
 import com.example.englishquiz.data.QuizRepository
 import com.example.englishquiz.data.SharedPreferenceStorage
+import kotlin.math.ceil
 
 class QuizViewModel(
     application: Application,
@@ -22,14 +29,11 @@ class QuizViewModel(
     private val _score = MutableLiveData(0)
     val score: LiveData<Int> = _score
 
-    private val _coins = MutableLiveData(0)
+    private val _coins = MutableLiveData(200)
     val coins: LiveData<Int> = _coins
 
     private val _currentLevel = MutableLiveData<Level?>(null)
     val currentLevel: LiveData<Level?> = _currentLevel
-
-    private val _isNextButtonVisible = MutableLiveData(false)
-    val isNextButtonVisible: LiveData<Boolean> = _isNextButtonVisible
 
     private val _navigationEvent = MutableLiveData<NavigationEvent>()
     val navigationEvent: LiveData<NavigationEvent> = _navigationEvent
@@ -96,18 +100,35 @@ class QuizViewModel(
         _currentQuestion.value?.let { question ->
             if (selectedAnswer == question.correctAnswer) {
                 _score.value = (_score.value ?: 0) + 1
+                addCoins(2)
             }
-            _isNextButtonVisible.value = true
         }
     }
 
-    fun useHint() {
+    fun useHint(optionButtons: List<Button>) {
         val hintCost = 5
+
         _coins.value?.let { currentCoins ->
             if (currentCoins >= hintCost) {
-                val newCoins = currentCoins - hintCost
-                repository.saveCoins(newCoins)
-                _coins.value = newCoins
+                val currentQuestion = currentQuestion.value ?: return
+                val incorrectOptions = optionButtons.filter { it.text != currentQuestion.correctAnswer }
+
+                // Calculate how many incorrect options to hide (round up for odd numbers)
+                val optionsToHideCount = ceil(incorrectOptions.size / 2.0).toInt()
+
+                if (optionsToHideCount > 1) {
+                    // Randomly pick half of the incorrect options to hide
+                    val optionsToHide =
+                        incorrectOptions
+                            .shuffled()
+                            .take(optionsToHideCount)
+
+                    // Hide the selected options
+                    optionsToHide.forEach { it.visibility = View.INVISIBLE }
+
+                    // Deduct 5 coins
+                    deductCoins(5)
+                }
             } else {
                 _navigationEvent.value = NavigationEvent.ShowToast("Not enough coins for a hint!")
             }
@@ -117,7 +138,6 @@ class QuizViewModel(
     fun onNextQuestion() {
         stopTimer() // Stop timer before moving to next question
         currentQuestionIndex++
-        _isNextButtonVisible.value = false
 
         currentLevel.value?.let { level ->
             if (currentQuestionIndex >= level.questions.size) {
@@ -141,9 +161,6 @@ class QuizViewModel(
         if (nextLevel >= questions.size) {
             _navigationEvent.value = NavigationEvent.NavigateToResult(_score.value ?: 0)
         } else {
-            val newCoins = (_coins.value ?: 0) + 5
-            repository.saveCoins(newCoins)
-            _coins.value = newCoins
             _navigationEvent.value = NavigationEvent.ShowLevelComplete(nextLevel)
         }
     }
@@ -170,15 +187,12 @@ class QuizViewModel(
 
     fun buyMoreTime() {
         val extraTime = 10000L
-        val timeCost = 0
+        val timeCost = 5
 
         _coins.value?.let { currentCoins ->
             if (currentCoins >= timeCost) {
-                val newCoins = currentCoins - timeCost
-                repository.saveCoins(newCoins)
-                _coins.value = newCoins
+                deductCoins(timeCost)
                 _showTimeUpDialog.value = false
-//                startQuestionTimer()
                 addTime(extraTime)
                 enableAnswerButtons()
             } else {
@@ -208,6 +222,65 @@ class QuizViewModel(
     override fun onCleared() {
         super.onCleared()
         stopTimer()
+    }
+
+    fun hasEnoughCoins(coinAmount: Int): Boolean = coinAmount <= coins.value!!
+
+    fun deductCoins(amount: Int = 5) {
+        _coins.value?.let { currentCoins ->
+            if (currentCoins >= amount) {
+                val newCoins = currentCoins - amount
+                repository.saveCoins(newCoins)
+                _coins.value = newCoins
+            } else {
+                _navigationEvent.value = NavigationEvent.ShowToast("Not enough coins!")
+            }
+        }
+    }
+
+    fun addCoins(amount: Int) {
+        _coins.value?.let { currentCoins ->
+            val newCoins = currentCoins + amount
+            repository.saveCoins(newCoins)
+            _coins.value = newCoins
+        }
+    }
+
+    fun animateButtonColor(
+        context: Context,
+        button: Button,
+        startColorRes: Int,
+        endColorRes: Int,
+    ) {
+        val startColor = ContextCompat.getColor(context, startColorRes)
+        val endColor = ContextCompat.getColor(context, endColorRes)
+
+        val colorAnimator = ObjectAnimator.ofArgb(button, "backgroundColor", startColor, endColor)
+        colorAnimator.duration = 400 // Animation duration in milliseconds
+        colorAnimator.start()
+    }
+
+    fun pauseGame() {
+        // Stop the timer and save the remaining time
+        timerManager.stopTimer()
+        _areAnswerButtonsEnabled.value = false // Disable answer buttons during pause
+    }
+
+    fun resumeGame() {
+        // Resume the timer with the remaining time
+        val remainingTime = timerManager.getTimeLeft()
+        Log.d("QVM", "$remainingTime")
+        timerManager.startTimer(
+            duration = remainingTime,
+            onTick = { seconds ->
+                _timeLeft.value = seconds
+            },
+            onFinish = {
+                _showTimeUpDialog.value = true
+                disableAnswerButtons()
+            },
+        )
+        _areAnswerButtonsEnabled.value = true // Enable answer buttons when resuming
     }
 
     sealed class NavigationEvent {

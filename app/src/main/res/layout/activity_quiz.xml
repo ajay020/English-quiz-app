@@ -69,6 +69,7 @@
         android:layout_weight="1"
         android:layout_height="0dp"/>
 
+<!--     Options -->
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
@@ -109,22 +110,12 @@
             android:layout_marginBottom="16dp" />
     </LinearLayout>
 
-    <Button
-        android:id="@+id/btn_next"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Next"
-        android:layout_gravity="end"
-        android:layout_marginTop="16dp"
-        android:visibility="gone" />
-
     <Space
         android:layout_width="match_parent"
         android:layout_weight="1"
         android:layout_height="0dp"/>
 
 <!--     hint and timer boost controls -->
-
     <LinearLayout
         android:orientation="horizontal"
         android:layout_height="wrap_content"
@@ -132,21 +123,38 @@
         android:gravity="center"
         android:layout_marginBottom="54dp"
         >
+
+        <ImageButton
+            android:id="@+id/btn_pause"
+            android:contentDescription="pause_icon"
+            android:src="@drawable/ic_pause"
+            android:background="@color/white"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="20dp"
+            android:padding="12dp"
+            />
+
         <ImageButton
             android:src="@drawable/ic_timer"
-            android:layout_marginEnd="16dp"
+            android:layout_marginEnd="20dp"
             android:id="@+id/btn_timer_booster"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Timer Booster"
+            android:background="@color/white"
             android:layout_gravity="center"
+            android:padding="12dp"
+
             android:enabled="true" />
         <ImageButton
             android:src="@drawable/ic_hint"
             android:id="@+id/btn_hint"
+            android:background="@color/white"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:padding="12dp"
             android:enabled="true" />
     </LinearLayout>
 

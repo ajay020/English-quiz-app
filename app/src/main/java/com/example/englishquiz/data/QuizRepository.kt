@@ -27,7 +27,7 @@ class QuizRepository(
 
     fun saveCurrentLevel(level: Int) = preferenceStorage.putInt("currentLevelNumber", level)
 
-    fun getCoins() = preferenceStorage.getInt("coins")
+    fun getCoins() = preferenceStorage.getInt("coins", 200)
 
     fun saveCoins(coins: Int) = preferenceStorage.putInt("coins", coins)
 

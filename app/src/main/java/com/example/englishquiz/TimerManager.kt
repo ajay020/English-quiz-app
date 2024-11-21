@@ -22,10 +22,9 @@ class TimerManager(
         timeLeftInMillis = duration ?: timerDuration
 
         countDownTimer?.cancel()
-        timeLeftInMillis = timerDuration
 
         countDownTimer =
-            object : CountDownTimer(timerDuration, 1000) {
+            object : CountDownTimer(timeLeftInMillis, 1000) {
                 override fun onTick(millisUntilFinished: Long) {
                     timeLeftInMillis = millisUntilFinished
                     onTick(millisUntilFinished / 1000) // Convert to seconds
