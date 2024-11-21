@@ -6,4 +6,5 @@
     <color name="default_button">#2E94E6</color>
     <color name="light_green">#84C439</color>
     <color name="red">#DF3B30</color>
+    <color name="transparent">#00F44336</color>
 </resources>

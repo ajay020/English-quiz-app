@@ -1,99 +1,91 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="16dp">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:padding="16dp"
+    android:background="@drawable/dialog_background"
+    android:orientation="vertical">
 
+    <!-- Sound and Music Controls -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:paddingVertical="8dp">
 
-        <!-- Audio Switch -->
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:paddingVertical="8dp">
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageButton
+                android:id="@+id/button_sound"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:src="@drawable/ic_sound_on"
+                android:contentDescription="Toggle Sound"
+                app:tint="?attr/colorControlNormal" />
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Audio"
-                android:textSize="16sp" />
-            <Switch
-                android:id="@+id/switch_audio"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_marginTop="8dp"
+                android:text="Sound"
+                android:textSize="14sp" />
         </LinearLayout>
 
-        <!-- Music Switch -->
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:paddingVertical="8dp">
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageButton
+                android:id="@+id/button_music"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:src="@drawable/ic_music_on"
+                android:contentDescription="@string/toggle_music"
+                app:tint="?attr/colorControlNormal" />
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
                 android:text="Music"
-                android:textSize="16sp" />
-            <Switch
-                android:id="@+id/switch_music"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:textSize="14sp" />
         </LinearLayout>
-
-        <!-- Theme Selection -->
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Select Theme"
-            android:textSize="16sp"
-            android:paddingVertical="8dp" />
-        <RadioGroup
-            android:id="@+id/radio_group_theme"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <RadioButton
-                android:id="@+id/radio_theme_light"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Light" />
-            <RadioButton
-                android:id="@+id/radio_theme_dark"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Dark" />
-        </RadioGroup>
-
-        <!-- Question Count Slider -->
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Questions per Level"
-            android:textSize="16sp"
-            android:paddingVertical="8dp" />
-        <SeekBar
-            android:id="@+id/slider_question_count"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:max="6"
-            android:min="3"
-            android:progress="3" />
-        <TextView
-            android:id="@+id/text_question_count"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:text="5"
-            android:paddingTop="4dp" />
-
-        <!-- Close Button -->
-        <Button
-            android:id="@+id/button_close_settings"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="Close" />
     </LinearLayout>
-</ScrollView>
+
+    <View
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"/>
+
+    <!-- Theme Selection -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingVertical="8dp"
+        android:text="Select Theme"
+        android:textSize="16sp" />
+
+    <View
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"/>
+
+    <!-- Close Button -->
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/button_close_settings"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Close" />
+</LinearLayout>
+

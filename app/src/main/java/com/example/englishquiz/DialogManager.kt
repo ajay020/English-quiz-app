@@ -6,6 +6,7 @@ import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.view.LayoutInflater
 import android.widget.Button
+import android.widget.ImageButton
 import androidx.appcompat.app.AlertDialog
 import com.example.englishquiz.databinding.DialogLevelCompleteBinding
 import com.example.englishquiz.databinding.DialogTimeUpBinding
@@ -13,6 +14,45 @@ import com.example.englishquiz.databinding.DialogTimeUpBinding
 class DialogManager(
     private val context: Context,
 ) {
+    fun showSettingsDialog(
+        onAudioChanged: (Boolean) -> Unit,
+        onMusicChanged: (Boolean) -> Unit,
+        onThemeChanged: (String) -> Unit,
+    ) {
+        val dialog = Dialog(context)
+        dialog.setContentView(R.layout.dialog_settings)
+        dialog.setCancelable(false)
+
+        val soundButton = dialog.findViewById<ImageButton>(R.id.button_sound)
+        val musicButton = dialog.findViewById<ImageButton>(R.id.button_music)
+
+        // Initially, assume both sound and music are enabled
+        var isSoundEnabled = true
+        var isMusicEnabled = true
+
+        soundButton.setOnClickListener {
+            isSoundEnabled = !isSoundEnabled
+            soundButton.setImageResource(if (isSoundEnabled) R.drawable.ic_sound_on else R.drawable.ic_sound_off)
+            // Start or stop sound logic here
+            onAudioChanged(isSoundEnabled)
+        }
+
+        musicButton.setOnClickListener {
+            isMusicEnabled = !isMusicEnabled
+            musicButton.setImageResource(if (isMusicEnabled) R.drawable.ic_music_on else R.drawable.ic_music_off)
+            onMusicChanged(isMusicEnabled)
+        }
+
+        val closeButton = dialog.findViewById<Button>(R.id.button_close_settings)
+
+        closeButton.setOnClickListener {
+            dialog.dismiss()
+//            onThemeChanged("Light")
+            // Handle theme change logic here
+        }
+        dialog.show()
+    }
+
     fun showPauseDialog(
         onResume: () -> Unit,
         onQuit: () -> Unit,

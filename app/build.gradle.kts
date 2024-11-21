@@ -49,6 +49,7 @@ dependencies {
     implementation(libs.androidx.navigation.ui.ktx)
     implementation("com.google.code.gson:gson:2.10.1")
     implementation(libs.androidx.preference)
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.8.7")
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)

@@ -60,4 +60,5 @@
     <string name="attachment_summary_off">Only download attachments when manually requested</string>
     <string name="time_s_up">Time\'s Up!</string>
     <string name="retry">Retry</string>
+    <string name="toggle_music">Toggle Music</string>
 </resources>
