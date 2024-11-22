@@ -13,7 +13,13 @@ class MainActivity : AppCompatActivity() {
     private val viewModel: MainViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        // Apply theme
+        setTheme(
+            getSelectedThemeResourceId(viewModel.preferenceManager.getSelectedThemeFromPreferences().name),
+        )
+
         super.onCreate(savedInstanceState)
+
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         enableEdgeToEdge()
@@ -38,8 +44,8 @@ class MainActivity : AppCompatActivity() {
                     viewModel.playToggleOffOnSound()
                     viewModel.setMusicEnabled(isMusicEnabled)
                 },
-                onThemeChanged = { selectedTheme ->
-                    // Handle theme setting change
+                onThemeSelected = { selectedTheme ->
+                    recreate() // Recreate activity to apply theme
                 },
             )
         }
@@ -52,4 +58,12 @@ class MainActivity : AppCompatActivity() {
         // Start music on app start
         viewModel.setMusicEnabled(true)
     }
+
+    private fun getSelectedThemeResourceId(theme: String): Int =
+        when (theme) {
+            "CLASSIC" -> R.style.AppTheme_classic
+            "DARK" -> R.style.AppTheme_dark
+            "NATURE" -> R.style.AppTheme_nature
+            else -> R.style.AppTheme_ocean
+        }
 }

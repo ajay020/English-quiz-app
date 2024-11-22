@@ -27,6 +27,9 @@ class SharedPreferenceStorage(
 ) : PreferenceStorage {
     private val prefs = application.getSharedPreferences("QuizApp", Context.MODE_PRIVATE)
 
+    companion object {
+    }
+
     override fun getInt(
         key: String,
         defaultValue: Int,

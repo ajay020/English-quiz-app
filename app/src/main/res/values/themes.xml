@@ -1,9 +1,51 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Base.Theme.EnglishQuiz" parent="Theme.Material3.DayNight.NoActionBar">
+    <style name="AppTheme" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your light theme here. -->
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
     </style>
 
-    <style name="Theme.EnglishQuiz" parent="Base.Theme.EnglishQuiz" />
+    <!-- Classic -->
+    <style name="AppTheme.classic" parent="AppTheme">
+        <item name="colorPrimary">@color/classic_primary</item>
+        <item name="colorSecondary">@color/classic_secondary</item>
+        <item name="android:windowBackground">@color/classic_background</item>
+        <item name="android:textColor">@color/classic_text</item>
+        <item name="android:buttonStyle">@style/ButtonStyle</item>
+    </style>
+
+    <!-- Dark -->
+    <style name="AppTheme.dark" parent="AppTheme">
+        <item name="colorPrimary">@color/dark_primary</item>
+        <item name="colorSecondary">@color/dark_secondary</item>
+        <item name="android:windowBackground">@color/dark_background</item>
+        <item name="android:textColor">@color/dark_text</item>
+        <item name="android:buttonStyle">@style/ButtonStyle</item>
+
+    </style>
+
+    <!-- Nature -->
+    <style name="AppTheme.nature" parent="AppTheme">
+        <item name="colorPrimary">@color/nature_primary</item>
+        <item name="colorSecondary">@color/nature_secondary</item>
+        <item name="android:windowBackground">@color/nature_background</item>
+        <item name="android:textColor">@color/nature_text</item>
+        <item name="android:buttonStyle">@style/ButtonStyle</item>
+
+    </style>
+
+    <!-- Ocean -->
+    <style name="AppTheme.ocean" parent="AppTheme">
+        <item name="colorPrimary">@color/ocean_background</item>
+        <item name="colorSecondary">@color/ocean_secondary</item>
+        <item name="android:windowBackground">@color/ocean_background</item>
+        <item name="android:textColor">@color/ocean_text</item>
+        <item name="android:buttonStyle">@style/ButtonStyle</item>
+    </style>
+
+    <!-- Button Style -->
+    <style name="ButtonStyle" parent="Widget.AppCompat.Button">
+        <item name="android:backgroundTint">@color/classic_primary</item>
+        <item name="android:textColor">#FFFFFF</item>
+    </style>
 </resources>

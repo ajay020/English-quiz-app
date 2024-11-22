@@ -11,9 +11,10 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:baselineAligned="false"
         android:orientation="horizontal"
         android:gravity="center"
-        android:paddingVertical="8dp">
+        android:paddingVertical="4dp">
 
         <LinearLayout
             android:layout_width="0dp"
@@ -70,21 +71,112 @@
 
     <!-- Theme Selection -->
     <TextView
+        android:id="@+id/tv_theme"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingVertical="8dp"
         android:text="Select Theme"
         android:textSize="16sp" />
 
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <FrameLayout
+            android:id="@+id/themeClassic"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_margin="8dp">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@drawable/theme_circle_classic"
+                android:contentDescription="Classic Theme" />
+
+            <ImageView
+                android:id="@+id/checkmarkClassic"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_check"
+                android:visibility="gone" />
+        </FrameLayout>
+        <FrameLayout
+            android:id="@+id/themeDark"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_margin="8dp">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@drawable/theme_circle_dark"
+                android:contentDescription="Dark Theme" />
+
+            <ImageView
+                android:id="@+id/checkmarkDark"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_check"
+                android:visibility="gone" />
+        </FrameLayout>
+        <FrameLayout
+            android:id="@+id/themeNature"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_margin="8dp">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@drawable/theme_circle_nature"
+                android:contentDescription="Nature Theme" />
+
+            <ImageView
+                android:id="@+id/checkmarkNature"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_check"
+                android:visibility="gone" />
+        </FrameLayout>
+        <FrameLayout
+        android:id="@+id/themeOcean"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_margin="8dp">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/theme_circle_ocean"
+            android:contentDescription="Ocean Theme" />
+
+        <ImageView
+            android:id="@+id/checkmarkOcean"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_gravity="center"
+            android:src="@drawable/ic_check"
+            android:visibility="gone" />
+    </FrameLayout>
+
+    </LinearLayout>
+
+
     <View
         android:layout_width="wrap_content"
         android:layout_height="20dp"/>
 
     <!-- Close Button -->
-    <androidx.appcompat.widget.AppCompatButton
+    <Button
         android:id="@+id/button_close_settings"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:padding="12dp"
+        android:background="@color/light_green"
         android:layout_marginTop="16dp"
         android:text="Close" />
 </LinearLayout>

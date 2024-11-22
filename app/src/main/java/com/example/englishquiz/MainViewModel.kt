@@ -11,14 +11,14 @@ import androidx.lifecycle.MutableLiveData
 class MainViewModel(
     application: Application,
 ) : AndroidViewModel(application) {
+    val preferenceManager = PreferenceManager(application)
+
     private var mediaPlayer: MediaPlayer? = null
     private val _isMusicEnabled = MutableLiveData(true)
     val isMusicEnabled: LiveData<Boolean> = _isMusicEnabled
 
     private val soundPool: SoundPool
     private var clickSoundId: Int = 0
-    private var levelCompleteSoundId: Int = 0
-    private var timeUpSoundId: Int = 0
     private var toggleOffOnSound: Int = 0
 
     init {
