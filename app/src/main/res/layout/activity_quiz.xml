@@ -5,6 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center"
+    android:background="@color/ocean_background"
+    android:theme="@style/AppTheme.ocean"
     android:orientation="vertical">
 
     <RelativeLayout
@@ -59,7 +61,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
         android:textAlignment="center"
-        android:textSize="18sp"
+        android:textSize="24sp"
         tools:text="Which of the following options is correct ?" />
 
     <Space
@@ -67,17 +69,17 @@
         android:layout_height="0dp"
         android:layout_weight="1" />
 
-    <!--     Options -->
+    <!-- Options -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:paddingHorizontal="20dp"
-        android:paddingVertical="8dp">
+        android:paddingHorizontal="24dp"
+        android:paddingVertical="12dp">
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btn_option_1"
-            style="@style/ButtonStyle"
+            style="@style/OutlinedOptionButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
@@ -85,8 +87,7 @@
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btn_option_2"
-
-            style="@style/ButtonStyle"
+            style="@style/OutlinedOptionButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
@@ -94,8 +95,7 @@
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btn_option_3"
-
-            style="@style/ButtonStyle"
+            style="@style/OutlinedOptionButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
@@ -103,10 +103,9 @@
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btn_option_4"
-            style="@style/ButtonStyle"
+            style="@style/OutlinedOptionButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
             android:text="Option 4" />
     </LinearLayout>
 

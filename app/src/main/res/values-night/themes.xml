@@ -2,6 +2,14 @@
     <!-- Base application theme. -->
     <style name="Base.Theme.EnglishQuiz" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your dark theme here. -->
-        <!-- <item name="colorPrimary">@color/my_dark_primary</item> -->
+        <item name="colorPrimary">@color/dark_primary</item>
+        <item name="colorSecondary">@color/dark_secondary</item>
+        <item name="android:windowBackground">@color/dark_background</item>
+        <item name="android:textColor">@color/dark_text</item>
+        <item name="colorAccent">@color/dark_accent</item>
+        <item name="buttonStyle">@style/ButtonStyle</item>
+        <item name="android:statusBarColor">?attr/colorPrimary</item>
+        <item name="timerColorDefault">@color/dark_text</item>
     </style>
+
 </resources>
