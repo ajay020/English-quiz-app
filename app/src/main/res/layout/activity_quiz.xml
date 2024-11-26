@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -11,151 +12,140 @@
         android:layout_height="wrap_content"
         android:paddingHorizontal="16dp">
 
-        <TextView
+        <com.google.android.material.textview.MaterialTextView
             android:id="@+id/tv_level"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            tools:text="Level 1"
             android:layout_centerVertical="true"
-            android:textSize="16sp"
-            android:textColor="@color/black"
-            android:layout_gravity="center" />
+            android:layout_gravity="center"
+            android:textSize="18sp"
+            tools:text="Level 1" />
 
-        <TextView
+        <com.google.android.material.textview.MaterialTextView
             android:id="@+id/tvTimer"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="18sp"
-            android:textStyle="bold"
             android:layout_centerHorizontal="true"
             android:layout_margin="16dp"
+            android:textSize="18sp"
             tools:text="Time: 25 s" />
 
-       <LinearLayout
-           android:layout_alignParentEnd="true"
-           android:layout_centerVertical="true"
-           android:orientation="horizontal"
-           android:layout_width="wrap_content"
-           android:layout_height="wrap_content">
-           <ImageView
-               android:layout_width="24dp"
-               android:layout_height="24dp"
-               android:src="@drawable/ic_coin"
-               android:contentDescription="Coins" />
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:orientation="horizontal">
 
-           <TextView
-               android:id="@+id/tv_coins"
-               android:layout_width="wrap_content"
-               android:layout_height="wrap_content"
-               android:layout_marginStart="8dp"
-               tools:text="Coins: 0"
-               android:textSize="16sp"
-               android:textColor="@color/black" />
-       </LinearLayout>
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:contentDescription="Coins"
+                android:src="@drawable/ic_coin" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/tv_coins"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:textSize="18sp"
+                tools:text="Coins: 0" />
+        </LinearLayout>
     </RelativeLayout>
 
     <TextView
         android:id="@+id/tv_question"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:text="Which of the following options is correct ?"
-        android:textSize="18sp"
-        android:textAlignment="center"
         android:layout_marginTop="30dp"
-        />
+        android:textAlignment="center"
+        android:textSize="18sp"
+        tools:text="Which of the following options is correct ?" />
 
     <Space
         android:layout_width="match_parent"
-        android:layout_weight="1"
-        android:layout_height="0dp"/>
+        android:layout_height="0dp"
+        android:layout_weight="1" />
 
-<!--     Options -->
+    <!--     Options -->
     <LinearLayout
-        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:orientation="vertical"
         android:paddingHorizontal="20dp"
-        android:paddingVertical="8dp"
-        >
-        <Button
+        android:paddingVertical="8dp">
+
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/btn_option_1"
-            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            style="@style/ButtonStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Option 1"
-            android:layout_marginBottom="8dp" />
+            android:layout_marginBottom="8dp"
+            android:text="Option 1" />
 
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/btn_option_2"
-            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+
+            style="@style/ButtonStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Option 2"
-            android:layout_marginBottom="8dp" />
+            android:layout_marginBottom="8dp"
+            android:text="Option 2" />
 
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/btn_option_3"
-            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Option 3"
-            android:layout_marginBottom="8dp" />
 
-        <Button
-            android:id="@+id/btn_option_4"
-            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            style="@style/ButtonStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Option 4"
-            android:layout_marginBottom="16dp" />
+            android:layout_marginBottom="8dp"
+            android:text="Option 3" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_option_4"
+            style="@style/ButtonStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:text="Option 4" />
     </LinearLayout>
 
     <Space
         android:layout_width="match_parent"
-        android:layout_weight="1"
-        android:layout_height="0dp"/>
+        android:layout_height="0dp"
+        android:layout_weight="1" />
 
-<!--     hint and timer boost controls -->
+    <!--     hint and timer boost controls -->
     <LinearLayout
-        android:orientation="horizontal"
-        android:layout_height="wrap_content"
         android:layout_width="match_parent"
-        android:gravity="center"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
         android:layout_marginBottom="54dp"
-        >
+        android:gravity="center"
+        android:orientation="horizontal">
 
-        <ImageButton
+        <androidx.appcompat.widget.AppCompatImageButton
             android:id="@+id/btn_pause"
-            android:contentDescription="pause_icon"
-            android:src="@drawable/ic_pause"
-            android:background="@color/white"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="20dp"
-            android:padding="12dp"
+            style="@style/CircularImageButtonStyle"
+            android:contentDescription="pause"
+            android:layout_marginEnd="16dp"
+            android:src="@drawable/ic_pause" />
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/btn_timer_booster"
+            style="@style/CircularImageButtonStyle"
+            android:enabled="true"
+            android:contentDescription="timer"
+            android:src="@drawable/ic_timer"
+            android:layout_marginEnd="16dp"
             />
 
-        <ImageButton
-            android:src="@drawable/ic_timer"
-            android:layout_marginEnd="20dp"
-            android:id="@+id/btn_timer_booster"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Timer Booster"
-            android:background="@color/white"
-            android:layout_gravity="center"
-            android:padding="12dp"
-
-            android:enabled="true" />
-        <ImageButton
-            android:src="@drawable/ic_hint"
+        <androidx.appcompat.widget.AppCompatImageButton
             android:id="@+id/btn_hint"
-            android:background="@color/white"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:padding="12dp"
-            android:enabled="true" />
+            style="@style/CircularImageButtonStyle"
+            android:enabled="true"
+            android:contentDescription="hint icon"
+            android:src="@drawable/ic_hint" />
     </LinearLayout>
 
 </LinearLayout>

@@ -15,6 +15,9 @@
     <color name="classic_text">#2C3E50</color>
     <color name="classic_accent">#E74C3C</color>
 
+    <color name="timer_warning">#FF0000</color> <!-- Red for warning -->
+
+
     <!-- Dark Theme Colors -->
     <color name="dark_primary">#34495E</color>
     <color name="dark_secondary">#2980B9</color>

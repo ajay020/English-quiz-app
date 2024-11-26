@@ -5,11 +5,11 @@ import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
+import android.util.TypedValue
 import android.view.View
 import android.widget.Button
 import android.widget.Toast
 import androidx.activity.viewModels
-import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.lifecycleScope
 import com.example.englishquiz.data.Question
@@ -18,7 +18,7 @@ import com.example.englishquiz.databinding.DialogRecoveryBinding
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
-class QuizActivity : AppCompatActivity() {
+class QuizActivity : BaseActivity() {
     private lateinit var binding: ActivityQuizBinding
     private val viewModel: QuizViewModel by viewModels()
     private lateinit var optionButtons: List<Button>
@@ -26,8 +26,11 @@ class QuizActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+//        enableEdgeToEdge()
+
         binding = ActivityQuizBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
         dialogManager = DialogManager(this)
 
         setupViews()
@@ -75,11 +78,9 @@ class QuizActivity : AppCompatActivity() {
             binding.tvTimer.text = "Time: $seconds s"
 
             // Change color to red when time is running out
-            if (seconds <= 5) {
-                binding.tvTimer.setTextColor(ContextCompat.getColor(this, android.R.color.holo_red_dark))
-            } else {
-                binding.tvTimer.setTextColor(ContextCompat.getColor(this, android.R.color.black))
-            }
+            val warningColor = resolveColorAttribute(R.attr.timerColorWarning)
+            val defaultColor = resolveColorAttribute(R.attr.timerColorDefault)
+            binding.tvTimer.setTextColor(if (seconds <= 5) warningColor else defaultColor)
         }
 
         viewModel.showTimeUpDialog.observe(this) { show ->
@@ -184,7 +185,7 @@ class QuizActivity : AppCompatActivity() {
     }
 
     private fun showRecoveryDialog() {
-        val dialog = Dialog(this)
+        val dialog = Dialog(this, R.style.FullWidthDialog)
         dialog.setCancelable(false)
         dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
 
@@ -208,5 +209,11 @@ class QuizActivity : AppCompatActivity() {
         }
 
         dialog.show()
+    }
+
+    private fun resolveColorAttribute(attr: Int): Int {
+        val typedValue = TypedValue()
+        theme.resolveAttribute(attr, typedValue, true)
+        return typedValue.data
     }
 }

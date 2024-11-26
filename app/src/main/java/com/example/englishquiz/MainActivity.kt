@@ -4,25 +4,19 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
-import androidx.appcompat.app.AppCompatActivity
 import com.example.englishquiz.databinding.ActivityMainBinding
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : BaseActivity() {
     private lateinit var binding: ActivityMainBinding
     private lateinit var dialogManager: DialogManager
     private val viewModel: MainViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        // Apply theme
-        setTheme(
-            getSelectedThemeResourceId(viewModel.preferenceManager.getSelectedThemeFromPreferences().name),
-        )
-
         super.onCreate(savedInstanceState)
+        enableEdgeToEdge()
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        enableEdgeToEdge()
         dialogManager = DialogManager(this)
 
         // Observe music state to start or stop music
@@ -58,12 +52,4 @@ class MainActivity : AppCompatActivity() {
         // Start music on app start
         viewModel.setMusicEnabled(true)
     }
-
-    private fun getSelectedThemeResourceId(theme: String): Int =
-        when (theme) {
-            "CLASSIC" -> R.style.AppTheme_classic
-            "DARK" -> R.style.AppTheme_dark
-            "NATURE" -> R.style.AppTheme_nature
-            else -> R.style.AppTheme_ocean
-        }
 }

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Declare custom attributes -->
+    <attr name="timerColorDefault" format="color" />
+    <attr name="timerColorWarning" format="color" />
+</resources>

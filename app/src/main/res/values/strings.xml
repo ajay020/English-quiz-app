@@ -61,4 +61,7 @@
     <string name="time_s_up">Time\'s Up!</string>
     <string name="retry">Retry</string>
     <string name="toggle_music">Toggle Music</string>
+    <string name="play">Let\'s Play</string>
+    <string name="resume">Resume</string>
+    <string name="close">Close</string>
 </resources>

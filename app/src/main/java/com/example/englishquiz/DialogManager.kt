@@ -6,9 +6,9 @@ import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.view.LayoutInflater
 import android.view.View
-import android.widget.Button
 import androidx.appcompat.app.AlertDialog
 import com.example.englishquiz.databinding.DialogLevelCompleteBinding
+import com.example.englishquiz.databinding.DialogPauseBinding
 import com.example.englishquiz.databinding.DialogSettingsBinding
 import com.example.englishquiz.databinding.DialogTimeUpBinding
 
@@ -27,12 +27,13 @@ class DialogManager(
         onMusicChanged: (Boolean) -> Unit,
         onThemeSelected: (Theme) -> Unit,
     ) {
-        val dialog = Dialog(context)
+        val preferenceManager = PreferenceManager(context)
+        val theme = preferenceManager.getSelectedThemeFromPreferences()
+        val dialog = Dialog(context, R.style.FullWidthDialog)
+
         dialog.setCancelable(false)
         dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-        dialog.window?.setDimAmount(0.5f)
-
-        val preferenceManager = PreferenceManager(context)
+        dialog.window?.setDimAmount(1f)
 
         val binding = DialogSettingsBinding.inflate(LayoutInflater.from(context))
         dialog.setContentView(binding.root)
@@ -133,13 +134,16 @@ class DialogManager(
         onResume: () -> Unit,
         onQuit: () -> Unit,
     ) {
-        val dialog = Dialog(context)
-        dialog.setContentView(R.layout.dialog_pause)
+        val dialog = Dialog(context, R.style.FullWidthDialog)
+        dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         dialog.setCancelable(false) // Disable dismissing by tapping outside
 
+        val binding = DialogPauseBinding.inflate(LayoutInflater.from(context))
+        dialog.setContentView(binding.root)
+
         // Find views in the custom dialog layout
-        val btnResume = dialog.findViewById<Button>(R.id.btnResume)
-        val btnQuit = dialog.findViewById<Button>(R.id.btnQuit)
+        val btnResume = binding.btnResume
+        val btnQuit = binding.btnQuit
 
         btnResume.setOnClickListener {
             dialog.dismiss() // Close the dialog and resume the game
@@ -158,7 +162,8 @@ class DialogManager(
         onBuyMoreTime: () -> Unit,
         onRestartLevel: () -> Unit,
     ) {
-        val dialog = Dialog(context)
+        val dialog = Dialog(context, R.style.FullWidthDialog)
+
         dialog.setCancelable(false)
 
         // Set the window background to transparent
@@ -185,7 +190,8 @@ class DialogManager(
         level: Int,
         onStartNextLevel: () -> Unit,
     ) {
-        val dialog = Dialog(context)
+        val dialog = Dialog(context, R.style.FullWidthDialog)
+
         dialog.setCancelable(false)
 
         // Set the window background to transparent
