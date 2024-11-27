@@ -2,9 +2,9 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="green">#46E422</color>
+    <color name="green">#2CC50A</color>
     <color name="default_button">#2E94E6</color>
-    <color name="light_green">#84C439</color>
+    <color name="light_green">#0BC812</color>
     <color name="red">#DF3B30</color>
     <color name="transparent">#00F44336</color>
     <color name="timer_warning">#FF0000</color>
@@ -29,7 +29,7 @@
 
 <!--=================================================================-->
     <!-- Dark Theme Colors -->
-    <color name="dark_primary">#C3B007</color>
+    <color name="dark_primary">#E6CF05</color>
     <color name="dark_secondary">#19376D</color>
     <color name="dark_background">#242201</color>
     <color name="dark_text">#FBFAED</color>

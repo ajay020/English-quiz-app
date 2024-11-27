@@ -130,18 +130,18 @@ class QuizActivity : BaseActivity() {
                     this@QuizActivity,
                     selectedButton,
                     android.R.color.transparent,
-                    android.R.color.holo_green_light,
+                    R.color.green,
                 )
-                delay(500) // Wait for 1 second
+                delay(600) // Wait for 1 second
                 viewModel.onNextQuestion()
             } else {
                 viewModel.animateButtonColor(
                     this@QuizActivity,
                     selectedButton,
                     android.R.color.transparent,
-                    android.R.color.holo_red_light,
+                    R.color.colorError,
                 )
-                delay(500) // Wait for 1 second
+                delay(600) // Wait for 1 second
                 showRecoveryDialog()
             }
         }
