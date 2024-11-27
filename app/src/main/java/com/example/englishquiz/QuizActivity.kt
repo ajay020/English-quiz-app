@@ -9,6 +9,7 @@ import android.util.TypedValue
 import android.view.View
 import android.widget.Button
 import android.widget.Toast
+import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.lifecycleScope
@@ -26,7 +27,7 @@ class QuizActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-//        enableEdgeToEdge()
+        enableEdgeToEdge()
 
         binding = ActivityQuizBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -38,10 +39,6 @@ class QuizActivity : BaseActivity() {
     }
 
     private fun setupViews() {
-        binding.tvTimer.apply {
-            setTextColor(ContextCompat.getColor(context, android.R.color.black))
-        }
-
         optionButtons =
             listOf(
                 binding.btnOption1,
@@ -135,7 +132,7 @@ class QuizActivity : BaseActivity() {
                     android.R.color.transparent,
                     android.R.color.holo_green_light,
                 )
-                delay(800) // Wait for 1 second
+                delay(500) // Wait for 1 second
                 viewModel.onNextQuestion()
             } else {
                 viewModel.animateButtonColor(
@@ -144,7 +141,7 @@ class QuizActivity : BaseActivity() {
                     android.R.color.transparent,
                     android.R.color.holo_red_light,
                 )
-                delay(800) // Wait for 1 second
+                delay(500) // Wait for 1 second
                 showRecoveryDialog()
             }
         }
@@ -196,6 +193,7 @@ class QuizActivity : BaseActivity() {
         binding.btnRecover.setOnClickListener {
             if (viewModel.hasEnoughCoins(10)) {
                 viewModel.deductCoins(10)
+                resetOptions()
                 dialog.dismiss()
             } else {
                 Toast.makeText(this, "Not enough coins!", Toast.LENGTH_SHORT).show()

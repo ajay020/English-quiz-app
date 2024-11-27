@@ -1,53 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    style="@style/DialogBaseLayout"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    style="@style/DialogBaseLayout">
+    >
 
     <!-- Title -->
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/tvDialogTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/time_s_up"
         android:layout_marginBottom="20dp"
-        android:textStyle="bold"
         android:gravity="center"
-        />
+        android:text="@string/time_s_up"
+        android:textStyle="bold" />
 
     <View
         android:layout_width="wrap_content"
-        android:layout_height="16dp"/>
+        android:layout_height="16dp" />
 
     <!-- Buttons -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:gravity="center">
+        android:gravity="center"
+        android:orientation="vertical">
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnBuyMoreTime"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:drawableRightCompat="@drawable/ic_replay"
-            android:text="Use Timer" />
+            style="@style/ButtonStyle"
+            android:layout_width="220dp"
+            android:drawableTint="?attr/colorOnPrimary"
+            android:text="Use Timer"
+            app:drawableRightCompat="@drawable/ic_timer" />
 
         <View
             android:layout_width="wrap_content"
-            android:layout_height="16dp"/>
+            android:layout_height="16dp" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnRestartLevel"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/retry"
-            app:drawableRightCompat="@drawable/ic_replay"
-            android:paddingHorizontal="18dp"
+            style="@style/OutlinedOptionButton"
+            android:layout_width="220dp"
             android:drawablePadding="8dp"
-            android:paddingVertical="8dp"
-            />
+            android:drawableTint="?attr/colorOnPrimary"
+            android:text="@string/retry"
+            app:drawableRightCompat="@drawable/ic_replay" />
     </LinearLayout>
 </LinearLayout>

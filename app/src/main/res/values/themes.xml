@@ -3,6 +3,7 @@
     <style name="AppTheme" parent="Theme.Material3.DayNight.NoActionBar">
         <item name="timerColorWarning">@color/timer_warning</item>
         <item name="android:statusBarColor">@color/classic_primary</item>
+        <item name="android:windowFullscreen">true</item>
     </style>
 
     <!-- Classic -->
