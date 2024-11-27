@@ -33,7 +33,7 @@ class DialogManager(
 
         dialog.setCancelable(false)
         dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-        dialog.window?.setDimAmount(1f)
+        dialog.window?.setDimAmount(0.5f)
 
         val binding = DialogSettingsBinding.inflate(LayoutInflater.from(context))
         dialog.setContentView(binding.root)

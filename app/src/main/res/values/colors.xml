@@ -8,12 +8,13 @@
     <color name="red">#DF3B30</color>
     <color name="transparent">#00F44336</color>
     <color name="timer_warning">#FF0000</color>
+    <color name="light_gray">#ccc</color>
 
     <!--=================================================================-->
     <!-- Classic Theme Colors -->
     <color name="classic_primary">#3679E0</color>
     <color name="classic_secondary">#B3DB07</color>
-    <color name="classic_background">#050542</color>
+    <color name="classic_background">#0B032D</color>
     <color name="classic_text">#DCDFF0</color>
     <color name="classic_accent">#4E8FF0</color>
 
@@ -28,40 +29,40 @@
 
 <!--=================================================================-->
     <!-- Dark Theme Colors -->
-    <color name="dark_primary">#2265DB</color>
+    <color name="dark_primary">#C3B007</color>
     <color name="dark_secondary">#19376D</color>
-    <color name="dark_background">#222831</color>
-    <color name="dark_text">#ECEFF8</color>
-    <color name="dark_accent">#3F97DB</color>
+    <color name="dark_background">#242201</color>
+    <color name="dark_text">#FBFAED</color>
+    <color name="dark_accent">#F4E409</color>
 
     <!-- Text and icon colors -->
-    <color name="dark_OnPrimary">#A5D7E8</color>
+    <color name="dark_OnPrimary">#242201</color>
     <color name="dark_OnSecondary">#A5D7E8</color>
     <color name="dark_OnBackground">#A5D7E8</color>
 
     <!--=================================================================-->
     <!-- Nature Theme Colors -->
-    <color name="nature_primary">#06D001</color>
+    <color name="nature_primary">#68CA06</color>
     <color name="nature_secondary">#9BEC00</color>
-    <color name="nature_background">#223E25</color>
-    <color name="nature_text">#E2F2D6</color>
-    <color name="nature_accent">#8EF21C</color>
+    <color name="nature_background">#FFFFFF</color>
+    <color name="nature_text">#081004</color>
+    <color name="nature_accent">#8AC926</color>
 
     <!-- Text and icon colors -->
-    <color name="nature_OnPrimary">#F3FF90</color>
+    <color name="nature_OnPrimary">#FFFFFF</color>
     <color name="nature_OnSecondary">#000000</color>
     <color name="nature_OnBackground">#000000</color>
 
     <!--=================================================================-->
     <!-- Ocean Theme Colors -->
-    <color name="ocean_primary">#C8129B</color>
+    <color name="ocean_primary">#D519BC</color>
     <color name="ocean_secondary">#2980B9</color>
-    <color name="ocean_background">#430837</color>
-    <color name="ocean_text">#F6EBF4</color>
-    <color name="ocean_accent">#F00E9E</color>
+    <color name="ocean_background">#420039</color>
+    <color name="ocean_text">#FBF2FA</color>
+    <color name="ocean_accent">#EF1397</color>
 
     <!-- Text and icon colors -->
-    <color name="ocean_OnPrimary">#C0CEF0</color>
+    <color name="ocean_OnPrimary">#090909</color>
     <color name="ocean_OnSecondary">#C0CEF0</color>
     <color name="ocean_OnBackground">#C0CEF0</color>
 </resources>

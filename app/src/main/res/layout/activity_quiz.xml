@@ -5,13 +5,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center"
-    android:background="@color/ocean_background"
-    android:theme="@style/AppTheme.ocean"
     android:orientation="vertical">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:paddingVertical="8dp"
         android:paddingHorizontal="16dp">
 
         <com.google.android.material.textview.MaterialTextView
@@ -80,32 +79,24 @@
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btn_option_1"
             style="@style/OutlinedOptionButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
             android:text="Option 1" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btn_option_2"
             style="@style/OutlinedOptionButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
             android:text="Option 2" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btn_option_3"
             style="@style/OutlinedOptionButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
             android:text="Option 3" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btn_option_4"
             style="@style/OutlinedOptionButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
             android:text="Option 4" />
     </LinearLayout>
 

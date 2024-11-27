@@ -1,15 +1,7 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.Material3.DayNight.NoActionBar">
-        <item name="colorPrimary">@color/classic_primary</item>
-        <item name="colorSecondary">@color/classic_secondary</item>
-        <item name="android:windowBackground">@color/classic_background</item>
-        <item name="android:textColor">@color/classic_text</item>
-        <item name="colorAccent">@color/classic_accent</item>
-
-        <item name="buttonStyle">@style/ButtonStyle</item>
         <item name="timerColorWarning">@color/timer_warning</item>
-
         <item name="android:statusBarColor">@color/classic_primary</item>
     </style>
 
@@ -47,6 +39,7 @@
         <item name="android:windowBackground">@color/nature_background</item>
         <item name="backgroundColor">@color/nature_background</item>
         <item name="android:textColor">@color/nature_text</item>
+        <item name="colorOnPrimary">@color/nature_OnPrimary</item>
         <item name="colorAccent">@color/nature_accent</item>
         <item name="buttonStyle">@style/ButtonStyle</item>
 
@@ -66,14 +59,6 @@
 
         <item name="android:statusBarColor">?attr/colorPrimary</item>
         <item name="timerColorDefault">@color/ocean_text</item>
-
-    </style>
-
-    <!-- Button Style -->
-    <style name="ButtonStyle" parent="Widget.Material3.Button">
-        <item name="android:backgroundTint">?attr/colorAccent </item>
-        <item name="android:textSize">24sp</item>
-        <item name="android:textStyle">bold</item>
     </style>
 
     <style name="DialogBaseLayout">
@@ -101,8 +86,23 @@
         <item name="strokeColor">?attr/colorPrimary</item> <!-- Border color -->
         <item name="strokeWidth">2dp</item> <!-- Border thickness -->
         <item name="android:textColor">?attr/android:textColor</item> <!-- Text color -->
-        <item name="android:textSize">16sp</item> <!-- Adjust text size if needed -->
-        <item name="cornerRadius">16dp</item> <!-- Rounded corners -->
+        <item name="android:textSize">18sp</item> <!-- Adjust text size if needed -->
+        <item name="cornerRadius">24dp</item> <!-- Rounded corners -->
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:padding">16dp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <!-- Button Style -->
+    <style name="ButtonStyle" parent="Widget.Material3.Button">
+        <item name="android:backgroundTint">?attr/colorPrimary </item>
+        <item name="android:textSize">24sp</item>
+        <item name="android:padding">16dp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">?attr/colorOnPrimary</item>
+        <item name="android:layout_width">wrap_content </item>
+        <item name="android:layout_height">wrap_content </item>
     </style>
 
 </resources>

@@ -6,11 +6,12 @@
     style="@style/DialogBaseLayout"
     android:layout_gravity="center"
     android:gravity="center"
+    android:padding="0dp"
     android:orientation="vertical">
 
     <TextView
         android:id="@+id/tvPauseHeading"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Paused"
         android:textAlignment="center"
@@ -21,17 +22,15 @@
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btnResume"
+        style="@style/ButtonStyle"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:text="@string/resume"
-        app:background="@color/ocean_primary"
         android:layout_marginBottom="8dp" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btnQuit"
+        style="@style/OutlinedOptionButton"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:text="Quit"
-        android:backgroundTint="@color/red"
-        android:textColor="@android:color/white" />
+        />
 </LinearLayout>
