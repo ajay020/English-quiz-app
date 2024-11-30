@@ -69,7 +69,7 @@
 
     <style name="FullWidthDialog" parent="Theme.AppCompat.Dialog">
         <item name="android:windowMinWidthMajor">40%</item> <!-- Landscape -->
-        <item name="android:windowMinWidthMinor">80%</item> <!-- Portrait -->
+        <item name="android:windowMinWidthMinor">90%</item> <!-- Portrait -->
         <item name="android:maxWidth">600dp</item> <!-- Cap width for tablets -->
     </style>
 

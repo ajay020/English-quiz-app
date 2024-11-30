@@ -16,6 +16,7 @@ import androidx.lifecycle.lifecycleScope
 import com.example.englishquiz.data.Question
 import com.example.englishquiz.databinding.ActivityQuizBinding
 import com.example.englishquiz.databinding.DialogRecoveryBinding
+import com.example.englishquiz.utils.AnimationUtility
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
@@ -24,6 +25,7 @@ class QuizActivity : BaseActivity() {
     private val viewModel: QuizViewModel by viewModels()
     private lateinit var optionButtons: List<Button>
     private lateinit var dialogManager: DialogManager
+    private lateinit var streakTracker: StreakTrackerView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,6 +34,7 @@ class QuizActivity : BaseActivity() {
         binding = ActivityQuizBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        streakTracker = StreakTrackerView(this)
         dialogManager = DialogManager(this)
 
         setupViews()
@@ -99,7 +102,15 @@ class QuizActivity : BaseActivity() {
         }
 
         viewModel.coins.observe(this) { coins ->
-            binding.tvCoins.text = "Coins: $coins"
+            val startValue = viewModel.getLastCoinValue()
+            binding.tvCoins.animateNumberChange(
+                startValue = startValue,
+                endValue = coins,
+                prefix = "Coins: ",
+                duration = 200L,
+            )
+
+            // Enable/disable hint button
             binding.btnHint.isEnabled = coins >= 5
         }
 
@@ -126,7 +137,7 @@ class QuizActivity : BaseActivity() {
 
         lifecycleScope.launch {
             if (currentQuestion?.correctAnswer == selectedButton.text) {
-                viewModel.animateButtonColor(
+                AnimationUtility.animateButtonColor(
                     this@QuizActivity,
                     selectedButton,
                     android.R.color.transparent,
@@ -135,7 +146,7 @@ class QuizActivity : BaseActivity() {
                 delay(600) // Wait for 1 second
                 viewModel.onNextQuestion()
             } else {
-                viewModel.animateButtonColor(
+                AnimationUtility.animateButtonColor(
                     this@QuizActivity,
                     selectedButton,
                     android.R.color.transparent,
@@ -161,9 +172,14 @@ class QuizActivity : BaseActivity() {
                 Toast.makeText(this, event.message, Toast.LENGTH_SHORT).show()
             }
             is QuizViewModel.NavigationEvent.ShowLevelComplete -> {
-                dialogManager.showLevelCompleteDialog(event.level) {
-                    viewModel.generateLevel()
-                }
+                dialogManager.showLevelCompleteDialog(
+                    event.level,
+                    event.isStreakCompleted,
+                    onCoinsUpdated = { amount ->
+                        viewModel.addCoins(amount)
+                    },
+                    onStartNextLevel = { viewModel.generateLevel() },
+                )
             }
             is QuizViewModel.NavigationEvent.NavigateToResult -> {
                 val intent = Intent(this, ResultActivity::class.java)

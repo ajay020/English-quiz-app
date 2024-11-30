@@ -6,6 +6,7 @@ import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.view.LayoutInflater
 import android.view.View
+import android.view.WindowManager
 import androidx.appcompat.app.AlertDialog
 import com.example.englishquiz.databinding.DialogLevelCompleteBinding
 import com.example.englishquiz.databinding.DialogPauseBinding
@@ -22,6 +23,10 @@ enum class Theme {
 class DialogManager(
     private val context: Context,
 ) {
+    companion object {
+        const val WEEK_STREAK_REWARD = 50
+    }
+
     fun showSettingsDialog(
         onAudioChanged: (Boolean) -> Unit,
         onMusicChanged: (Boolean) -> Unit,
@@ -188,10 +193,11 @@ class DialogManager(
 
     fun showLevelCompleteDialog(
         level: Int,
+        isStreakCompleted: Boolean,
         onStartNextLevel: () -> Unit,
+        onCoinsUpdated: (Int) -> Unit,
     ) {
-        val dialog = Dialog(context, R.style.FullWidthDialog)
-
+        val dialog = Dialog(context)
         dialog.setCancelable(false)
 
         // Set the window background to transparent
@@ -201,10 +207,37 @@ class DialogManager(
         val binding = DialogLevelCompleteBinding.inflate(LayoutInflater.from(context))
         dialog.setContentView(binding.root)
 
+        dialog.window?.let { window ->
+            val layoutParams = window.attributes
+            layoutParams.width = WindowManager.LayoutParams.MATCH_PARENT
+            layoutParams.height = WindowManager.LayoutParams.MATCH_PARENT
+            window.attributes = layoutParams
+        }
+
         // Set dialog text
-        binding.tvTitle.text = "Level Complete!"
-        binding.tvMessage.text = "Awesome!"
         binding.btnStartNextLevel.text = "Start Level $level"
+
+        // Show streak reward if streak is completed
+        if (isStreakCompleted) {
+            val preferenceManager = PreferenceManager(context)
+            val currentCoins = preferenceManager.getCoins()
+            val updatedCoins = currentCoins + WEEK_STREAK_REWARD
+
+            binding.tvCoins.animateNumberChange(
+                startValue = currentCoins,
+                endValue = updatedCoins,
+                duration = 1000L,
+                prefix = "Coins",
+            )
+            binding.streakRewardSection.visibility = View.VISIBLE
+
+            // Reset streak
+            val streakManager = StreakManager(preferenceManager)
+            streakManager.resetStreak()
+            onCoinsUpdated(WEEK_STREAK_REWARD)
+        } else {
+            binding.streakRewardSection.visibility = View.GONE
+        }
 
         // Handle button click
         binding.btnStartNextLevel.setOnClickListener {
@@ -224,6 +257,17 @@ class DialogManager(
             .setItems(options) { _, which ->
                 val count = options[which].toInt()
                 onSetUpQuestionCount(count)
+            }.show()
+    }
+
+    fun showStreakRewardDialog() {
+        AlertDialog
+            .Builder(context)
+            .setTitle("Streak Reward")
+            .setMessage("Congratulations! You've earned 50 coins!")
+            .setPositiveButton("Claim") { dialog, _ ->
+                // Additional reward processing if needed
+                dialog.dismiss()
             }.show()
     }
 }

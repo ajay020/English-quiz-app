@@ -65,4 +65,5 @@
     <color name="ocean_OnPrimary">#090909</color>
     <color name="ocean_OnSecondary">#C0CEF0</color>
     <color name="ocean_OnBackground">#C0CEF0</color>
+    <color name="gray">#585858</color>
 </resources>

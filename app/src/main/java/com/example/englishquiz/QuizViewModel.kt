@@ -1,12 +1,8 @@
 package com.example.englishquiz
 
-import android.animation.ObjectAnimator
 import android.app.Application
-import android.content.Context
-import android.util.Log
 import android.view.View
 import android.widget.Button
-import androidx.core.content.ContextCompat
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -21,6 +17,10 @@ class QuizViewModel(
 ) : AndroidViewModel(application) {
     private val preferenceStorage = SharedPreferenceStorage(application)
     private val repository = QuizRepository(application, preferenceStorage)
+
+    private val preferenceManager = PreferenceManager(application.applicationContext)
+    private val streakTrackerView = StreakTrackerView(application.applicationContext)
+
     private val timerManager = TimerManager()
 
     private val _currentQuestion = MutableLiveData<Question>()
@@ -52,6 +52,7 @@ class QuizViewModel(
     private var currentLevelNumber = 1
     private var currentQuestionIndex = 0
     private var questionCountPerLevel = 3
+    private var lastCoinValue = 0
 
     init {
         initializeQuizState()
@@ -60,9 +61,9 @@ class QuizViewModel(
     private fun initializeQuizState() {
         questions = repository.loadQuestionsFromJson()
         solvedQuestions.addAll(repository.getSolvedQuestions())
-        currentLevelNumber = repository.getCurrentLevel()
+        currentLevelNumber = preferenceManager.getCurrentLevel()
         questionCountPerLevel = repository.getQuestionCount()
-        _coins.value = repository.getCoins()
+        _coins.value = preferenceManager.getCoins()
         generateLevel()
     }
 
@@ -78,7 +79,7 @@ class QuizViewModel(
         val unsolvedQuestions = questions.filter { it.id !in solvedQuestions }
         val currLevelQuestions = unsolvedQuestions.take(questionCountPerLevel)
 
-        currentLevelNumber = repository.getCurrentLevel()
+        currentLevelNumber = preferenceManager.getCurrentLevel()
         _currentLevel.value = Level(currentLevelNumber, currLevelQuestions)
         solvedQuestions.addAll(currLevelQuestions.map { it.id })
         displayCurrentQuestion()
@@ -152,8 +153,13 @@ class QuizViewModel(
         currentQuestionIndex = 0
         val nextLevel = (currentLevel.value?.level ?: 0) + 1
 
-        repository.saveCurrentLevel(nextLevel)
+        preferenceManager.saveCurrentLevel(nextLevel)
         repository.saveSolvedQuestions(solvedQuestions)
+
+        // Mark the current day as completed
+        streakTrackerView.markDayAsCompleted()
+        val isStreakCompleted = streakTrackerView.isStreakCompleted()
+
         _currentLevel.value?.let {
             it.level = nextLevel
         }
@@ -161,7 +167,12 @@ class QuizViewModel(
         if (nextLevel >= questions.size) {
             _navigationEvent.value = NavigationEvent.NavigateToResult(_score.value ?: 0)
         } else {
-            _navigationEvent.value = NavigationEvent.ShowLevelComplete(nextLevel)
+            _navigationEvent.value =
+                NavigationEvent
+                    .ShowLevelComplete(
+                        level = nextLevel,
+                        isStreakCompleted = isStreakCompleted,
+                    )
         }
     }
 
@@ -230,7 +241,7 @@ class QuizViewModel(
         _coins.value?.let { currentCoins ->
             if (currentCoins >= amount) {
                 val newCoins = currentCoins - amount
-                repository.saveCoins(newCoins)
+                preferenceManager.saveCoins(newCoins)
                 _coins.value = newCoins
             } else {
                 _navigationEvent.value = NavigationEvent.ShowToast("Not enough coins!")
@@ -240,25 +251,14 @@ class QuizViewModel(
 
     fun addCoins(amount: Int) {
         _coins.value?.let { currentCoins ->
+            lastCoinValue = currentCoins
             val newCoins = currentCoins + amount
-            repository.saveCoins(newCoins)
+            preferenceManager.saveCoins(newCoins)
             _coins.value = newCoins
         }
     }
 
-    fun animateButtonColor(
-        context: Context,
-        button: Button,
-        startColorRes: Int,
-        endColorRes: Int,
-    ) {
-        val startColor = ContextCompat.getColor(context, startColorRes)
-        val endColor = ContextCompat.getColor(context, endColorRes)
-
-        val colorAnimator = ObjectAnimator.ofArgb(button, "backgroundColor", startColor, endColor)
-        colorAnimator.duration = 400 // Animation duration in milliseconds
-        colorAnimator.start()
-    }
+    fun getLastCoinValue(): Int = lastCoinValue
 
     fun pauseGame() {
         // Stop the timer and save the remaining time
@@ -269,7 +269,6 @@ class QuizViewModel(
     fun resumeGame() {
         // Resume the timer with the remaining time
         val remainingTime = timerManager.getTimeLeft()
-        Log.d("QVM", "$remainingTime")
         timerManager.startTimer(
             duration = remainingTime,
             onTick = { seconds ->
@@ -290,6 +289,7 @@ class QuizViewModel(
 
         data class ShowLevelComplete(
             val level: Int,
+            val isStreakCompleted: Boolean,
         ) : NavigationEvent()
 
         data class NavigateToResult(

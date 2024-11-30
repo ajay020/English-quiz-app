@@ -64,4 +64,5 @@
     <string name="play">Let\'s Play</string>
     <string name="resume">Resume</string>
     <string name="close">Close</string>
+    <string name="coins_icon">coin icon</string>
 </resources>
