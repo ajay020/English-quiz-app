@@ -26,6 +26,7 @@ class QuizActivity : BaseActivity() {
     private lateinit var optionButtons: List<Button>
     private lateinit var dialogManager: DialogManager
     private lateinit var streakTracker: StreakTrackerView
+    private lateinit var soundManager: SoundManager
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,6 +37,7 @@ class QuizActivity : BaseActivity() {
 
         streakTracker = StreakTrackerView(this)
         dialogManager = DialogManager(this)
+        soundManager = SoundManager(this)
 
         setupViews()
         setupObservers()
@@ -137,22 +139,26 @@ class QuizActivity : BaseActivity() {
 
         lifecycleScope.launch {
             if (currentQuestion?.correctAnswer == selectedButton.text) {
+                // Play sound for correct option
+                soundManager.playCorrectAnswerSound()
                 AnimationUtility.animateButtonColor(
                     this@QuizActivity,
                     selectedButton,
                     android.R.color.transparent,
                     R.color.green,
                 )
-                delay(600) // Wait for 1 second
+                delay(700) // Wait for 1 second
                 viewModel.onNextQuestion()
             } else {
+                // Play sound for incorrect answer
+                soundManager.playIncorrectAnswerSound()
                 AnimationUtility.animateButtonColor(
                     this@QuizActivity,
                     selectedButton,
                     android.R.color.transparent,
                     R.color.colorError,
                 )
-                delay(600) // Wait for 1 second
+                delay(700) // Wait for 1 second
                 showRecoveryDialog()
             }
         }
@@ -172,6 +178,9 @@ class QuizActivity : BaseActivity() {
                 Toast.makeText(this, event.message, Toast.LENGTH_SHORT).show()
             }
             is QuizViewModel.NavigationEvent.ShowLevelComplete -> {
+                soundManager.playLevelCompleteSound()
+//                streakTracker.markDayAsCompleted()
+
                 dialogManager.showLevelCompleteDialog(
                     event.level,
                     event.isStreakCompleted,

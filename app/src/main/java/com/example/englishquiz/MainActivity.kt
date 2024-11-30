@@ -31,11 +31,11 @@ class MainActivity : BaseActivity() {
 
         // Observe music state to start or stop music
         viewModel.isMusicEnabled.observe(this) { isMusicEnabled ->
-            if (isMusicEnabled) {
-                viewModel.startMusic()
-            } else {
-                viewModel.stopMusic()
-            }
+//            if (isMusicEnabled) {
+//                viewModel.setMusicEnabled(false)
+//            } else {
+//                viewModel.setMusicEnabled(true)
+//            }
         }
 
         binding.btnSettings.setOnClickListener {
