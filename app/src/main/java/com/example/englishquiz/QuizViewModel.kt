@@ -41,6 +41,9 @@ class QuizViewModel(
     private val _timeLeft = MutableLiveData<Long>()
     val timeLeft: LiveData<Long> = _timeLeft
 
+    private val _questionNumber = MutableLiveData<Int>(0)
+    val questionNumber: LiveData<Int> = _questionNumber
+
     private val _showTimeUpDialog = MutableLiveData<Boolean>()
     val showTimeUpDialog: LiveData<Boolean> = _showTimeUpDialog
 
@@ -139,6 +142,7 @@ class QuizViewModel(
     fun onNextQuestion() {
         stopTimer() // Stop timer before moving to next question
         currentQuestionIndex++
+        _questionNumber.value = currentQuestionIndex
 
         currentLevel.value?.let { level ->
             if (currentQuestionIndex >= level.questions.size) {
@@ -151,6 +155,7 @@ class QuizViewModel(
 
     private fun handleLevelCompletion() {
         currentQuestionIndex = 0
+        _questionNumber.value = 0
         val nextLevel = (currentLevel.value?.level ?: 0) + 1
 
         preferenceManager.saveCurrentLevel(nextLevel)
@@ -214,6 +219,7 @@ class QuizViewModel(
 
     fun restartLevel() {
         currentQuestionIndex = 0
+        _questionNumber.value = 0
         _score.value = 0
         _showTimeUpDialog.value = false
         generateLevel()

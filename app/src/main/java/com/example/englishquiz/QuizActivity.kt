@@ -44,6 +44,10 @@ class QuizActivity : BaseActivity() {
     }
 
     private fun setupViews() {
+        viewModel.questionNumber.observe(this) { questionNumber ->
+            binding.tvQuestionNumber.text = "$questionNumber / 3"
+        }
+
         optionButtons =
             listOf(
                 binding.btnOption1,
@@ -108,7 +112,6 @@ class QuizActivity : BaseActivity() {
             binding.tvCoins.animateNumberChange(
                 startValue = startValue,
                 endValue = coins,
-                prefix = "Coins: ",
                 duration = 200L,
             )
 

@@ -67,4 +67,6 @@
     <string name="coins_icon">coin icon</string>
     <string name="setting_icon">setting icon</string>
     <string name="quit">Quit</string>
+    <string name="hint_icon">hint icon</string>
+    <string name="timer">timer</string>
 </resources>
