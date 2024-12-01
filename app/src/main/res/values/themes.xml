@@ -4,7 +4,6 @@
         <item name="timerColorWarning">@color/timer_warning</item>
         <item name="android:statusBarColor">@color/classic_primary</item>
         <item name="android:windowFullscreen">true</item>
-
     </style>
 
     <!-- Classic -->
@@ -16,7 +15,6 @@
         <item name="colorAccent">@color/classic_accent</item>
         <item name="buttonStyle">@style/ButtonStyle</item>
 
-        <item name="android:statusBarColor">?attr/colorPrimary</item>
         <item name="timerColorDefault">@color/classic_text</item>
         <item name="colorOnBackground">@color/classic_OnBackground</item>
     </style>
@@ -30,7 +28,6 @@
         <item name="colorAccent">@color/dark_accent</item>
         <item name="buttonStyle">@style/ButtonStyle</item>
 
-        <item name="android:statusBarColor">?attr/colorPrimary</item>
         <item name="timerColorDefault">@color/dark_text</item>
 
     </style>
@@ -46,7 +43,6 @@
         <item name="colorAccent">@color/nature_accent</item>
         <item name="buttonStyle">@style/ButtonStyle</item>
 
-        <item name="android:statusBarColor">?attr/colorPrimary</item>
         <item name="timerColorDefault">@color/nature_text</item>
 
     </style>
@@ -60,7 +56,6 @@
         <item name="colorAccent">@color/ocean_accent</item>
         <item name="buttonStyle">@style/ButtonStyle</item>
 
-        <item name="android:statusBarColor">?attr/colorPrimary</item>
         <item name="timerColorDefault">@color/ocean_text</item>
     </style>
 

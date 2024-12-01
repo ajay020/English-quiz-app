@@ -31,16 +31,16 @@
 
 <!--=================================================================-->
     <!-- Dark Theme Colors -->
-    <color name="dark_primary">#E6CF05</color>
+    <color name="dark_primary">#CEBA08</color>
     <color name="dark_secondary">#19376D</color>
     <color name="dark_background">#242201</color>
-    <color name="dark_text">#FBFAED</color>
+    <color name="dark_text">#FFFFFF</color>
     <color name="dark_accent">#F4E409</color>
 
     <!-- Text and icon colors -->
-    <color name="dark_OnPrimary">#242201</color>
-    <color name="dark_OnSecondary">#FBFAED</color>
-    <color name="dark_OnBackground">#FBFAED</color>
+    <color name="dark_OnPrimary">#FFFFFF</color>
+    <color name="dark_OnSecondary">#FFFFFF</color>
+    <color name="dark_OnBackground">#FFFFFF</color>
 
     <!--=================================================================-->
     <!-- Nature Theme Colors -->
@@ -51,9 +51,9 @@
     <color name="nature_accent">#8AC926</color>
 
     <!-- Text and icon colors -->
-    <color name="nature_OnPrimary">#fff</color>
-    <color name="nature_OnSecondary">#000000</color>
-    <color name="nature_OnBackground">#000000</color>
+    <color name="nature_OnPrimary">#FFFFFF</color>
+    <color name="nature_OnSecondary">#FFFFFF</color>
+    <color name="nature_OnBackground">#FFFFFF</color>
 
     <!--=================================================================-->
     <!-- Ocean Theme Colors -->
