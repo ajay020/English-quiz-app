@@ -65,4 +65,6 @@
     <string name="resume">Resume</string>
     <string name="close">Close</string>
     <string name="coins_icon">coin icon</string>
+    <string name="setting_icon">setting icon</string>
+    <string name="quit">Quit</string>
 </resources>

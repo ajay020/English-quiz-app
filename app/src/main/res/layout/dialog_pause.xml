@@ -6,7 +6,6 @@
     style="@style/DialogBaseLayout"
     android:layout_gravity="center"
     android:gravity="center"
-    android:padding="0dp"
     android:orientation="vertical">
 
     <TextView
@@ -31,6 +30,6 @@
         android:id="@+id/btnQuit"
         style="@style/OutlinedOptionButton"
         android:layout_width="match_parent"
-        android:text="Quit"
+        android:text="@string/quit"
         />
 </LinearLayout>

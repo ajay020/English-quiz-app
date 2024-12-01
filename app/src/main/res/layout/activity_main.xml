@@ -14,15 +14,13 @@
         android:layout_height="wrap_content">
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tv_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            style="@style/HeaderTextViewStyle"
             android:text="English Quiz"
-            android:textSize="28sp"
             android:layout_gravity="center" />
         <ImageButton
             android:id="@+id/btn_settings"
             android:src="@drawable/ic_settings2"
-            android:contentDescription="setting icon"
+            android:contentDescription="@string/setting_icon"
             android:layout_width="wrap_content"
             android:layout_gravity="end"
             android:padding="12dp"
@@ -61,7 +59,6 @@
         android:layout_width="250dp"
         android:layout_marginBottom="60dp"
         android:layout_marginHorizontal="12dp"
-        android:padding="16dp"
         android:layout_gravity="center"
         android:textSize="24sp"
         android:text="@string/play"/>

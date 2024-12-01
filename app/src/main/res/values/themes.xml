@@ -4,6 +4,7 @@
         <item name="timerColorWarning">@color/timer_warning</item>
         <item name="android:statusBarColor">@color/classic_primary</item>
         <item name="android:windowFullscreen">true</item>
+
     </style>
 
     <!-- Classic -->
@@ -17,6 +18,7 @@
 
         <item name="android:statusBarColor">?attr/colorPrimary</item>
         <item name="timerColorDefault">@color/classic_text</item>
+        <item name="colorOnBackground">@color/classic_OnBackground</item>
     </style>
 
     <!-- Dark -->
@@ -68,9 +70,10 @@
     </style>
 
     <style name="FullWidthDialog" parent="Theme.AppCompat.Dialog">
-        <item name="android:windowMinWidthMajor">40%</item> <!-- Landscape -->
-        <item name="android:windowMinWidthMinor">90%</item> <!-- Portrait -->
+        <item name="android:windowMinWidthMajor">60%</item> <!-- Landscape -->
+        <item name="android:windowMinWidthMinor">100%</item> <!-- Portrait -->
         <item name="android:maxWidth">600dp</item> <!-- Cap width for tablets -->
+        <item name="android:padding">16dp</item>
     </style>
 
 <!--    quiz activity control image button style -->
@@ -84,23 +87,23 @@
     </style>
 
     <style name="OutlinedOptionButton" parent="Widget.MaterialComponents.Button.OutlinedButton">
-        <item name="strokeColor">?attr/colorPrimary</item> <!-- Border color -->
-        <item name="strokeWidth">2dp</item> <!-- Border thickness -->
+        <item name="strokeColor">@color/light_gray</item> <!-- Border color -->
+        <item name="strokeWidth">1dp</item> <!-- Border thickness -->
         <item name="android:textColor">?attr/android:textColor</item> <!-- Text color -->
         <item name="android:textSize">18sp</item> <!-- Adjust text size if needed -->
         <item name="cornerRadius">24dp</item> <!-- Rounded corners -->
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:padding">16dp</item>
-        <item name="android:textStyle">bold</item>
+        <item name="android:padding">8dp</item>
+        <item name="android:textStyle"> normal </item>
     </style>
 
     <!-- Button Style -->
     <style name="ButtonStyle" parent="Widget.Material3.Button">
         <item name="android:backgroundTint">?attr/colorPrimary </item>
         <item name="android:textSize">24sp</item>
-        <item name="android:padding">16dp</item>
-        <item name="android:textStyle">bold</item>
+        <item name="android:padding">8dp</item>
+        <item name="android:textStyle">normal</item>
         <item name="android:textColor">?attr/colorOnPrimary</item>
         <item name="android:layout_width">wrap_content </item>
         <item name="android:layout_height">wrap_content </item>

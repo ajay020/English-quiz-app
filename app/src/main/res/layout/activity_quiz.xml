@@ -5,6 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center"
+    android:theme="@style/AppTheme.dark"
+    android:background="@color/dark_background"
     android:orientation="vertical">
 
     <RelativeLayout
@@ -15,11 +17,9 @@
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/tv_level"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            style="@style/BodyTextViewStyle"
             android:layout_centerVertical="true"
             android:layout_gravity="center"
-            android:textSize="18sp"
             tools:text="Level 1" />
 
         <com.google.android.material.textview.MaterialTextView
@@ -36,32 +36,32 @@
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
             android:layout_centerVertical="true"
+            android:paddingHorizontal="6dp"
+            android:paddingVertical="6dp"
             android:orientation="horizontal">
 
             <ImageView
                 android:layout_width="24dp"
                 android:layout_height="24dp"
                 android:contentDescription="Coins"
-                android:src="@drawable/ic_coin" />
+                android:src="@drawable/ic_diamond"
+                app:tint="@color/dark_primary" />
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/tv_coins"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                style="@style/BodyTextViewStyle"
                 android:layout_marginStart="8dp"
-                android:textSize="18sp"
                 tools:text="Coins: 0" />
         </LinearLayout>
     </RelativeLayout>
 
     <TextView
         android:id="@+id/tv_question"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        style="@style/HeaderTextViewStyle"
         android:layout_marginTop="30dp"
         android:textAlignment="center"
         android:textSize="24sp"
-        tools:text="Which of the following options is correct ?" />
+        tools:text="Which of the following options is Correct?" />
 
     <Space
         android:layout_width="match_parent"
