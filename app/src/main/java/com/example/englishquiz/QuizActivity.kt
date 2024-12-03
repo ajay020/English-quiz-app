@@ -44,8 +44,8 @@ class QuizActivity : BaseActivity() {
     }
 
     private fun setupViews() {
-        viewModel.questionNumber.observe(this) { questionNumber ->
-            binding.tvQuestionNumber.text = "$questionNumber / 3"
+        viewModel.questionProgress.observe(this) { questionProgress ->
+            binding.tvQuestionProgress.text = questionProgress
         }
 
         optionButtons =
@@ -104,7 +104,7 @@ class QuizActivity : BaseActivity() {
         }
 
         viewModel.currentLevel.observe(this) { level ->
-            binding.tvLevel.text = "Level ${level?.level}"
+            binding.tvLevel.text = "Level $level"
         }
 
         viewModel.coins.observe(this) { coins ->
@@ -125,7 +125,7 @@ class QuizActivity : BaseActivity() {
     }
 
     private fun displayQuestion(question: Question) {
-        binding.tvQuestion.text = question.question
+        binding.tvQuestion.text = question.questionText
         optionButtons.forEachIndexed { index, button ->
             button.text = question.options[index]
         }
@@ -182,7 +182,6 @@ class QuizActivity : BaseActivity() {
             }
             is QuizViewModel.NavigationEvent.ShowLevelComplete -> {
                 soundManager.playLevelCompleteSound()
-//                streakTracker.markDayAsCompleted()
 
                 dialogManager.showLevelCompleteDialog(
                     event.level,
@@ -195,7 +194,6 @@ class QuizActivity : BaseActivity() {
             }
             is QuizViewModel.NavigationEvent.NavigateToResult -> {
                 val intent = Intent(this, ResultActivity::class.java)
-                intent.putExtra("score", event.score)
                 startActivity(intent)
                 finish()
             }

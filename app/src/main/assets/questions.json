@@ -1,0 +1,51 @@
+[
+  {
+    "questionText": "What is the capital of France?",
+    "options": ["Berlin", "Madrid", "Paris", "Rome"],
+    "correctAnswer": "Paris"
+  },
+  {
+    "questionText": "What is 2 + 2?",
+    "options": ["3", "4", "5", "6"],
+    "correctAnswer": "4"
+  },
+  {
+    "questionText": "What is the antonym of 'bright'?",
+    "options": ["Dark", "Clear", "Shiny", "Gleaming"],
+    "correctAnswer": "Dark"
+  },
+  {
+    "questionText": "Which word is a synonym for 'happy'?",
+    "options": ["Joyful", "Sad", "Angry", "Tired"],
+    "correctAnswer": "Joyful"
+  },
+  {
+    "questionText": "Which word is an adjective?",
+    "options": ["Big", "House", "Jump", "Slowly"],
+    "correctAnswer": "Big"
+  },
+  {
+    "questionText": "What is the opposite of 'hot'?",
+    "options": ["Cold", "Warm", "Sunny", "Rainy"],
+    "correctAnswer": "Cold"},
+  {
+    "questionText": "Which word is a verb?",
+    "options": ["Sing", "Music", "Loudly", "Happy"],
+    "correctAnswer": "Sing"
+  },
+  {
+    "questionText": "What is the past tense of 'eat'?",
+    "options": ["Ate", "Eaten", "Eat", "Eating"],
+    "correctAnswer": "Ate"
+  },
+  {
+    "questionText": "Which word is a noun?",
+    "options": ["Table", "Run", "Quickly", "Beautiful"],
+    "correctAnswer": "Table"
+  },
+  {
+    "questionText": "What is the plural of 'child'?",
+    "options": ["Children", "Childs", "Childes", "Childrin"],
+    "correctAnswer": "Children"
+  }
+]

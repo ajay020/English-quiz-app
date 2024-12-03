@@ -7,6 +7,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.recyclerview.widget.RecyclerView
 import com.example.englishquiz.databinding.ActivityMainBinding
+import com.example.englishquiz.utils.QuestionLoadingScript
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Locale
@@ -21,22 +22,19 @@ class MainActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
 
+        // insert data into db
+        val database = (application as QuizApplication).database
+        QuestionLoadingScript.importQuestionsFromJson(this, database)
+
+        // Initialize binding
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         dialogManager = DialogManager(this)
 
+        // Initialize StreakTrackerView
         streakTracker = StreakTrackerView(this)
         val recyclerView: RecyclerView = binding.streakRecyclerView
         streakTracker.setupStreakTracker(recyclerView)
-
-        // Observe music state to start or stop music
-        viewModel.isMusicEnabled.observe(this) { isMusicEnabled ->
-//            if (isMusicEnabled) {
-//                viewModel.setMusicEnabled(false)
-//            } else {
-//                viewModel.setMusicEnabled(true)
-//            }
-        }
 
         binding.btnSettings.setOnClickListener {
             viewModel.playClickSound()

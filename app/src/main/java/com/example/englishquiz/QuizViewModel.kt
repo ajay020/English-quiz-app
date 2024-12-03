@@ -1,22 +1,21 @@
 package com.example.englishquiz
 
 import android.app.Application
+import android.util.Log
 import android.view.View
 import android.widget.Button
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.example.englishquiz.data.Level
+import androidx.lifecycle.viewModelScope
 import com.example.englishquiz.data.Question
-import com.example.englishquiz.data.QuizRepository
-import com.example.englishquiz.data.SharedPreferenceStorage
+import kotlinx.coroutines.launch
 import kotlin.math.ceil
 
 class QuizViewModel(
     application: Application,
 ) : AndroidViewModel(application) {
-    private val preferenceStorage = SharedPreferenceStorage(application)
-    private val repository = QuizRepository(application, preferenceStorage)
+    private val questionRepository: QuestionRepository
 
     private val preferenceManager = PreferenceManager(application.applicationContext)
     private val streakTrackerView = StreakTrackerView(application.applicationContext)
@@ -26,14 +25,11 @@ class QuizViewModel(
     private val _currentQuestion = MutableLiveData<Question>()
     val currentQuestion: LiveData<Question> = _currentQuestion
 
-    private val _score = MutableLiveData(0)
-    val score: LiveData<Int> = _score
-
     private val _coins = MutableLiveData(200)
     val coins: LiveData<Int> = _coins
 
-    private val _currentLevel = MutableLiveData<Level?>(null)
-    val currentLevel: LiveData<Level?> = _currentLevel
+    private val _currentLevel = MutableLiveData<Int>(0)
+    val currentLevel: LiveData<Int> = _currentLevel
 
     private val _navigationEvent = MutableLiveData<NavigationEvent>()
     val navigationEvent: LiveData<NavigationEvent> = _navigationEvent
@@ -41,8 +37,8 @@ class QuizViewModel(
     private val _timeLeft = MutableLiveData<Long>()
     val timeLeft: LiveData<Long> = _timeLeft
 
-    private val _questionNumber = MutableLiveData<Int>(0)
-    val questionNumber: LiveData<Int> = _questionNumber
+    private val _questionProgress = MutableLiveData<String>("")
+    val questionProgress: LiveData<String> = _questionProgress
 
     private val _showTimeUpDialog = MutableLiveData<Boolean>()
     val showTimeUpDialog: LiveData<Boolean> = _showTimeUpDialog
@@ -51,51 +47,41 @@ class QuizViewModel(
     val areAnswerButtonsEnabled: LiveData<Boolean> = _areAnswerButtonsEnabled
 
     private var questions: List<Question> = emptyList()
-    private val solvedQuestions = mutableSetOf<Int>()
-    private var currentLevelNumber = 1
     private var currentQuestionIndex = 0
-    private var questionCountPerLevel = 3
     private var lastCoinValue = 0
 
     init {
+        val questionDao = (application as QuizApplication).database.questionDao()
+        questionRepository = QuestionRepository(questionDao)
         initializeQuizState()
     }
 
     private fun initializeQuizState() {
-        questions = repository.loadQuestionsFromJson()
-        solvedQuestions.addAll(repository.getSolvedQuestions())
-        currentLevelNumber = preferenceManager.getCurrentLevel()
-        questionCountPerLevel = repository.getQuestionCount()
+        _currentLevel.value = preferenceManager.getCurrentLevel()
         _coins.value = preferenceManager.getCoins()
         generateLevel()
-    }
-
-    fun setUpQuestionCount(questionCount: Int) {
-        questionCountPerLevel = questionCount
-        repository.saveQuestionCount(questionCount)
+        _timeLeft.value = timerManager.getTimeLeft()
     }
 
     fun generateLevel() {
-        solvedQuestions.clear()
-        solvedQuestions.addAll(repository.getSolvedQuestions())
-
-        val unsolvedQuestions = questions.filter { it.id !in solvedQuestions }
-        val currLevelQuestions = unsolvedQuestions.take(questionCountPerLevel)
-
-        currentLevelNumber = preferenceManager.getCurrentLevel()
-        _currentLevel.value = Level(currentLevelNumber, currLevelQuestions)
-        solvedQuestions.addAll(currLevelQuestions.map { it.id })
-        displayCurrentQuestion()
+        viewModelScope.launch {
+            try {
+                questions = questionRepository.getUnsolvedQuestions(3)
+                _questionProgress.value = "$currentQuestionIndex / ${questions.size}"
+                displayCurrentQuestion()
+            } catch (e: Exception) {
+                Log.e("DATA", "Error loading questions: ${e.message}")
+            }
+        }
+        _currentLevel.value = preferenceManager.getCurrentLevel()
     }
 
     private fun displayCurrentQuestion() {
-        currentLevel.value?.let { level ->
-            if (level.questions.isNotEmpty()) {
-                _currentQuestion.value = level.questions[currentQuestionIndex]
-                startQuestionTimer() // Start timer for new question
-            } else {
-                _navigationEvent.value = NavigationEvent.NavigateToResult(_score.value ?: 0)
-            }
+        if (questions.isNotEmpty()) {
+            _currentQuestion.value = questions[currentQuestionIndex]
+            startQuestionTimer() // Start timer for new question
+        } else {
+            _navigationEvent.value = NavigationEvent.NavigateToResult
         }
     }
 
@@ -103,7 +89,6 @@ class QuizViewModel(
         stopTimer() // Stop timer when answer is selected
         _currentQuestion.value?.let { question ->
             if (selectedAnswer == question.correctAnswer) {
-                _score.value = (_score.value ?: 0) + 1
                 addCoins(2)
             }
         }
@@ -115,7 +100,8 @@ class QuizViewModel(
         _coins.value?.let { currentCoins ->
             if (currentCoins >= hintCost) {
                 val currentQuestion = currentQuestion.value ?: return
-                val incorrectOptions = optionButtons.filter { it.text != currentQuestion.correctAnswer }
+                val incorrectOptions =
+                    optionButtons.filter { it.text != currentQuestion.correctAnswer }
 
                 // Calculate how many incorrect options to hide (round up for odd numbers)
                 val optionsToHideCount = ceil(incorrectOptions.size / 2.0).toInt()
@@ -142,10 +128,10 @@ class QuizViewModel(
     fun onNextQuestion() {
         stopTimer() // Stop timer before moving to next question
         currentQuestionIndex++
-        _questionNumber.value = currentQuestionIndex
+        _questionProgress.value = "$currentQuestionIndex / ${questions.size}"
 
         currentLevel.value?.let { level ->
-            if (currentQuestionIndex >= level.questions.size) {
+            if (currentQuestionIndex >= questions.size) {
                 handleLevelCompletion()
             } else {
                 displayCurrentQuestion()
@@ -155,22 +141,25 @@ class QuizViewModel(
 
     private fun handleLevelCompletion() {
         currentQuestionIndex = 0
-        _questionNumber.value = 0
-        val nextLevel = (currentLevel.value?.level ?: 0) + 1
+        _questionProgress.value = "0 / ${questions.size}"
+        val nextLevel = (currentLevel.value ?: 0) + 1
 
         preferenceManager.saveCurrentLevel(nextLevel)
-        repository.saveSolvedQuestions(solvedQuestions)
+
+        viewModelScope.launch {
+            questions.forEach { question ->
+                questionRepository.markQuestionAsSolved(question.id)
+            }
+        }
 
         // Mark the current day as completed
         streakTrackerView.markDayAsCompleted()
         val isStreakCompleted = streakTrackerView.isStreakCompleted()
 
-        _currentLevel.value?.let {
-            it.level = nextLevel
-        }
+        _currentLevel.value = nextLevel
 
-        if (nextLevel >= questions.size) {
-            _navigationEvent.value = NavigationEvent.NavigateToResult(_score.value ?: 0)
+        if (questions.isEmpty()) {
+            _navigationEvent.value = NavigationEvent.NavigateToResult
         } else {
             _navigationEvent.value =
                 NavigationEvent
@@ -219,8 +208,7 @@ class QuizViewModel(
 
     fun restartLevel() {
         currentQuestionIndex = 0
-        _questionNumber.value = 0
-        _score.value = 0
+        _questionProgress.value = "0 / ${questions.size}"
         _showTimeUpDialog.value = false
         generateLevel()
         startQuestionTimer()
@@ -298,9 +286,7 @@ class QuizViewModel(
             val isStreakCompleted: Boolean,
         ) : NavigationEvent()
 
-        data class NavigateToResult(
-            val score: Int,
-        ) : NavigationEvent()
+        data object NavigateToResult : NavigationEvent()
 
 //        object ShowTimeUpDialog : NavigationEvent()
 //

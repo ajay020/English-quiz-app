@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
+    id("kotlin-kapt")
 }
 
 android {
@@ -26,6 +27,7 @@ android {
             )
         }
     }
+
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
@@ -50,6 +52,10 @@ dependencies {
     implementation("com.google.code.gson:gson:2.10.1")
     implementation(libs.androidx.preference)
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.8.7")
+
+    implementation("androidx.room:room-runtime:2.6.1")
+    kapt("androidx.room:room-compiler:2.6.1") // For annotation processing
+    implementation("androidx.room:room-ktx:2.6.1") // For Coroutines and Flow support
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
