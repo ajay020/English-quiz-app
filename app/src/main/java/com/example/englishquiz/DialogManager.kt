@@ -12,6 +12,11 @@ import com.example.englishquiz.databinding.DialogLevelCompleteBinding
 import com.example.englishquiz.databinding.DialogPauseBinding
 import com.example.englishquiz.databinding.DialogSettingsBinding
 import com.example.englishquiz.databinding.DialogTimeUpBinding
+import nl.dionsegijn.konfetti.core.Party
+import nl.dionsegijn.konfetti.core.Position
+import nl.dionsegijn.konfetti.core.emitter.Emitter
+import nl.dionsegijn.konfetti.xml.KonfettiView
+import java.util.concurrent.TimeUnit
 
 enum class Theme {
     CLASSIC,
@@ -231,12 +236,41 @@ class DialogManager(
             window.attributes = layoutParams
         }
 
+        val konfettiView: KonfettiView = binding.konfettiView
+        konfettiView.start(
+            Party(
+                speed = 0f,
+                maxSpeed = 50f,
+                damping = 0.9f,
+                spread = 360,
+                colors =
+                    listOf(
+                        Color.YELLOW,
+                        Color.GREEN,
+                        Color.MAGENTA,
+                        Color.BLUE,
+                        Color.RED,
+                        Color.CYAN,
+                        Color.BLUE,
+                    ),
+                emitter = Emitter(duration = 15, TimeUnit.SECONDS).max(1500).perSecond(100),
+                position = Position.Relative(0.5, 0.5), // Center of the screen
+            ),
+        )
+
         // Set dialog text
         binding.btnStartNextLevel.text = "Start Level $level"
 
+        val preferenceManager = PreferenceManager(context)
+        binding.tvCoins.animateNumberChange(
+            startValue = 0,
+            endValue = preferenceManager.getCoins(),
+            duration = 700L,
+            prefix = "Coins ",
+        )
+
         // Show streak reward if streak is completed
         if (isStreakCompleted) {
-            val preferenceManager = PreferenceManager(context)
             val currentCoins = preferenceManager.getCoins()
             val updatedCoins = currentCoins + WEEK_STREAK_REWARD
 

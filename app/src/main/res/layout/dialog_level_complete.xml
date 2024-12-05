@@ -1,63 +1,88 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    style="@style/DialogBaseLayout"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:theme="@style/AppTheme.nature"
-    style="@style/DialogBaseLayout">
+    android:layout_height="match_parent">
 
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/tvCoins"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="120"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        android:gravity="center"
-        android:layout_gravity="center_horizontal"
-        android:paddingBottom="16dp" />
-
-    <!-- Streak Reward Section -->
-    <LinearLayout
-        android:id="@+id/streakRewardSection"
+    <!-- Konfetti View for Full-Screen Confetti -->
+    <nl.dionsegijn.konfetti.xml.KonfettiView
+        android:id="@+id/konfettiView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:gravity="center"
-        android:layout_marginVertical="16dp"
-        android:visibility="visible"
-        android:paddingTop="16dp"
-        android:paddingBottom="16dp">
+        android:layout_height="match_parent" />
 
-        <ImageView
-            android:id="@+id/ivCoinsIcon"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:src="@drawable/ic_coin"
-            android:contentDescription="@string/coins_icon"
-            />
+    <!-- Main Content -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="16dp"
+        tools:ignore="MissingConstraints">
 
         <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/tvStreakRewardMessage"
+            android:id="@+id/tvLevelComplete"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="You've completed a 7-day streak! \n\n You've earned 50 coins!"
-            android:textSize="16sp"
-            android:gravity="center" />
+            android:layout_gravity="center_horizontal"
+            android:gravity="center"
+            android:text="Level Completed!!"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tvCoins"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:gravity="center"
+            android:paddingBottom="16dp"
+            android:text="120"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <!-- Streak Reward Section -->
+        <LinearLayout
+            android:id="@+id/streakRewardSection"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="16dp"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:paddingTop="16dp"
+            android:paddingBottom="16dp"
+            android:visibility="visible">
+
+            <ImageView
+                android:id="@+id/ivCoinsIcon"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:contentDescription="@string/coins_icon"
+                android:src="@drawable/ic_coin" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/tvStreakRewardMessage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="You've completed a 7-day streak! \n\n You've earned 50 coins!"
+                android:textSize="16sp" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnStartNextLevel"
+            style="@style/ButtonStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginBottom="32dp"
+            android:padding="16dp"
+            android:text="Start Next Level"
+            android:textStyle="bold" />
     </LinearLayout>
-
-    <View
-        android:layout_weight="1"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"/>
-
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/btnStartNextLevel"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        tools:text="Start Next Level"
-        android:layout_marginBottom="24dp"
-        android:padding="8dp" />
-</LinearLayout>
+</FrameLayout>
 

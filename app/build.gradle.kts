@@ -57,6 +57,8 @@ dependencies {
     kapt("androidx.room:room-compiler:2.6.1") // For annotation processing
     implementation("androidx.room:room-ktx:2.6.1") // For Coroutines and Flow support
 
+    implementation("nl.dionsegijn:konfetti-xml:2.0.4")
+
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
