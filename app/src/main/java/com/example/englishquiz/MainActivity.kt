@@ -43,7 +43,6 @@ class MainActivity : BaseActivity() {
                     // Handle sound setting change
                 },
                 onMusicChanged = { isMusicEnabled ->
-                    viewModel.playToggleOffOnSound()
                     viewModel.setMusicEnabled(isMusicEnabled)
                 },
                 onThemeSelected = { selectedTheme ->

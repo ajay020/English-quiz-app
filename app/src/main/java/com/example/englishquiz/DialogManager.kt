@@ -27,6 +27,8 @@ class DialogManager(
         const val WEEK_STREAK_REWARD = 50
     }
 
+    val soundManager = SoundManager(context)
+
     fun showSettingsDialog(
         onAudioChanged: (Boolean) -> Unit,
         onMusicChanged: (Boolean) -> Unit,
@@ -89,12 +91,14 @@ class DialogManager(
         var isMusicEnabled = true
 
         soundButton.setOnClickListener {
+            soundManager.playButtonClickSound()
             isSoundEnabled = !isSoundEnabled
             soundButton.setImageResource(if (isSoundEnabled) R.drawable.ic_sound_on else R.drawable.ic_sound_off)
             onAudioChanged(isSoundEnabled)
         }
 
         musicButton.setOnClickListener {
+            soundManager.playButtonClickSound()
             isMusicEnabled = !isMusicEnabled
             musicButton.setImageResource(if (isMusicEnabled) R.drawable.ic_music_on else R.drawable.ic_music_off)
             onMusicChanged(isMusicEnabled)
@@ -103,24 +107,32 @@ class DialogManager(
         // ------------------------- Theme controls -------------------------------
 
         themeClassic.setOnClickListener {
+            soundManager.playButtonClickSound()
+
             onThemeSelected(Theme.CLASSIC)
             updateSelectedTheme(Theme.CLASSIC)
             preferenceManager.saveSelectedThemeToPreferences(Theme.CLASSIC)
         }
 
         themeDark.setOnClickListener {
+            soundManager.playButtonClickSound()
+
             onThemeSelected(Theme.DARK)
             updateSelectedTheme(Theme.DARK)
             preferenceManager.saveSelectedThemeToPreferences(Theme.DARK) // Save the selection
         }
 
         themeNature.setOnClickListener {
+            soundManager.playButtonClickSound()
+
             onThemeSelected(Theme.NATURE)
             updateSelectedTheme(Theme.NATURE)
             preferenceManager.saveSelectedThemeToPreferences(Theme.NATURE) // Save the selection
         }
 
         themeOcean.setOnClickListener {
+            soundManager.playButtonClickSound()
+
             onThemeSelected(Theme.OCEAN)
             updateSelectedTheme(Theme.OCEAN)
             preferenceManager.saveSelectedThemeToPreferences(Theme.OCEAN) // Save the selection
@@ -153,6 +165,7 @@ class DialogManager(
         btnResume.setOnClickListener {
             dialog.dismiss() // Close the dialog and resume the game
             onResume() // Call method to resume the game
+            soundManager.playButtonClickSound()
         }
 
         btnQuit.setOnClickListener {
@@ -180,11 +193,15 @@ class DialogManager(
 
         // Set up button click listeners
         binding.btnBuyMoreTime.setOnClickListener {
+            soundManager.playButtonClickSound()
+
             onBuyMoreTime()
             dialog.dismiss()
         }
 
         binding.btnRestartLevel.setOnClickListener {
+            soundManager.playButtonClickSound()
+
             onRestartLevel()
             dialog.dismiss()
         }
@@ -241,6 +258,8 @@ class DialogManager(
 
         // Handle button click
         binding.btnStartNextLevel.setOnClickListener {
+            soundManager.playButtonClickSound()
+
             onStartNextLevel()
             dialog.dismiss()
         }

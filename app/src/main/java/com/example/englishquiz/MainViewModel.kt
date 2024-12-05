@@ -16,10 +16,6 @@ class MainViewModel(
         soundManager.playButtonClickSound()
     }
 
-    fun playToggleOffOnSound() {
-        soundManager.playToggleOffOnSound()
-    }
-
     fun setMusicEnabled(enabled: Boolean) {
         _isMusicEnabled.value = enabled
         if (enabled) {

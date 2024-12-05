@@ -67,7 +67,7 @@ class QuizViewModel(
         viewModelScope.launch {
             try {
                 questions = questionRepository.getUnsolvedQuestions(3)
-                _questionProgress.value = "$currentQuestionIndex / ${questions.size}"
+                _questionProgress.value = "${currentQuestionIndex + 1} / ${questions.size}"
                 displayCurrentQuestion()
             } catch (e: Exception) {
                 Log.e("DATA", "Error loading questions: ${e.message}")

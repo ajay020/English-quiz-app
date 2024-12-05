@@ -175,10 +175,6 @@ class QuizActivity : BaseActivity() {
         }
     }
 
-    private fun shuffleOptions() {
-        optionButtons = optionButtons.shuffled()
-    }
-
     private fun handleNavigationEvent(event: QuizViewModel.NavigationEvent) {
         when (event) {
             is QuizViewModel.NavigationEvent.ShowToast -> {
@@ -224,7 +220,6 @@ class QuizActivity : BaseActivity() {
             if (viewModel.hasEnoughCoins(10)) {
                 viewModel.deductCoins(10)
                 resetOptions()
-                shuffleOptions()
                 dialog.dismiss()
             } else {
                 Toast.makeText(this, "Not enough coins!", Toast.LENGTH_SHORT).show()
@@ -235,7 +230,6 @@ class QuizActivity : BaseActivity() {
         binding.btnRestart.setOnClickListener {
             viewModel.restartLevel()
             resetOptions()
-            shuffleOptions()
             dialog.dismiss()
         }
 
