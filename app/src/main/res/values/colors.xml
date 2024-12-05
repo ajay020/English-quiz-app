@@ -11,6 +11,9 @@
     <color name="light_gray">#ccc</color>
     <color name="gray">#585858</color>
 
+    <color name="quiz_completed_highlight">#4CAF50</color>
+    <color name="purple_200">#BBDEFB</color>
+
 
     <!--=================================================================-->
     <!-- Classic Theme Colors -->

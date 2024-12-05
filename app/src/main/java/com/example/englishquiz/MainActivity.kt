@@ -22,7 +22,7 @@ class MainActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
 
-        // insert data into db
+        // Load questions into database
         val database = (application as QuizApplication).database
         QuestionLoadingScript.importQuestionsFromJson(this, database)
 

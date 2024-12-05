@@ -2,6 +2,7 @@ package com.example.englishquiz.utils
 
 import android.content.Context
 import com.example.englishquiz.AppDatabase
+import com.example.englishquiz.PreferenceManager
 import com.example.englishquiz.data.Question
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
@@ -22,40 +23,46 @@ object QuestionLoadingScript {
         database: AppDatabase,
     ) {
         val fileName = "questions.json"
+        val preferenceManager = PreferenceManager(context)
 
-        CoroutineScope(Dispatchers.IO).launch {
-            try {
-                // Read the JSON file from assets
-                val jsonFile =
-                    context.assets
-                        .open(fileName)
-                        .bufferedReader()
-                        .use { it.readText() }
+        if (!preferenceManager.isDataLoaded()) {
+            CoroutineScope(Dispatchers.IO).launch {
+                try {
+                    // Read the JSON file from assets
+                    val jsonFile =
+                        context.assets
+                            .open(fileName)
+                            .bufferedReader()
+                            .use { it.readText() }
 
-                // Parse the JSON file
-                val gson = Gson()
-                val type = object : TypeToken<List<QuestionJson>>() {}.type
-                val questions: List<QuestionJson> = gson.fromJson(jsonFile, type)
+                    // Parse the JSON file
+                    val gson = Gson()
+                    val type = object : TypeToken<List<QuestionJson>>() {}.type
+                    val questions: List<QuestionJson> = gson.fromJson(jsonFile, type)
 
-                // Map JSON data to database entities
-                val questionEntities =
-                    questions.map { question ->
-                        Question(
-                            questionText = question.questionText,
-                            options = question.options,
-                            correctAnswer = question.correctAnswer,
-                            isSolved = question.isSolved,
-                        )
-                    }
+                    // Map JSON data to database entities
+                    val questionEntities =
+                        questions.map { question ->
+                            Question(
+                                questionText = question.questionText,
+                                options = question.options,
+                                correctAnswer = question.correctAnswer,
+                                isSolved = question.isSolved,
+                            )
+                        }
 
-                // Insert all questions in bulk
-                val questionDao = database.questionDao()
-                questionDao.insertQuestionsInBulk(questionEntities)
+                    // Insert all questions in bulk
+                    val questionDao = database.questionDao()
+                    questionDao.insertQuestionsInBulk(questionEntities)
 
-                println("Questions imported successfully!")
-            } catch (e: Exception) {
-                e.printStackTrace()
-                println("Failed to import questions: ${e.message}")
+                    // Mark data as loaded
+                    preferenceManager.setDataLoaded(true)
+
+                    println("Questions imported successfully!")
+                } catch (e: Exception) {
+                    e.printStackTrace()
+                    println("Failed to import questions: ${e.message}")
+                }
             }
         }
     }

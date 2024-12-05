@@ -127,7 +127,7 @@ class QuizActivity : BaseActivity() {
     private fun displayQuestion(question: Question) {
         binding.tvQuestion.text = question.questionText
         optionButtons.forEachIndexed { index, button ->
-            button.text = question.options[index]
+            button.text = "${question.options[index]}"
         }
         binding.btnHint.isEnabled = true
         resetOptions()

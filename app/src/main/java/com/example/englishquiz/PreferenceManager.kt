@@ -13,6 +13,7 @@ class PreferenceManager(
         const val REWARD_GRANTED_KEY = "reward_granted"
         const val CURRENT_LEVEL_KEY = "current_level"
         const val COINS_KEY = "coins"
+        const val IS_DATA_LOADED_KEY = "is_data_loaded"
     }
 
     // theme functions
@@ -61,4 +62,11 @@ class PreferenceManager(
     }
 
     fun getCoins() = sharedPreferences.getInt(COINS_KEY, 200)
+
+    // **Data Loaded Function**
+    fun isDataLoaded(): Boolean = sharedPreferences.getBoolean(IS_DATA_LOADED_KEY, false)
+
+    fun setDataLoaded(loaded: Boolean) {
+        sharedPreferences.edit().putBoolean(IS_DATA_LOADED_KEY, loaded).apply()
+    }
 }
