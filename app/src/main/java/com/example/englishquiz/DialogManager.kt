@@ -154,6 +154,7 @@ class DialogManager(
         val closeButton = binding.buttonCloseSettings
 
         closeButton.setOnClickListener {
+            soundManager.playButtonClickSound()
             dialog.dismiss()
         }
 

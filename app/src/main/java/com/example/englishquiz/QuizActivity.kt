@@ -109,7 +109,8 @@ class QuizActivity : BaseActivity() {
 
         viewModel.coins.observe(this) { coins ->
             val startValue = viewModel.getLastCoinValue()
-            binding.tvCoins.animateNumberChange(
+
+            binding.coinDisplay.setAnimatedCoinCount(
                 startValue = startValue,
                 endValue = coins,
                 duration = 200L,

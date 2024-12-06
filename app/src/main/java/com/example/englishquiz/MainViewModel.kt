@@ -41,4 +41,6 @@ class MainViewModel(
         super.onCleared()
         soundManager.release()
     }
+
+    fun getCoins(): Int = preferenceManager.getCoins()
 }

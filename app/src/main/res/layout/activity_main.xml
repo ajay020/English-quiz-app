@@ -8,9 +8,8 @@
 
     <Toolbar
         android:id="@+id/toolbar"
+        android:padding="16dp"
         android:layout_width="match_parent"
-        android:paddingVertical="16dp"
-        android:paddingHorizontal="16dp"
         android:layout_height="wrap_content">
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tv_title"
@@ -22,10 +21,17 @@
             android:src="@drawable/ic_settings2"
             android:contentDescription="@string/setting_icon"
             android:layout_width="wrap_content"
-            android:layout_gravity="end"
+            android:layout_gravity="start"
             android:padding="12dp"
             android:background="@color/transparent"
             android:layout_height="wrap_content"/>
+        <com.example.englishquiz.CoinDisplayView
+            android:id="@+id/coinDisplay"
+            android:layout_gravity="end"
+            android:padding="12dp"
+            android:layout_marginRight="12dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
     </Toolbar>
 
     <Space
@@ -37,14 +43,15 @@
     <LinearLayout
         android:background="@drawable/rounded_border"
         android:layout_width="match_parent"
-        android:layout_gravity="center"
+        android:layout_height="wrap_content"
         android:layout_marginHorizontal="16dp"
+        android:layout_gravity="center"
+        android:padding="16dp"
         android:gravity="center"
-        android:layout_height="wrap_content">
+        >
         <androidx.recyclerview.widget.RecyclerView
-            android:padding="8dp"
             android:id="@+id/streak_recycler_view"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
     </LinearLayout>
 
@@ -57,10 +64,14 @@
         android:id="@+id/btn_start_quiz"
         style="@style/ButtonStyle"
         android:layout_width="250dp"
-        android:layout_marginBottom="60dp"
-        android:layout_marginHorizontal="12dp"
+        android:layout_marginHorizontal="16dp"
         android:layout_gravity="center"
+        android:padding="16dp"
         android:textSize="24sp"
         android:text="@string/play"/>
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
 
 </LinearLayout>

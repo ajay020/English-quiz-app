@@ -32,11 +32,20 @@ class MainActivity : BaseActivity() {
             viewModel.startMusic()
         }
 
+        setUpViews()
+    }
+
+    private fun setUpViews() {
         // Initialize StreakTrackerView
         streakTracker = StreakTrackerView(this)
         val recyclerView: RecyclerView = binding.streakRecyclerView
         streakTracker.setupStreakTracker(recyclerView)
 
+        // Set up coin display
+        val coinDisplay = binding.coinDisplay
+        coinDisplay.setCoinCount(viewModel.getCoins())
+
+        // Set up settings button
         binding.btnSettings.setOnClickListener {
             viewModel.playClickSound()
             dialogManager.showSettingsDialog(
@@ -52,6 +61,7 @@ class MainActivity : BaseActivity() {
             )
         }
 
+        // Set up start quiz button
         binding.btnStartQuiz.setOnClickListener {
             viewModel.playClickSound()
             startActivity(Intent(this, QuizActivity::class.java))
@@ -60,6 +70,11 @@ class MainActivity : BaseActivity() {
 
     override fun onResume() {
         super.onResume()
-        streakTracker.refreshStreakData() // Refresh streak data on resumption
+
+        // Refresh streak data on resumption
+        streakTracker.refreshStreakData()
+
+        // Update the coin display
+        binding.coinDisplay.setCoinCount(viewModel.getCoins())
     }
 }

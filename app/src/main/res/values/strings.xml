@@ -69,4 +69,5 @@
     <string name="quit">Quit</string>
     <string name="hint_icon">hint icon</string>
     <string name="timer">timer</string>
+    <string name="coin_image">coin image</string>
 </resources>
