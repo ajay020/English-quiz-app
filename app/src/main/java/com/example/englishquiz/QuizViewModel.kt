@@ -128,14 +128,12 @@ class QuizViewModel(
     fun onNextQuestion() {
         stopTimer() // Stop timer before moving to next question
         currentQuestionIndex++
-        _questionProgress.value = "$currentQuestionIndex / ${questions.size}"
+        _questionProgress.value = "${currentQuestionIndex + 1} / ${questions.size}"
 
-        currentLevel.value?.let { level ->
-            if (currentQuestionIndex >= questions.size) {
-                handleLevelCompletion()
-            } else {
-                displayCurrentQuestion()
-            }
+        if (currentQuestionIndex >= questions.size) {
+            handleLevelCompletion()
+        } else {
+            displayCurrentQuestion()
         }
     }
 

@@ -40,7 +40,6 @@ class DialogManager(
         onThemeSelected: (Theme) -> Unit,
     ) {
         val preferenceManager = PreferenceManager(context)
-        val theme = preferenceManager.getSelectedThemeFromPreferences()
         val dialog = Dialog(context, R.style.FullWidthDialog)
 
         dialog.setCancelable(false)
@@ -92,14 +91,17 @@ class DialogManager(
         }
 
         // Initially, assume both sound and music are enabled
-        var isSoundEnabled = true
-        var isMusicEnabled = true
+        var isSoundEnabled = preferenceManager.isSoundEnabled()
+        var isMusicEnabled = preferenceManager.isMusicEnabled()
+        soundButton.setImageResource(if (isSoundEnabled) R.drawable.ic_sound_on else R.drawable.ic_sound_off)
+        musicButton.setImageResource(if (isMusicEnabled) R.drawable.ic_music_on else R.drawable.ic_music_off)
 
         soundButton.setOnClickListener {
             soundManager.playButtonClickSound()
             isSoundEnabled = !isSoundEnabled
             soundButton.setImageResource(if (isSoundEnabled) R.drawable.ic_sound_on else R.drawable.ic_sound_off)
             onAudioChanged(isSoundEnabled)
+            preferenceManager.setSoundEnabled(isSoundEnabled)
         }
 
         musicButton.setOnClickListener {
@@ -107,6 +109,7 @@ class DialogManager(
             isMusicEnabled = !isMusicEnabled
             musicButton.setImageResource(if (isMusicEnabled) R.drawable.ic_music_on else R.drawable.ic_music_off)
             onMusicChanged(isMusicEnabled)
+            preferenceManager.setMusicEnabled(isMusicEnabled)
         }
 
         // ------------------------- Theme controls -------------------------------
@@ -117,6 +120,7 @@ class DialogManager(
             onThemeSelected(Theme.CLASSIC)
             updateSelectedTheme(Theme.CLASSIC)
             preferenceManager.saveSelectedThemeToPreferences(Theme.CLASSIC)
+            dialog.dismiss()
         }
 
         themeDark.setOnClickListener {
@@ -125,6 +129,7 @@ class DialogManager(
             onThemeSelected(Theme.DARK)
             updateSelectedTheme(Theme.DARK)
             preferenceManager.saveSelectedThemeToPreferences(Theme.DARK) // Save the selection
+            dialog.dismiss()
         }
 
         themeNature.setOnClickListener {
@@ -133,6 +138,7 @@ class DialogManager(
             onThemeSelected(Theme.NATURE)
             updateSelectedTheme(Theme.NATURE)
             preferenceManager.saveSelectedThemeToPreferences(Theme.NATURE) // Save the selection
+            dialog.dismiss()
         }
 
         themeOcean.setOnClickListener {
@@ -141,6 +147,8 @@ class DialogManager(
             onThemeSelected(Theme.OCEAN)
             updateSelectedTheme(Theme.OCEAN)
             preferenceManager.saveSelectedThemeToPreferences(Theme.OCEAN) // Save the selection
+
+            dialog.dismiss()
         }
 
         val closeButton = binding.buttonCloseSettings
@@ -174,6 +182,7 @@ class DialogManager(
         }
 
         btnQuit.setOnClickListener {
+            soundManager.playButtonClickSound()
             dialog.dismiss()
             onQuit()
         }

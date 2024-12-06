@@ -14,6 +14,8 @@ class PreferenceManager(
         const val CURRENT_LEVEL_KEY = "current_level"
         const val COINS_KEY = "coins"
         const val IS_DATA_LOADED_KEY = "is_data_loaded"
+        const val IS_SOUND_ENABLED_KEY = "is_sound_enabled"
+        const val IS_MUSIC_ENABLED_KEY = "is_music_enabled"
     }
 
     // theme functions
@@ -68,5 +70,19 @@ class PreferenceManager(
 
     fun setDataLoaded(loaded: Boolean) {
         sharedPreferences.edit().putBoolean(IS_DATA_LOADED_KEY, loaded).apply()
+    }
+
+    // **Sound Functions**
+    fun isSoundEnabled(): Boolean = sharedPreferences.getBoolean(IS_SOUND_ENABLED_KEY, true)
+
+    fun setSoundEnabled(enabled: Boolean) {
+        sharedPreferences.edit().putBoolean(IS_SOUND_ENABLED_KEY, enabled).apply()
+    }
+
+    // **Music Functions**
+    fun isMusicEnabled(): Boolean = sharedPreferences.getBoolean(IS_MUSIC_ENABLED_KEY, true)
+
+    fun setMusicEnabled(enabled: Boolean) {
+        sharedPreferences.edit().putBoolean(IS_MUSIC_ENABLED_KEY, enabled).apply()
     }
 }

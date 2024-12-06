@@ -8,6 +8,8 @@ import android.media.SoundPool
 class SoundManager(
     private val context: Context,
 ) {
+    private val preferenceManager = PreferenceManager(context)
+
     // Background Music Player
     private var mediaPlayer: MediaPlayer? = null
 
@@ -53,29 +55,41 @@ class SoundManager(
 
     // Play click sound
     fun playClickSound() {
-        soundPool.play(clickSoundId, 1f, 1f, 1, 0, 1f)
+        if (preferenceManager.isSoundEnabled()) {
+            soundPool.play(clickSoundId, 1f, 1f, 1, 0, 1f)
+        }
     }
 
     // Play toggle sound
     fun playToggleOffOnSound() {
-        soundPool.play(toggleOffOnSoundId, 1f, 1f, 1, 0, 1f)
+        if (preferenceManager.isSoundEnabled()) {
+            soundPool.play(toggleOffOnSoundId, 1f, 1f, 1, 0, 1f)
+        }
     }
 
     // Play sound effects
     fun playCorrectAnswerSound() {
-        soundPool.play(correctAnswerSoundId, 1f, 1f, 0, 0, 1f)
+        if (preferenceManager.isSoundEnabled()) {
+            soundPool.play(correctAnswerSoundId, 1f, 1f, 0, 0, 1f)
+        }
     }
 
     fun playIncorrectAnswerSound() {
-        soundPool.play(incorrectAnswerSoundId, 1f, 1f, 0, 0, 1f)
+        if (preferenceManager.isSoundEnabled()) {
+            soundPool.play(incorrectAnswerSoundId, 1f, 1f, 0, 0, 1f)
+        }
     }
 
     fun playButtonClickSound() {
-        soundPool.play(buttonClickSoundId, 1f, 1f, 0, 0, 1f)
+        if (preferenceManager.isSoundEnabled()) {
+            soundPool.play(buttonClickSoundId, 1f, 1f, 0, 0, 1f)
+        }
     }
 
     fun playLevelCompleteSound() {
-        soundPool.play(levelCompleteSoundId, 1f, 1f, 0, 0, 1f)
+        if (preferenceManager.isSoundEnabled()) {
+            soundPool.play(levelCompleteSoundId, 1f, 1f, 0, 0, 1f)
+        }
     }
 
     // Start background music
@@ -86,12 +100,16 @@ class SoundManager(
                     isLooping = true
                     start()
                 }
+        } else if (!mediaPlayer!!.isPlaying) {
+            mediaPlayer?.start() // Resume playback if the media player exists but isn't playing
         }
     }
 
     // Stop background music
     fun stopMusic() {
-        mediaPlayer?.stop()
+        if (mediaPlayer?.isPlaying == true) {
+            mediaPlayer?.pause() // Pause instead of stopping to allow resuming
+        }
         mediaPlayer?.release()
         mediaPlayer = null
     }

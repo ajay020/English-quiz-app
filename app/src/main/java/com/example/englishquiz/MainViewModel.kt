@@ -9,15 +9,27 @@ class MainViewModel(
     application: Application,
 ) : AndroidViewModel(application) {
     private val soundManager = SoundManager(application)
+    private val preferenceManager = PreferenceManager(application)
     private val _isMusicEnabled = MutableLiveData(true)
     val isMusicEnabled: LiveData<Boolean> = _isMusicEnabled
+
+    init {
+        _isMusicEnabled.value = preferenceManager.isMusicEnabled()
+    }
 
     fun playClickSound() {
         soundManager.playButtonClickSound()
     }
 
+    fun startMusic() {
+        if (_isMusicEnabled.value == true) {
+            soundManager.startMusic()
+        }
+    }
+
     fun setMusicEnabled(enabled: Boolean) {
         _isMusicEnabled.value = enabled
+
         if (enabled) {
             soundManager.startMusic()
         } else {
