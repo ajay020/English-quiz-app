@@ -1,51 +1,162 @@
 [
   {
-    "questionText": "What is the capital of France?",
-    "options": ["Berlin", "Madrid", "Paris", "Rome"],
-    "correctAnswer": "Paris"
-  },
-  {
-    "questionText": "What is 2 + 2?",
-    "options": ["3", "4", "5", "6"],
-    "correctAnswer": "4"
-  },
-  {
-    "questionText": "What is the antonym of 'bright'?",
-    "options": ["Dark", "Clear", "Shiny", "Gleaming"],
-    "correctAnswer": "Dark"
-  },
-  {
-    "questionText": "Which word is a synonym for 'happy'?",
-    "options": ["Joyful", "Sad", "Angry", "Tired"],
+    "questionText": "What is the synonym of 'happy'?",
+    "options": [
+      "Sad",
+      "Joyful",
+      "Angry",
+      "Fearful"
+    ],
     "correctAnswer": "Joyful"
   },
   {
-    "questionText": "Which word is an adjective?",
-    "options": ["Big", "House", "Jump", "Slowly"],
-    "correctAnswer": "Big"
+    "questionText": "What is the antonym of 'ancient'?",
+    "options": [
+      "Modern",
+      "Old",
+      "Historic",
+      "Traditional"
+    ],
+    "correctAnswer": "Modern"
   },
   {
-    "questionText": "What is the opposite of 'hot'?",
-    "options": ["Cold", "Warm", "Sunny", "Rainy"],
-    "correctAnswer": "Cold"},
-  {
-    "questionText": "Which word is a verb?",
-    "options": ["Sing", "Music", "Loudly", "Happy"],
-    "correctAnswer": "Sing"
+    "questionText": "What is the synonym of 'quick'?",
+    "options": [
+      "Slow",
+      "Rapid",
+      "Lazy",
+      "Steady"
+    ],
+    "correctAnswer": "Rapid"
   },
   {
-    "questionText": "What is the past tense of 'eat'?",
-    "options": ["Ate", "Eaten", "Eat", "Eating"],
-    "correctAnswer": "Ate"
+    "questionText": "What is the antonym of 'weak'?",
+    "options": [
+      "Strong",
+      "Fragile",
+      "Brittle",
+      "Delicate"
+    ],
+    "correctAnswer": "Strong"
   },
   {
-    "questionText": "Which word is a noun?",
-    "options": ["Table", "Run", "Quickly", "Beautiful"],
-    "correctAnswer": "Table"
+    "questionText": "What is the synonym of 'beautiful'?",
+    "options": [
+      "Ugly",
+      "Gorgeous",
+      "Plain",
+      "Horrible"
+    ],
+    "correctAnswer": "Gorgeous"
   },
   {
-    "questionText": "What is the plural of 'child'?",
-    "options": ["Children", "Childs", "Childes", "Childrin"],
-    "correctAnswer": "Children"
+    "questionText": "What is the antonym of 'full'?",
+    "options": [
+      "Empty",
+      "Packed",
+      "Heavy",
+      "Overflowing"
+    ],
+    "correctAnswer": "Empty"
+  },
+  {
+    "questionText": "What is the synonym of 'large'?",
+    "options": [
+      "Tiny",
+      "Huge",
+      "Small",
+      "Little"
+    ],
+    "correctAnswer": "Huge"
+  },
+  {
+    "questionText": "What is the antonym of 'soft'?",
+    "options": [
+      "Hard",
+      "Cushioned",
+      "Silky",
+      "Smooth"
+    ],
+    "correctAnswer": "Hard"
+  },
+  {
+    "questionText": "What is the synonym of 'angry'?",
+    "options": [
+      "Calm",
+      "Furious",
+      "Happy",
+      "Peaceful"
+    ],
+    "correctAnswer": "Furious"
+  },
+  {
+    "questionText": "What is the antonym of 'low'?",
+    "options": [
+      "High",
+      "Deep",
+      "Shallow",
+      "Short"
+    ],
+    "correctAnswer": "High"
+  },
+  {
+    "questionText": "Select the correctly spelled word:",
+    "options": [
+      "Recieve",
+      "Receive",
+      "Recive",
+      "Reciave"
+    ],
+    "correctAnswer": "Receive"
+  },
+  {
+    "questionText": "Which of these is the correct spelling of a word meaning 'extremely tired'?",
+    "options": [
+      "Exausted",
+      "Exhausted",
+      "Exhorted",
+      "Exosted"
+    ],
+    "correctAnswer": "Exhausted"
+  },
+  {
+    "questionText": "Select the correctly spelled word:",
+    "options": [
+      "Recieve",
+      "Receive",
+      "Recive",
+      "Reciave"
+    ],
+    "correctAnswer": "Receive"
+  },
+  {
+    "questionText": "Identify the correct spelling of a word meaning 'happening by chance':",
+    "options": [
+      "Accidental",
+      "Accedental",
+      "Accidantal",
+      "Acidental"
+    ],
+    "correctAnswer": "Accidental"
+  },
+  {
+    "questionText": "Which spelling is correct for a word meaning 'to bring to an end'?",
+    "options": [
+      "Terminate",
+      "Terminnate",
+      "Termiknate",
+      "Termynate"
+    ],
+    "correctAnswer": "Terminate"
+  },
+  {
+    "questionText": "Choose the correctly spelled word:",
+    "options": [
+      "Seperate",
+      "Separate",
+      "Seprate",
+      "Separeate"
+    ],
+    "correctAnswer": "Separate"
   }
 ]
