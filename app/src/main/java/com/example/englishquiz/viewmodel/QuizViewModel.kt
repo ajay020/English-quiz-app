@@ -1,4 +1,4 @@
-package com.example.englishquiz
+package com.example.englishquiz.viewmodel
 
 import android.app.Application
 import android.util.Log
@@ -8,7 +8,12 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import com.example.englishquiz.data.Question
+import com.example.englishquiz.core.QuizApplication
+import com.example.englishquiz.data.database.Question
+import com.example.englishquiz.data.preference.PreferenceManager
+import com.example.englishquiz.data.repository.QuestionRepository
+import com.example.englishquiz.utils.managers.TimerManager
+import com.example.englishquiz.views.StreakTrackerView
 import kotlinx.coroutines.launch
 import kotlin.math.ceil
 
@@ -160,11 +165,10 @@ class QuizViewModel(
             _navigationEvent.value = NavigationEvent.NavigateToResult
         } else {
             _navigationEvent.value =
-                NavigationEvent
-                    .ShowLevelComplete(
-                        level = nextLevel,
-                        isStreakCompleted = isStreakCompleted,
-                    )
+                NavigationEvent.ShowLevelComplete(
+                    level = nextLevel,
+                    isStreakCompleted = isStreakCompleted,
+                )
         }
     }
 

@@ -1,9 +1,11 @@
-package com.example.englishquiz
+package com.example.englishquiz.utils.managers
 
 import android.content.Context
 import android.media.AudioAttributes
 import android.media.MediaPlayer
 import android.media.SoundPool
+import com.example.englishquiz.R
+import com.example.englishquiz.data.preference.PreferenceManager
 
 class SoundManager(
     private val context: Context,

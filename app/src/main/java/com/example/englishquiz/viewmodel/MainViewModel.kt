@@ -1,9 +1,11 @@
-package com.example.englishquiz
+package com.example.englishquiz.viewmodel
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.example.englishquiz.data.preference.PreferenceManager
+import com.example.englishquiz.utils.managers.SoundManager
 
 class MainViewModel(
     application: Application,

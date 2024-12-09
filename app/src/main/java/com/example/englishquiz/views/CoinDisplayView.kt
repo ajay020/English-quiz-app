@@ -1,4 +1,4 @@
-package com.example.englishquiz
+package com.example.englishquiz.views
 
 import android.content.Context
 import android.util.AttributeSet
@@ -6,6 +6,8 @@ import android.view.LayoutInflater
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
+import com.example.englishquiz.R
+import com.example.englishquiz.utils.extensions.animateNumberChange
 
 class CoinDisplayView
     @JvmOverloads

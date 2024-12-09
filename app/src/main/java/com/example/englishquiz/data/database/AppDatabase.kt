@@ -1,14 +1,10 @@
-package com.example.englishquiz
+package com.example.englishquiz.data.database
 
 import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
-import com.example.englishquiz.data.Question
-import com.example.englishquiz.data.QuestionDao
-import com.example.englishquiz.data.SolvedDate
-import com.example.englishquiz.data.SolvedDateDao
 import com.example.englishquiz.utils.Converters
 
 // Quiz Database

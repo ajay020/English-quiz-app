@@ -1,7 +1,9 @@
-package com.example.englishquiz
+package com.example.englishquiz.ui
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import com.example.englishquiz.data.preference.PreferenceManager
+import com.example.englishquiz.utils.ThemeUtils
 
 open class BaseActivity : AppCompatActivity() {
     lateinit var preferenceManager: PreferenceManager

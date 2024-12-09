@@ -1,4 +1,4 @@
-package com.example.englishquiz
+package com.example.englishquiz.utils.managers
 
 import android.app.Dialog
 import android.content.Context
@@ -8,10 +8,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.WindowManager
 import androidx.appcompat.app.AlertDialog
+import com.example.englishquiz.R
+import com.example.englishquiz.data.preference.PreferenceManager
 import com.example.englishquiz.databinding.DialogLevelCompleteBinding
 import com.example.englishquiz.databinding.DialogPauseBinding
 import com.example.englishquiz.databinding.DialogSettingsBinding
 import com.example.englishquiz.databinding.DialogTimeUpBinding
+import com.example.englishquiz.utils.extensions.animateNumberChange
 import nl.dionsegijn.konfetti.core.Party
 import nl.dionsegijn.konfetti.core.Position
 import nl.dionsegijn.konfetti.core.emitter.Emitter

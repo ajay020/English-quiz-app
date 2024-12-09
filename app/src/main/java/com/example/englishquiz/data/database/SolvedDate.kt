@@ -1,4 +1,4 @@
-package com.example.englishquiz.data
+package com.example.englishquiz.data.database
 
 import androidx.room.Dao
 import androidx.room.Entity

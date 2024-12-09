@@ -1,4 +1,4 @@
-package com.example.englishquiz
+package com.example.englishquiz.utils.managers
 
 import android.os.CountDownTimer
 

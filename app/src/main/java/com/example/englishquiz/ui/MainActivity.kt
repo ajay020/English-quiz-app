@@ -1,12 +1,16 @@
-package com.example.englishquiz
+package com.example.englishquiz.ui
 
 import android.content.Intent
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.recyclerview.widget.RecyclerView
+import com.example.englishquiz.core.QuizApplication
 import com.example.englishquiz.databinding.ActivityMainBinding
 import com.example.englishquiz.utils.QuestionLoadingScript
+import com.example.englishquiz.utils.managers.DialogManager
+import com.example.englishquiz.viewmodel.MainViewModel
+import com.example.englishquiz.views.StreakTrackerView
 
 class MainActivity : BaseActivity() {
     private lateinit var binding: ActivityMainBinding

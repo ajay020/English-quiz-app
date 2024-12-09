@@ -1,7 +1,7 @@
-package com.example.englishquiz
+package com.example.englishquiz.data.repository
 
-import com.example.englishquiz.data.Question
-import com.example.englishquiz.data.QuestionDao
+import com.example.englishquiz.data.database.Question
+import com.example.englishquiz.data.database.QuestionDao
 
 class QuestionRepository(
     private val questionDao: QuestionDao,

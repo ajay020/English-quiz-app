@@ -1,6 +1,7 @@
-package com.example.englishquiz
+package com.example.englishquiz.data.preference
 
 import android.content.Context
+import com.example.englishquiz.utils.managers.Theme
 
 class PreferenceManager(
     context: Context,

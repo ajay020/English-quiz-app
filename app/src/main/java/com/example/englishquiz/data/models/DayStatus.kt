@@ -1,4 +1,4 @@
-package com.example.englishquiz.data
+package com.example.englishquiz.data.models
 
 data class DayStatus(
     val dayName: String,

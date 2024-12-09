@@ -1,4 +1,4 @@
-package com.example.englishquiz
+package com.example.englishquiz.utils.extensions
 
 import android.animation.ValueAnimator
 import android.widget.TextView

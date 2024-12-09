@@ -1,4 +1,4 @@
-package com.example.englishquiz
+package com.example.englishquiz.views
 
 import android.content.Context
 import android.util.TypedValue
@@ -10,7 +10,10 @@ import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.englishquiz.data.DayStatus
+import com.example.englishquiz.R
+import com.example.englishquiz.data.models.DayStatus
+import com.example.englishquiz.data.preference.PreferenceManager
+import com.example.englishquiz.utils.managers.StreakManager
 
 class StreakTrackerView(
     private val context: Context,
