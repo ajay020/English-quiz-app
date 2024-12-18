@@ -1,17 +1,16 @@
 package com.example.englishquiz.viewmodel
 
-import android.app.Application
-import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.example.englishquiz.data.preference.PreferenceManager
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
+import com.example.englishquiz.data.preferences.PreferenceManager
 import com.example.englishquiz.utils.managers.SoundManager
 
 class MainViewModel(
-    application: Application,
-) : AndroidViewModel(application) {
-    private val soundManager = SoundManager(application)
-    private val preferenceManager = PreferenceManager(application)
+    private val soundManager: SoundManager,
+    private val preferenceManager: PreferenceManager,
+) : ViewModel() {
     private val _isMusicEnabled = MutableLiveData(true)
     val isMusicEnabled: LiveData<Boolean> = _isMusicEnabled
 
@@ -39,10 +38,23 @@ class MainViewModel(
         }
     }
 
-    override fun onCleared() {
+    public override fun onCleared() {
         super.onCleared()
         soundManager.release()
     }
 
     fun getCoins(): Int = preferenceManager.getCoins()
+}
+
+class MainViewModelFactory(
+    private val soundManager: SoundManager,
+    private val preferenceManager: PreferenceManager,
+) : ViewModelProvider.Factory {
+    override fun <T : ViewModel> create(modelClass: Class<T>): T {
+        if (modelClass.isAssignableFrom(MainViewModel::class.java)) {
+            @Suppress("UNCHECKED_CAST")
+            return MainViewModel(soundManager, preferenceManager) as T
+        }
+        throw IllegalArgumentException("Unknown ViewModel class")
+    }
 }

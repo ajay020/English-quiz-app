@@ -5,7 +5,7 @@ import android.media.AudioAttributes
 import android.media.MediaPlayer
 import android.media.SoundPool
 import com.example.englishquiz.R
-import com.example.englishquiz.data.preference.PreferenceManager
+import com.example.englishquiz.data.preferences.PreferenceManager
 
 class SoundManager(
     private val context: Context,

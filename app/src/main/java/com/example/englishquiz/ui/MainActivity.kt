@@ -10,12 +10,18 @@ import com.example.englishquiz.databinding.ActivityMainBinding
 import com.example.englishquiz.utils.QuestionLoadingScript
 import com.example.englishquiz.utils.managers.DialogManager
 import com.example.englishquiz.viewmodel.MainViewModel
+import com.example.englishquiz.viewmodel.MainViewModelFactory
 import com.example.englishquiz.views.StreakTrackerView
 
 class MainActivity : BaseActivity() {
     private lateinit var binding: ActivityMainBinding
     private lateinit var dialogManager: DialogManager
-    private val viewModel: MainViewModel by viewModels()
+    private val viewModel: MainViewModel by viewModels {
+        MainViewModelFactory(
+            (application as QuizApplication).soundManager,
+            (application as QuizApplication).preferenceManager,
+        )
+    }
     private lateinit var streakTracker: StreakTrackerView
 
     override fun onCreate(savedInstanceState: Bundle?) {

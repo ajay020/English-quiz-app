@@ -1,6 +1,6 @@
 package com.example.englishquiz.utils.managers
 
-import com.example.englishquiz.data.preference.PreferenceManager
+import com.example.englishquiz.data.preferences.PreferenceManager
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Date

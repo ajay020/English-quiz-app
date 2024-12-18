@@ -10,8 +10,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.englishquiz.core.QuizApplication
 import com.example.englishquiz.data.database.Question
-import com.example.englishquiz.data.preference.PreferenceManager
-import com.example.englishquiz.data.repository.QuestionRepository
+import com.example.englishquiz.data.preferences.PreferenceManager
+import com.example.englishquiz.data.repository.QuestionRepositoryImpl
 import com.example.englishquiz.utils.managers.TimerManager
 import com.example.englishquiz.views.StreakTrackerView
 import kotlinx.coroutines.launch
@@ -20,7 +20,7 @@ import kotlin.math.ceil
 class QuizViewModel(
     application: Application,
 ) : AndroidViewModel(application) {
-    private val questionRepository: QuestionRepository
+    private val questionRepository: QuestionRepositoryImpl
 
     private val preferenceManager = PreferenceManager(application.applicationContext)
     private val streakTrackerView = StreakTrackerView(application.applicationContext)
@@ -57,7 +57,7 @@ class QuizViewModel(
 
     init {
         val questionDao = (application as QuizApplication).database.questionDao()
-        questionRepository = QuestionRepository(questionDao)
+        questionRepository = QuestionRepositoryImpl(questionDao)
         initializeQuizState()
     }
 
@@ -289,9 +289,5 @@ class QuizViewModel(
         ) : NavigationEvent()
 
         data object NavigateToResult : NavigationEvent()
-
-//        object ShowTimeUpDialog : NavigationEvent()
-//
-//        object RestartLevel : NavigationEvent()
     }
 }

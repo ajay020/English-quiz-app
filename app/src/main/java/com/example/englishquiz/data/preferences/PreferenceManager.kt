@@ -1,4 +1,4 @@
-package com.example.englishquiz.data.preference
+package com.example.englishquiz.data.preferences
 
 import android.content.Context
 import com.example.englishquiz.utils.managers.Theme

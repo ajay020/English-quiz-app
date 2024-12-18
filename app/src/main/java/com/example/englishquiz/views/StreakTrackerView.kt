@@ -11,8 +11,8 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.englishquiz.R
-import com.example.englishquiz.data.models.DayStatus
-import com.example.englishquiz.data.preference.PreferenceManager
+import com.example.englishquiz.data.DayStatus
+import com.example.englishquiz.data.preferences.PreferenceManager
 import com.example.englishquiz.utils.managers.StreakManager
 
 class StreakTrackerView(
@@ -27,7 +27,6 @@ class StreakTrackerView(
     init {
         streakAdapter = StreakAdapter()
         refreshStreakData()
-//        streakManager.resetIfWeekChanged()
     }
 
     fun refreshStreakData() {

@@ -9,7 +9,7 @@ import android.view.View
 import android.view.WindowManager
 import androidx.appcompat.app.AlertDialog
 import com.example.englishquiz.R
-import com.example.englishquiz.data.preference.PreferenceManager
+import com.example.englishquiz.data.preferences.PreferenceManager
 import com.example.englishquiz.databinding.DialogLevelCompleteBinding
 import com.example.englishquiz.databinding.DialogPauseBinding
 import com.example.englishquiz.databinding.DialogSettingsBinding
