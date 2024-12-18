@@ -27,7 +27,7 @@ import kotlinx.coroutines.launch
 
 class QuizActivity : BaseActivity() {
     private lateinit var binding: ActivityQuizBinding
-    private val viewModel: QuizViewModel by viewModels()
+    private val viewModel: QuizViewModel by viewModels { QuizViewModel.Factory }
     private lateinit var optionButtons: List<Button>
     private lateinit var dialogManager: DialogManager
     private lateinit var streakTracker: StreakTrackerView

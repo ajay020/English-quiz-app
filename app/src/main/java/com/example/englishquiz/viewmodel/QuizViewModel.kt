@@ -1,13 +1,16 @@
 package com.example.englishquiz.viewmodel
 
-import android.app.Application
 import android.util.Log
 import android.view.View
 import android.widget.Button
-import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.ViewModelProvider.AndroidViewModelFactory.Companion.APPLICATION_KEY
 import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.viewmodel.initializer
+import androidx.lifecycle.viewmodel.viewModelFactory
 import com.example.englishquiz.core.QuizApplication
 import com.example.englishquiz.data.database.Question
 import com.example.englishquiz.data.preferences.PreferenceManager
@@ -18,15 +21,11 @@ import kotlinx.coroutines.launch
 import kotlin.math.ceil
 
 class QuizViewModel(
-    application: Application,
-) : AndroidViewModel(application) {
-    private val questionRepository: QuestionRepositoryImpl
-
-    private val preferenceManager = PreferenceManager(application.applicationContext)
-    private val streakTrackerView = StreakTrackerView(application.applicationContext)
-
-    private val timerManager = TimerManager()
-
+    private val preferenceManager: PreferenceManager,
+    private val questionRepository: QuestionRepositoryImpl,
+    private val streakTrackerView: StreakTrackerView,
+    private val timerManager: TimerManager,
+) : ViewModel() {
     private val _currentQuestion = MutableLiveData<Question>()
     val currentQuestion: LiveData<Question> = _currentQuestion
 
@@ -56,8 +55,8 @@ class QuizViewModel(
     private var lastCoinValue = 0
 
     init {
-        val questionDao = (application as QuizApplication).database.questionDao()
-        questionRepository = QuestionRepositoryImpl(questionDao)
+//        val questionDao = (application as QuizApplication).database.questionDao()
+//        questionRepository = QuestionRepositoryImpl(questionDao)
         initializeQuizState()
     }
 
@@ -289,5 +288,25 @@ class QuizViewModel(
         ) : NavigationEvent()
 
         data object NavigateToResult : NavigationEvent()
+    }
+
+    // Define ViewModel factory in a companion object
+    companion object {
+        val Factory: ViewModelProvider.Factory =
+            viewModelFactory {
+                initializer {
+                    val preferenceManager = (this[APPLICATION_KEY] as QuizApplication).preferenceManager
+                    val questionRepository = (this[APPLICATION_KEY] as QuizApplication).questionRepository
+                    val streakTrackerView = (this[APPLICATION_KEY] as QuizApplication).streakTrackerView
+                    val timerManager = TimerManager()
+
+                    QuizViewModel(
+                        preferenceManager = preferenceManager,
+                        questionRepository = questionRepository,
+                        streakTrackerView = streakTrackerView,
+                        timerManager = timerManager,
+                    )
+                }
+            }
     }
 }
