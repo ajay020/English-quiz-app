@@ -14,7 +14,7 @@ import androidx.lifecycle.viewmodel.viewModelFactory
 import com.example.englishquiz.core.QuizApplication
 import com.example.englishquiz.data.database.Question
 import com.example.englishquiz.data.preferences.PreferenceManager
-import com.example.englishquiz.data.repository.QuestionRepositoryImpl
+import com.example.englishquiz.data.repository.QuestionRepository
 import com.example.englishquiz.utils.managers.TimerManager
 import com.example.englishquiz.views.StreakTrackerView
 import kotlinx.coroutines.launch
@@ -22,14 +22,14 @@ import kotlin.math.ceil
 
 class QuizViewModel(
     private val preferenceManager: PreferenceManager,
-    private val questionRepository: QuestionRepositoryImpl,
+    private val questionRepository: QuestionRepository,
     private val streakTrackerView: StreakTrackerView,
     private val timerManager: TimerManager,
 ) : ViewModel() {
     private val _currentQuestion = MutableLiveData<Question>()
     val currentQuestion: LiveData<Question> = _currentQuestion
 
-    private val _coins = MutableLiveData(200)
+    private val _coins = MutableLiveData(0)
     val coins: LiveData<Int> = _coins
 
     private val _currentLevel = MutableLiveData<Int>(0)
@@ -50,13 +50,11 @@ class QuizViewModel(
     private val _areAnswerButtonsEnabled = MutableLiveData(true)
     val areAnswerButtonsEnabled: LiveData<Boolean> = _areAnswerButtonsEnabled
 
-    private var questions: List<Question> = emptyList()
-    private var currentQuestionIndex = 0
+    var questions: List<Question> = emptyList()
+    var currentQuestionIndex = 0
     private var lastCoinValue = 0
 
     init {
-//        val questionDao = (application as QuizApplication).database.questionDao()
-//        questionRepository = QuestionRepositoryImpl(questionDao)
         initializeQuizState()
     }
 
@@ -96,6 +94,14 @@ class QuizViewModel(
                 addCoins(2)
             }
         }
+    }
+
+    fun setCurrentLevel(level: Int) {
+        _currentLevel.value = level
+    }
+
+    fun setCurrentQuestion(question: Question) {
+        _currentQuestion.value = question
     }
 
     fun useHint(optionButtons: List<Button>) {

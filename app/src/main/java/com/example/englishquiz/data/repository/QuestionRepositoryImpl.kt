@@ -9,7 +9,7 @@ class QuestionRepositoryImpl(
     // Fetch unsolved questions
     override suspend fun getUnsolvedQuestions(limit: Int): List<Question> = questionDao.getUnsolvedQuestions(limit)
 
-    //
+    // mark the question with id as solved
     override suspend fun markQuestionAsSolved(id: Int) {
         questionDao.markQuestionAsSolved(id)
     }

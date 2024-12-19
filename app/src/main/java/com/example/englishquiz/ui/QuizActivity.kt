@@ -21,7 +21,6 @@ import com.example.englishquiz.utils.AnimationUtility
 import com.example.englishquiz.utils.managers.DialogManager
 import com.example.englishquiz.utils.managers.SoundManager
 import com.example.englishquiz.viewmodel.QuizViewModel
-import com.example.englishquiz.views.StreakTrackerView
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
@@ -30,7 +29,6 @@ class QuizActivity : BaseActivity() {
     private val viewModel: QuizViewModel by viewModels { QuizViewModel.Factory }
     private lateinit var optionButtons: List<Button>
     private lateinit var dialogManager: DialogManager
-    private lateinit var streakTracker: StreakTrackerView
     private lateinit var soundManager: SoundManager
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -40,7 +38,6 @@ class QuizActivity : BaseActivity() {
         binding = ActivityQuizBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        streakTracker = StreakTrackerView(this)
         dialogManager = DialogManager(this)
         soundManager = SoundManager(this)
 
