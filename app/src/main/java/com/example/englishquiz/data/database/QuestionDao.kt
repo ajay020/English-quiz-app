@@ -1,21 +1,11 @@
 package com.example.englishquiz.data.database
 
 import androidx.room.Dao
-import androidx.room.Entity
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
-import androidx.room.PrimaryKey
 import androidx.room.Query
 import androidx.room.Update
-
-@Entity(tableName = "questions")
-data class Question(
-    @PrimaryKey(autoGenerate = true) val id: Int = 0,
-    val questionText: String,
-    val options: List<String>,
-    val correctAnswer: String,
-    val isSolved: Boolean = false,
-)
+import com.example.englishquiz.data.Question
 
 // Data Access Object for Questions
 @Dao

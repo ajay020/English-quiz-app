@@ -14,7 +14,8 @@ import androidx.activity.viewModels
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.lifecycleScope
 import com.example.englishquiz.R
-import com.example.englishquiz.data.database.Question
+import com.example.englishquiz.data.Question
+import com.example.englishquiz.data.preferences.PreferenceManager
 import com.example.englishquiz.databinding.ActivityQuizBinding
 import com.example.englishquiz.databinding.DialogRecoveryBinding
 import com.example.englishquiz.utils.AnimationUtility
@@ -38,8 +39,9 @@ class QuizActivity : BaseActivity() {
         binding = ActivityQuizBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        dialogManager = DialogManager(this)
-        soundManager = SoundManager(this)
+        preferenceManager = PreferenceManager(this)
+        soundManager = SoundManager(preferenceManager, this)
+        dialogManager = DialogManager(this, soundManager)
 
         setupViews()
         setupObservers()

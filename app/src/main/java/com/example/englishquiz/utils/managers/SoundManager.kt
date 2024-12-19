@@ -8,10 +8,9 @@ import com.example.englishquiz.R
 import com.example.englishquiz.data.preferences.PreferenceManager
 
 class SoundManager(
+    private val preferenceManager: PreferenceManager,
     private val context: Context,
 ) {
-    private val preferenceManager = PreferenceManager(context)
-
     // Background Music Player
     private var mediaPlayer: MediaPlayer? = null
 

@@ -4,6 +4,10 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.ViewModelProvider.AndroidViewModelFactory.Companion.APPLICATION_KEY
+import androidx.lifecycle.viewmodel.initializer
+import androidx.lifecycle.viewmodel.viewModelFactory
+import com.example.englishquiz.core.QuizApplication
 import com.example.englishquiz.data.preferences.PreferenceManager
 import com.example.englishquiz.utils.managers.SoundManager
 
@@ -44,17 +48,14 @@ class MainViewModel(
     }
 
     fun getCoins(): Int = preferenceManager.getCoins()
-}
 
-class MainViewModelFactory(
-    private val soundManager: SoundManager,
-    private val preferenceManager: PreferenceManager,
-) : ViewModelProvider.Factory {
-    override fun <T : ViewModel> create(modelClass: Class<T>): T {
-        if (modelClass.isAssignableFrom(MainViewModel::class.java)) {
-            @Suppress("UNCHECKED_CAST")
-            return MainViewModel(soundManager, preferenceManager) as T
-        }
-        throw IllegalArgumentException("Unknown ViewModel class")
+    companion object {
+        val Factory: ViewModelProvider.Factory =
+            viewModelFactory {
+                initializer {
+                    val application = (this[APPLICATION_KEY] as QuizApplication)
+                    MainViewModel(application.soundManager, application.preferenceManager)
+                }
+            }
     }
 }

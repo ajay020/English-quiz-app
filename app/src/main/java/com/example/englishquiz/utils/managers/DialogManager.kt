@@ -30,12 +30,11 @@ enum class Theme {
 
 class DialogManager(
     private val context: Context,
+    private val soundManager: SoundManager,
 ) {
     companion object {
         const val WEEK_STREAK_REWARD = 50
     }
-
-    val soundManager = SoundManager(context)
 
     fun showSettingsDialog(
         onAudioChanged: (Boolean) -> Unit,

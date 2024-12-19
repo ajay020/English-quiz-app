@@ -1,6 +1,6 @@
 package com.example.englishquiz.data.repository
 
-import com.example.englishquiz.data.database.Question
+import com.example.englishquiz.data.Question
 
 interface QuestionRepository {
     // Fetch unsolved questions

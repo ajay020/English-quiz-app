@@ -12,7 +12,7 @@ import androidx.lifecycle.viewModelScope
 import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
 import com.example.englishquiz.core.QuizApplication
-import com.example.englishquiz.data.database.Question
+import com.example.englishquiz.data.Question
 import com.example.englishquiz.data.preferences.PreferenceManager
 import com.example.englishquiz.data.repository.QuestionRepository
 import com.example.englishquiz.utils.managers.TimerManager

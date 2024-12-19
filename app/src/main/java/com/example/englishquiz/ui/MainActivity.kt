@@ -9,20 +9,16 @@ import com.example.englishquiz.core.QuizApplication
 import com.example.englishquiz.databinding.ActivityMainBinding
 import com.example.englishquiz.utils.QuestionLoadingScript
 import com.example.englishquiz.utils.managers.DialogManager
+import com.example.englishquiz.utils.managers.SoundManager
 import com.example.englishquiz.viewmodel.MainViewModel
-import com.example.englishquiz.viewmodel.MainViewModelFactory
 import com.example.englishquiz.views.StreakTrackerView
 
 class MainActivity : BaseActivity() {
     private lateinit var binding: ActivityMainBinding
     private lateinit var dialogManager: DialogManager
-    private val viewModel: MainViewModel by viewModels {
-        MainViewModelFactory(
-            (application as QuizApplication).soundManager,
-            (application as QuizApplication).preferenceManager,
-        )
-    }
+    private val viewModel: MainViewModel by viewModels { MainViewModel.Factory }
     private lateinit var streakTracker: StreakTrackerView
+    private lateinit var soundManager: SoundManager
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,7 +31,9 @@ class MainActivity : BaseActivity() {
         // Initialize binding
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        dialogManager = DialogManager(this)
+
+        soundManager = SoundManager(preferenceManager, this)
+        dialogManager = DialogManager(this, soundManager)
 
         // Start music if enabled
         if (viewModel.isMusicEnabled.value == true) {

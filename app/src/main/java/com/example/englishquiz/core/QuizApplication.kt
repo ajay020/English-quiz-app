@@ -18,10 +18,10 @@ class QuizApplication : Application() {
 
     override fun onCreate() {
         super.onCreate()
-        soundManager = SoundManager(this)
         preferenceManager = PreferenceManager(this)
         questionRepository = QuestionRepositoryImpl(database.questionDao())
         streakTrackerView = StreakTrackerView(this)
+        soundManager = SoundManager(preferenceManager, this)
         timerManager = TimerManager()
     }
 }

@@ -1,6 +1,6 @@
 package com.example.englishquiz.data.repository
 
-import com.example.englishquiz.data.database.Question
+import com.example.englishquiz.data.Question
 import com.example.englishquiz.data.database.QuestionDao
 import io.mockk.coEvery
 import io.mockk.coJustRun

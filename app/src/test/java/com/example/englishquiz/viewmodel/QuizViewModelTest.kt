@@ -1,7 +1,7 @@
 package com.example.englishquiz.viewmodel
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
-import com.example.englishquiz.data.database.Question
+import com.example.englishquiz.data.Question
 import com.example.englishquiz.data.preferences.PreferenceManager
 import com.example.englishquiz.data.repository.QuestionRepository
 import com.example.englishquiz.utils.managers.TimerManager

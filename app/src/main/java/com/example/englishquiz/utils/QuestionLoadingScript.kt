@@ -1,8 +1,8 @@
 package com.example.englishquiz.utils
 
 import android.content.Context
+import com.example.englishquiz.data.Question
 import com.example.englishquiz.data.database.AppDatabase
-import com.example.englishquiz.data.database.Question
 import com.example.englishquiz.data.preferences.PreferenceManager
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
