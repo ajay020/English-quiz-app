@@ -1,7 +1,9 @@
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
     id("kotlin-kapt")
+    id("com.google.dagger.hilt.android")
 }
 
 android {
@@ -15,10 +17,16 @@ android {
         versionCode = 1
         versionName = "1.0"
 
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner = "com.example.englishquiz.CustomTestRunner"
     }
 
     buildTypes {
+
+        debug {
+            isMinifyEnabled = false
+            isDebuggable = true
+        }
+
         release {
             isMinifyEnabled = false
             proguardFiles(
@@ -26,6 +34,8 @@ android {
                 "proguard-rules.pro",
             )
         }
+
+        packaging { resources { excludes += "/META-INF/*" } }
     }
 
     compileOptions {
@@ -37,6 +47,18 @@ android {
     }
     buildFeatures {
         viewBinding = true
+    }
+
+    sourceSets {
+        getByName("test") {
+            resources.srcDirs("src/test/resources")
+        }
+    }
+
+    testOptions {
+        unitTests {
+            isIncludeAndroidResources = true
+        }
     }
 }
 
@@ -52,9 +74,23 @@ dependencies {
     implementation(libs.gson)
     implementation(libs.androidx.preference)
     implementation(libs.androidx.lifecycle.viewmodel.ktx)
+//    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.3")
+
+    // hilt
+    implementation("com.google.dagger:hilt-android:2.51.1")
+    kapt("com.google.dagger:hilt-android-compiler:2.51.1")
+
+    // Hilt For instrumented tests.
+    androidTestImplementation("com.google.dagger:hilt-android-testing:2.51.1")
+    kaptAndroidTest("com.google.dagger:hilt-android-compiler:2.51.1")
+
+    // Hilt For Robolectric tests.
+    testImplementation("com.google.dagger:hilt-android-testing:2.51.1")
+    kaptTest("com.google.dagger:hilt-android-compiler:2.51.1")
 
     // room database
     implementation("androidx.room:room-runtime:2.6.1")
+    implementation(libs.androidx.rules)
     kapt("androidx.room:room-compiler:2.6.1") // For annotation processing
     implementation("androidx.room:room-ktx:2.6.1") // For Coroutines and Flow support
 
@@ -63,14 +99,29 @@ dependencies {
 
     // JUnit for unit testing
     testImplementation(libs.junit)
-    // Mockito for mocking dependencies
     testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.7.3") // For coroutine testing
     testImplementation("io.mockk:mockk:1.13.8") // For mocking dependencies
     testImplementation("androidx.arch.core:core-testing:2.2.0")
+    testImplementation("androidx.test:core:1.5.0")
+    testImplementation("androidx.test.ext:junit:1.1.3")
+    testImplementation("org.robolectric:robolectric:4.14")
+    testImplementation("com.google.truth:truth:1.1.5")
+    // for testing flow
+    testImplementation("app.cash.turbine:turbine:1.2.0")
 
     // for instrument test
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+    androidTestImplementation("androidx.test.espresso:espresso-intents:3.5.1")
+    androidTestImplementation("io.mockk:mockk-android:1.13.8")
+    androidTestImplementation("androidx.arch.core:core-testing:2.2.0")
+    androidTestImplementation("app.cash.turbine:turbine:1.2.0")
+    androidTestImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.7.3")
 
     implementation("org.jetbrains.kotlinx:kotlinx-metadata-jvm:0.8.0")
+}
+
+// Allow references to generated code
+kapt {
+    correctErrorTypes = true
 }

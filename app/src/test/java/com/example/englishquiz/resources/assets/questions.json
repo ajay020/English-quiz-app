@@ -1,0 +1,162 @@
+[
+  {
+    "questionText": "What is the synonym of 'happy'?",
+    "options": [
+      "Sad",
+      "Joyful",
+      "Angry",
+      "Fearful"
+    ],
+    "correctAnswer": "Joyful"
+  },
+  {
+    "questionText": "What is the antonym of 'ancient'?",
+    "options": [
+      "Modern",
+      "Old",
+      "Historic",
+      "Traditional"
+    ],
+    "correctAnswer": "Modern"
+  },
+  {
+    "questionText": "What is the synonym of 'quick'?",
+    "options": [
+      "Slow",
+      "Rapid",
+      "Lazy",
+      "Steady"
+    ],
+    "correctAnswer": "Rapid"
+  },
+  {
+    "questionText": "What is the antonym of 'weak'?",
+    "options": [
+      "Strong",
+      "Fragile",
+      "Brittle",
+      "Delicate"
+    ],
+    "correctAnswer": "Strong"
+  },
+  {
+    "questionText": "What is the synonym of 'beautiful'?",
+    "options": [
+      "Ugly",
+      "Gorgeous",
+      "Plain",
+      "Horrible"
+    ],
+    "correctAnswer": "Gorgeous"
+  },
+  {
+    "questionText": "What is the antonym of 'full'?",
+    "options": [
+      "Empty",
+      "Packed",
+      "Heavy",
+      "Overflowing"
+    ],
+    "correctAnswer": "Empty"
+  },
+  {
+    "questionText": "What is the synonym of 'large'?",
+    "options": [
+      "Tiny",
+      "Huge",
+      "Small",
+      "Little"
+    ],
+    "correctAnswer": "Huge"
+  },
+  {
+    "questionText": "What is the antonym of 'soft'?",
+    "options": [
+      "Hard",
+      "Cushioned",
+      "Silky",
+      "Smooth"
+    ],
+    "correctAnswer": "Hard"
+  },
+  {
+    "questionText": "What is the synonym of 'angry'?",
+    "options": [
+      "Calm",
+      "Furious",
+      "Happy",
+      "Peaceful"
+    ],
+    "correctAnswer": "Furious"
+  },
+  {
+    "questionText": "What is the antonym of 'low'?",
+    "options": [
+      "High",
+      "Deep",
+      "Shallow",
+      "Short"
+    ],
+    "correctAnswer": "High"
+  },
+  {
+    "questionText": "Select the correctly spelled word:",
+    "options": [
+      "Recieve",
+      "Receive",
+      "Recive",
+      "Reciave"
+    ],
+    "correctAnswer": "Receive"
+  },
+  {
+    "questionText": "Which of these is the correct spelling of a word meaning 'extremely tired'?",
+    "options": [
+      "Exausted",
+      "Exhausted",
+      "Exhorted",
+      "Exosted"
+    ],
+    "correctAnswer": "Exhausted"
+  },
+  {
+    "questionText": "Select the correctly spelled word:",
+    "options": [
+      "Recieve",
+      "Receive",
+      "Recive",
+      "Reciave"
+    ],
+    "correctAnswer": "Receive"
+  },
+  {
+    "questionText": "Identify the correct spelling of a word meaning 'happening by chance':",
+    "options": [
+      "Accidental",
+      "Accedental",
+      "Accidantal",
+      "Acidental"
+    ],
+    "correctAnswer": "Accidental"
+  },
+  {
+    "questionText": "Which spelling is correct for a word meaning 'to bring to an end'?",
+    "options": [
+      "Terminate",
+      "Terminnate",
+      "Termiknate",
+      "Termynate"
+    ],
+    "correctAnswer": "Terminate"
+  },
+  {
+    "questionText": "Choose the correctly spelled word:",
+    "options": [
+      "Seperate",
+      "Separate",
+      "Seprate",
+      "Separeate"
+    ],
+    "correctAnswer": "Separate"
+  }
+]

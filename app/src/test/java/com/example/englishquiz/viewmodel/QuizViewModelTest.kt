@@ -4,6 +4,7 @@ import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.example.englishquiz.data.Question
 import com.example.englishquiz.data.preferences.PreferenceManager
 import com.example.englishquiz.data.repository.QuestionRepository
+import com.example.englishquiz.utils.managers.StreakManager
 import com.example.englishquiz.utils.managers.TimerManager
 import com.example.englishquiz.views.StreakTrackerView
 import io.mockk.coEvery
@@ -35,8 +36,8 @@ class QuizViewModelTest {
     private lateinit var preferenceManager: PreferenceManager
     private lateinit var questionRepository: QuestionRepository
     private lateinit var timerManager: TimerManager
+    private lateinit var streakManager: StreakManager
     private lateinit var trackerView: StreakTrackerView
-    private lateinit var streakTrackerView: StreakTrackerView
 
     // class under test
     private lateinit var viewModel: QuizViewModel
@@ -49,15 +50,15 @@ class QuizViewModelTest {
 
         preferenceManager = mockk(relaxed = true)
         questionRepository = mockk(relaxed = true)
-        streakTrackerView = mockk(relaxed = true)
         timerManager = mockk(relaxed = true)
         trackerView = mockk(relaxed = true)
+        streakManager = mockk(relaxed = true)
 
         every { preferenceManager.getCurrentLevel() } returns 1
         every { preferenceManager.getCoins() } returns 10
         every { timerManager.getTimeLeft() } returns 60_000L
 
-        viewModel = QuizViewModel(preferenceManager, questionRepository, trackerView, timerManager)
+        viewModel = QuizViewModel(preferenceManager, questionRepository, streakManager, timerManager)
     }
 
     @OptIn(ExperimentalCoroutinesApi::class)

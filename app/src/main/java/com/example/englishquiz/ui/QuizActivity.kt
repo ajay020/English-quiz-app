@@ -22,15 +22,22 @@ import com.example.englishquiz.utils.AnimationUtility
 import com.example.englishquiz.utils.managers.DialogManager
 import com.example.englishquiz.utils.managers.SoundManager
 import com.example.englishquiz.viewmodel.QuizViewModel
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
+@AndroidEntryPoint
 class QuizActivity : BaseActivity() {
     private lateinit var binding: ActivityQuizBinding
-    private val viewModel: QuizViewModel by viewModels { QuizViewModel.Factory }
+    private val viewModel: QuizViewModel by viewModels()
     private lateinit var optionButtons: List<Button>
-    private lateinit var dialogManager: DialogManager
-    private lateinit var soundManager: SoundManager
+
+    @Inject
+    lateinit var dialogManager: DialogManager
+
+    @Inject
+    lateinit var soundManager: SoundManager
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,7 +48,7 @@ class QuizActivity : BaseActivity() {
 
         preferenceManager = PreferenceManager(this)
         soundManager = SoundManager(preferenceManager, this)
-        dialogManager = DialogManager(this, soundManager)
+        dialogManager = DialogManager(this, soundManager, preferenceManager)
 
         setupViews()
         setupObservers()

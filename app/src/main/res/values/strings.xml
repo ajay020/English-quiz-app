@@ -70,4 +70,5 @@
     <string name="hint_icon">hint icon</string>
     <string name="timer">timer</string>
     <string name="coin_image">coin image</string>
+    <string name="settings">Settings</string>
 </resources>

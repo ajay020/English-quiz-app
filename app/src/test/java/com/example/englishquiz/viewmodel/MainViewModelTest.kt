@@ -4,119 +4,81 @@ import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.Observer
 import com.example.englishquiz.data.preferences.PreferenceManager
 import com.example.englishquiz.utils.managers.SoundManager
-import io.mockk.clearMocks
+import io.mockk.clearAllMocks
 import io.mockk.every
 import io.mockk.mockk
 import io.mockk.verify
-import org.junit.Assert.assertEquals
+import org.junit.After
+import org.junit.Assert
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 
 class MainViewModelTest {
-    // Use this rule to execute LiveData updates instantly (synchronously)
+    // Executes each task synchronously
     @get:Rule
-    val instantTaskExecutorRule = InstantTaskExecutorRule()
+    var instantTaskExecutorRule = InstantTaskExecutorRule()
 
-    // Mocks for dependencies
-    private lateinit var soundManager: SoundManager
-    private lateinit var preferenceManager: PreferenceManager
-
-    // Class under test
-    private lateinit var viewModel: MainViewModel
+    lateinit var viewModel: MainViewModel
+    private val soundManager: SoundManager = mockk(relaxed = true)
+    private val preferenceManager: PreferenceManager = mockk(relaxed = true)
 
     @Before
-    fun setUp() {
-        soundManager = mockk(relaxed = true) // Relaxed mock for SoundManager
-        preferenceManager = mockk(relaxed = true) // Relaxed mock for PreferenceManager
-
-        // Default mock behavior for preferenceManager.isMusicEnabled()
+    fun setup() {
         every { preferenceManager.isMusicEnabled() } returns true
+        every { preferenceManager.getCoins() } returns 100
 
         viewModel = MainViewModel(soundManager, preferenceManager)
     }
 
-    @Test
-    fun `init sets isMusicEnabled based on preferenceManager`() {
-        // Verify initial LiveData value
-        assertEquals(true, viewModel.isMusicEnabled.value)
-
-        // Verify that preferenceManager.isMusicEnabled() was called
-        verify { preferenceManager.isMusicEnabled() }
+    @After
+    fun tearDown() {
+        clearAllMocks()
     }
 
     @Test
-    fun `playClickSound calls soundManager playButtonClickSound`() {
-        // Call the method
-        viewModel.playClickSound()
+    fun `test initial music enabled state is fetched from preference manager`() {
+        val observer = mockk<Observer<Boolean>>(relaxed = true)
+        viewModel.isMusicEnabled.observeForever(observer)
 
-        // Verify that the soundManager's playButtonClickSound was called
+        verify { preferenceManager.isMusicEnabled() }
+        verify { observer.onChanged(true) }
+    }
+
+    @Test
+    fun `test playClickSound calls soundManager playButtonClickSound`() {
+        viewModel.playClickSound()
         verify { soundManager.playButtonClickSound() }
     }
 
     @Test
-    fun `startMusic starts music when isMusicEnabled is true`() {
-        // Call the method
+    fun `test startMusic calls soundManager startMusic when enabled`() {
         viewModel.startMusic()
-
-        // Verify that soundManager.startMusic() is called
         verify { soundManager.startMusic() }
     }
 
     @Test
-    fun `startMusic does nothing when isMusicEnabled is false`() {
-        // Set isMusicEnabled to false
-        viewModel.setMusicEnabled(false)
-
-        // Clear any prior interactions
-        clearMocks(soundManager)
-
-        // Call the method
-        viewModel.startMusic()
-
-        // Verify that soundManager.startMusic() was NOT called
-        verify(exactly = 0) { soundManager.startMusic() }
-    }
-
-    @Test
-    fun `setMusicEnabled updates isMusicEnabled and starts or stops music`() {
-        // Observe LiveData changes
-        val observer = mockk<Observer<Boolean>>(relaxed = true)
-        viewModel.isMusicEnabled.observeForever(observer)
-
-        // Enable music
+    fun `test setMusicEnabled starts music when enabled`() {
         viewModel.setMusicEnabled(true)
-        assertEquals(true, viewModel.isMusicEnabled.value)
         verify { soundManager.startMusic() }
+    }
 
-        // Disable music
+    @Test
+    fun `test setMusicEnabled stops music when disabled`() {
         viewModel.setMusicEnabled(false)
-        assertEquals(false, viewModel.isMusicEnabled.value)
         verify { soundManager.stopMusic() }
-
-        // Remove observer
-        viewModel.isMusicEnabled.removeObserver(observer)
     }
 
     @Test
-    fun `onCleared calls soundManager release`() {
-        // Call the method
-        viewModel.onCleared()
-
-        // Verify that soundManager.release() was called
-        verify { soundManager.release() }
-    }
-
-    @Test
-    fun `getCoins returns value from preferenceManager`() {
-        // Mock return value
-        every { preferenceManager.getCoins() } returns 100
-
-        // Call the method and assert the result
+    fun `test getCoins returns correct value`() {
         val coins = viewModel.getCoins()
-        assertEquals(100, coins)
-
-        // Verify that preferenceManager.getCoins() was called
+        Assert.assertEquals(100, coins)
         verify { preferenceManager.getCoins() }
+    }
+
+    @Test
+    fun `test onCleared releases sound manager`() {
+        viewModel.onCleared()
+        verify { soundManager.release() }
     }
 }

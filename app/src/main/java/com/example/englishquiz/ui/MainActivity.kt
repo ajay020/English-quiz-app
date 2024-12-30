@@ -5,47 +5,46 @@ import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.recyclerview.widget.RecyclerView
-import com.example.englishquiz.core.QuizApplication
 import com.example.englishquiz.databinding.ActivityMainBinding
-import com.example.englishquiz.utils.QuestionLoadingScript
 import com.example.englishquiz.utils.managers.DialogManager
 import com.example.englishquiz.utils.managers.SoundManager
 import com.example.englishquiz.viewmodel.MainViewModel
 import com.example.englishquiz.views.StreakTrackerView
+import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
+@AndroidEntryPoint
 class MainActivity : BaseActivity() {
-    private lateinit var binding: ActivityMainBinding
-    private lateinit var dialogManager: DialogManager
-    private val viewModel: MainViewModel by viewModels { MainViewModel.Factory }
-    private lateinit var streakTracker: StreakTrackerView
-    private lateinit var soundManager: SoundManager
+    lateinit var binding: ActivityMainBinding
+
+    // Hilt will automatically provide the ViewModel with injected dependencies
+    val viewModel: MainViewModel by viewModels()
+
+    @Inject
+    lateinit var dialogManager: DialogManager
+
+    @Inject
+    lateinit var soundManager: SoundManager
+
+    @Inject
+    lateinit var streakTracker: StreakTrackerView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
 
-        // Load questions into database
-        val database = (application as QuizApplication).database
-        QuestionLoadingScript.importQuestionsFromJson(this, database)
-
         // Initialize binding
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
-        soundManager = SoundManager(preferenceManager, this)
-        dialogManager = DialogManager(this, soundManager)
 
         // Start music if enabled
         if (viewModel.isMusicEnabled.value == true) {
             viewModel.startMusic()
         }
-
         setUpViews()
     }
 
     private fun setUpViews() {
-        // Initialize StreakTrackerView
-        streakTracker = StreakTrackerView(this)
         val recyclerView: RecyclerView = binding.streakRecyclerView
         streakTracker.setupStreakTracker(recyclerView)
 
