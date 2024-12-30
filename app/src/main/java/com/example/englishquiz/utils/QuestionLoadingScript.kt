@@ -1,6 +1,7 @@
 package com.example.englishquiz.utils
 
 import android.content.Context
+import android.util.Log
 import com.example.englishquiz.data.Question
 import com.example.englishquiz.data.database.AppDatabase
 import com.example.englishquiz.data.preferences.PreferenceManager
@@ -31,6 +32,7 @@ object QuestionLoadingScript {
                     val jsonContent = readJsonFromAssets(context, fileName)
                     val questions = parseJsonToQuestions(jsonContent)
                     val questionEntities = mapJsonToEntities(questions)
+                    Log.d("DATA", "Questions: $questionEntities.size")
                     saveQuestionsToDatabase(database, questionEntities)
                     markDataAsLoaded(preferenceManager)
 

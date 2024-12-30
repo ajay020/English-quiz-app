@@ -13,6 +13,7 @@ open class BaseActivity : AppCompatActivity() {
         preferenceManager = PreferenceManager(this)
         val selectedTheme = preferenceManager.getSelectedThemeFromPreferences()
         setTheme(ThemeUtils.getSelectedThemeResourceId(selectedTheme.name))
+
         super.onCreate(savedInstanceState)
     }
 }

@@ -14,7 +14,7 @@
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tv_title"
             style="@style/HeaderTextViewStyle"
-            android:text="English Quiz"
+            android:text="@string/quizzybee"
             android:layout_gravity="center" />
         <ImageButton
             android:id="@+id/btn_settings"

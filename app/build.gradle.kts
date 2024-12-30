@@ -74,7 +74,7 @@ dependencies {
     implementation(libs.gson)
     implementation(libs.androidx.preference)
     implementation(libs.androidx.lifecycle.viewmodel.ktx)
-//    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.3")
+    implementation(libs.androidx.core.splashscreen)
 
     // hilt
     implementation("com.google.dagger:hilt-android:2.51.1")
