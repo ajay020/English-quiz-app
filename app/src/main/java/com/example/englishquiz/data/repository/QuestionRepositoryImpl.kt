@@ -2,6 +2,7 @@ package com.example.englishquiz.data.repository
 
 import com.example.englishquiz.data.Question
 import com.example.englishquiz.data.database.QuestionDao
+import kotlinx.coroutines.flow.Flow
 
 class QuestionRepositoryImpl(
     private val questionDao: QuestionDao,
@@ -24,5 +25,12 @@ class QuestionRepositoryImpl(
     // Insert a new question
     override suspend fun insertQuestionInBulk(questions: List<Question>) {
         questionDao.insertQuestionsInBulk(questions)
+    }
+
+    // Fetch question count
+    override fun getQuestionCount(): Flow<Int> = questionDao.getQuestionCount()
+
+    override suspend fun resetAllQuestions() {
+        questionDao.resetAllQuestions()
     }
 }

@@ -1,18 +1,140 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:gravity="center"
-    android:padding="16dp">
+    android:background="@color/nature_background"
+    android:fillViewport="true"
+    android:theme="@style/AppTheme.nature">
 
-    <TextView
-        android:id="@+id/tv_message"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Congratulations!! you have solved all qustions."
-        android:textSize="22sp"
-        android:layout_marginBottom="16dp" />
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:padding="24dp">
 
-</LinearLayout>
+        <!-- Celebration Animation or Image -->
+        <ImageView
+            android:id="@+id/ivCelebration"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:layout_gravity="center_horizontal"
+            android:contentDescription="Celebration Icon"
+            android:src="@drawable/ic_trophy_badge" />
+
+        <!-- Congratulations Message -->
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvCongratulations"
+            style="@style/HeaderTextViewStyle"
+            android:gravity="center"
+            android:text="@string/congrats_message" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="28dp" />
+
+        <!-- Statistics Section -->
+        <LinearLayout
+            android:id="@+id/llStats"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_question_solved"
+                style="@style/BodyTextViewStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/total_questions_solved"
+                android:textSize="16sp" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_total_time"
+                android:layout_width="wrap_content"
+                android:layout_marginVertical="4dp"
+                android:layout_height="wrap_content"
+                android:text="@string/total_time_spent" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_days_spent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/days_spent_message"
+                android:textSize="16sp" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="16dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:orientation="vertical"
+            android:padding="8dp">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/thank_message"
+                android:textSize="16sp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="16dp" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/feedback_message"
+                android:textSize="16sp" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="16dp" />
+
+        <!-- Next Steps Section -->
+        <LinearLayout
+            android:id="@+id/llNextSteps"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingVertical="8dp">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnPlayAgain"
+                style="@style/ButtonStyle"
+                android:layout_width="match_parent"
+                android:layout_gravity="center"
+                android:layout_marginHorizontal="16dp"
+                android:padding="8dp"
+                android:text="@string/challenge_yourself_again"
+                android:textSize="16sp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="8dp" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnShareAchievement"
+                style="@style/ButtonStyle"
+                android:layout_width="match_parent"
+                android:layout_gravity="center"
+                android:layout_marginHorizontal="16dp"
+                android:padding="8dp"
+                android:text="Share"
+                android:textSize="16sp" />
+        </LinearLayout>
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/btnHome"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginTop="16dp"
+            android:background="@color/transparent"
+            android:src="@drawable/ic_home" />
+    </LinearLayout>
+</ScrollView>
+

@@ -20,6 +20,9 @@ class PreferenceManager
             const val IS_DATA_LOADED_KEY = "is_data_loaded"
             const val IS_SOUND_ENABLED_KEY = "is_sound_enabled"
             const val IS_MUSIC_ENABLED_KEY = "is_music_enabled"
+            const val TOTAL_TIME_SPENT = "total_time_spent"
+            private const val KEY_FIRST_LAUNCH_DATE = "first_launch_date"
+            private const val KEY_QUIZ_COMPLETION_DATE = "quiz_completion_date"
         }
 
         // theme functions
@@ -88,5 +91,40 @@ class PreferenceManager
 
         fun setMusicEnabled(enabled: Boolean) {
             sharedPreferences.edit().putBoolean(IS_MUSIC_ENABLED_KEY, enabled).apply()
+        }
+
+        //
+        fun saveTotalTimeSpent(timeInMillis: Long) {
+            sharedPreferences.edit().putLong(TOTAL_TIME_SPENT, timeInMillis).apply()
+        }
+
+        fun getTotalTimeSpent(): Long = sharedPreferences.getLong(TOTAL_TIME_SPENT, 0L)
+
+        // Save the first launch date
+        fun saveFirstLaunchDate() {
+            if (!sharedPreferences.contains(KEY_FIRST_LAUNCH_DATE)) {
+                val currentDate = System.currentTimeMillis()
+                sharedPreferences.edit().putLong(KEY_FIRST_LAUNCH_DATE, currentDate).apply()
+            }
+        }
+
+        // Get the first launch date
+        fun getFirstLaunchDate(): Long = sharedPreferences.getLong(KEY_FIRST_LAUNCH_DATE, System.currentTimeMillis())
+
+        // Save the quiz completion date
+        fun saveQuizCompletionDate() {
+            val currentDate = System.currentTimeMillis()
+            sharedPreferences.edit().putLong(KEY_QUIZ_COMPLETION_DATE, currentDate).apply()
+        }
+
+        // Get the quiz completion date
+        fun getQuizCompletionDate(): Long = sharedPreferences.getLong(KEY_QUIZ_COMPLETION_DATE, System.currentTimeMillis())
+
+        // Calculate days between first launch and quiz completion
+        fun getDaysBetweenLaunchAndCompletion(): Int {
+            val firstLaunch = getFirstLaunchDate()
+            val completion = getQuizCompletionDate()
+            val differenceInMillis = completion - firstLaunch
+            return (differenceInMillis / (1000 * 60 * 60 * 24)).toInt()
         }
     }

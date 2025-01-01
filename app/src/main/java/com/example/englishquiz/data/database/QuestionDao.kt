@@ -6,6 +6,7 @@ import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import androidx.room.Update
 import com.example.englishquiz.data.Question
+import kotlinx.coroutines.flow.Flow
 
 // Data Access Object for Questions
 @Dao
@@ -35,4 +36,10 @@ interface QuestionDao {
 
     @Query("SELECT * FROM questions")
     suspend fun getAllQuestions(): List<Question>
+
+    @Query("SELECT COUNT(*) FROM questions")
+    fun getQuestionCount(): Flow<Int>
+
+    @Query("UPDATE questions SET isSolved = 0")
+    suspend fun resetAllQuestions()
 }

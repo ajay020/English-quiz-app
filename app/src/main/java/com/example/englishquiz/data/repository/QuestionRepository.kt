@@ -1,6 +1,7 @@
 package com.example.englishquiz.data.repository
 
 import com.example.englishquiz.data.Question
+import kotlinx.coroutines.flow.Flow
 
 interface QuestionRepository {
     // Fetch unsolved questions
@@ -17,4 +18,8 @@ interface QuestionRepository {
 
     // Insert a new question
     suspend fun insertQuestionInBulk(questions: List<Question>)
+
+    fun getQuestionCount(): Flow<Int>
+
+    suspend fun resetAllQuestions()
 }

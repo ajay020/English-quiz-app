@@ -75,6 +75,7 @@ dependencies {
     implementation(libs.androidx.preference)
     implementation(libs.androidx.lifecycle.viewmodel.ktx)
     implementation(libs.androidx.core.splashscreen)
+    implementation(libs.androidx.lifecycle.process)
 
     // hilt
     implementation("com.google.dagger:hilt-android:2.51.1")

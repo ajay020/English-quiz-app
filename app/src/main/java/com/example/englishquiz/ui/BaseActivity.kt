@@ -15,5 +15,6 @@ open class BaseActivity : AppCompatActivity() {
         setTheme(ThemeUtils.getSelectedThemeResourceId(selectedTheme.name))
 
         super.onCreate(savedInstanceState)
+        preferenceManager.saveFirstLaunchDate()
     }
 }

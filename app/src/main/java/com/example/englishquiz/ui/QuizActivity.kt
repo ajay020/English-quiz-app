@@ -192,6 +192,7 @@ class QuizActivity : BaseActivity() {
             is QuizViewModel.NavigationEvent.ShowToast -> {
                 Toast.makeText(this, event.message, Toast.LENGTH_SHORT).show()
             }
+
             is QuizViewModel.NavigationEvent.ShowLevelComplete -> {
                 soundManager.playLevelCompleteSound()
 
@@ -204,7 +205,9 @@ class QuizActivity : BaseActivity() {
                     onStartNextLevel = { viewModel.generateLevel() },
                 )
             }
+
             is QuizViewModel.NavigationEvent.NavigateToResult -> {
+                preferenceManager.saveQuizCompletionDate()
                 val intent = Intent(this, ResultActivity::class.java)
                 startActivity(intent)
                 finish()
