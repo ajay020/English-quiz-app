@@ -4,8 +4,11 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
+import android.graphics.Canvas
+import android.graphics.Color
+import android.graphics.Paint
+import android.graphics.Typeface
 import android.os.Bundle
-import android.util.Log
 import androidx.activity.viewModels
 import androidx.core.content.FileProvider
 import androidx.lifecycle.lifecycleScope
@@ -17,7 +20,6 @@ import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import java.io.File
 import java.io.FileOutputStream
-import java.io.IOException
 
 @AndroidEntryPoint
 class ResultActivity : BaseActivity() {
@@ -74,7 +76,10 @@ class ResultActivity : BaseActivity() {
         }
 
         binding.btnShareAchievement.setOnClickListener {
-            shareStats()
+            val totalTime = preferenceManager.getTotalTimeSpent()
+            val daysSpent = preferenceManager.getDaysBetweenLaunchAndCompletion()
+
+            shareCombinedImage(totalTime, daysSpent)
         }
     }
 
@@ -85,26 +90,15 @@ class ResultActivity : BaseActivity() {
         binding.tvTotalTime.text = getString(R.string.total_time_spent, hours, minutes)
     }
 
-    private fun shareStats() {
-        // Text content for sharing
-        val statsText = "🎉 I completed all quizzes on QuizzyBee!\nTotal Time: 5 hours\nDays Spent: 3 days"
+    private fun shareCombinedImage(
+        totalTime: Long,
+        daysSpent: Int,
+    ) {
+        val minutes = ((totalTime / (1000 * 60)) % 60).toInt()
+        val hours = (totalTime / (1000 * 60 * 60)).toInt()
 
-        // Create a file in the internal storage
-        val imageFile = File(filesDir, "images/share_image.png")
-        if (!imageFile.parentFile.exists()) {
-            imageFile.parentFile.mkdirs()
-        }
-
-        // Copy image from drawable to internal storage
-        try {
-            val bitmap = BitmapFactory.decodeResource(resources, R.drawable.share_image)
-            FileOutputStream(imageFile).use { out ->
-                bitmap.compress(Bitmap.CompressFormat.PNG, 100, out)
-            }
-        } catch (e: IOException) {
-            Log.e("Share", "Error copying image to internal storage", e)
-            return
-        }
+        val bitmap = createImageWithText(daysSpent, hours, minutes)
+        val imageFile = saveBitmapToInternalStorage(bitmap)
 
         // Get URI using FileProvider
         val imageUri =
@@ -126,16 +120,68 @@ class ResultActivity : BaseActivity() {
             Intent.FLAG_GRANT_READ_URI_PERMISSION,
         )
 
-        // Create share intent
+        // Share Intent
         val shareIntent =
             Intent(Intent.ACTION_SEND).apply {
                 type = "image/png"
                 putExtra(Intent.EXTRA_STREAM, imageUri)
-                putExtra(Intent.EXTRA_TEXT, statsText)
                 addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
             }
 
-        // Start the share intent chooser
         startActivity(Intent.createChooser(shareIntent, "Share your QuizzyBee stats"))
+    }
+
+    private fun createImageWithText(
+        daysSpent: Int,
+        hours: Int,
+        minutes: Int,
+    ): Bitmap {
+        val baseBitmap = BitmapFactory.decodeResource(resources, R.drawable.share_image)
+
+        // Define dimensions for combined bitmap
+        val width = baseBitmap.width
+        val textHeight = 200 // Space for text below the image
+        val combinedHeight = baseBitmap.height + textHeight
+
+        // Create a new bitmap with the combined dimensions
+        val combinedBitmap = Bitmap.createBitmap(width, combinedHeight, Bitmap.Config.ARGB_8888)
+        val canvas = Canvas(combinedBitmap)
+        canvas.drawColor(Color.WHITE) // Set background color
+
+        // Draw the base image
+        canvas.drawBitmap(baseBitmap, 0f, 0f, null)
+
+        // Draw the text below the image
+        val paint =
+            Paint().apply {
+                color = Color.BLACK
+                textSize = 32f
+                textAlign = Paint.Align.CENTER
+                typeface = Typeface.DEFAULT_BOLD
+            }
+
+        val text = getString(R.string.accomplishment_message, hours, minutes, daysSpent)
+        val x = (width / 2).toFloat()
+        val y = (baseBitmap.height + 20).toFloat()
+        val textLines = text.split("\n")
+
+        textLines.forEachIndexed { index, line ->
+            canvas.drawText(line, x, y + (index * 42), paint)
+        }
+
+        return combinedBitmap
+    }
+
+    private fun saveBitmapToInternalStorage(bitmap: Bitmap): File {
+        val imageFile = File(filesDir, "images/progress_share_image.png")
+        if (imageFile.parentFile?.exists() == false) {
+            imageFile.parentFile?.mkdirs()
+        }
+
+        FileOutputStream(imageFile).use { out ->
+            bitmap.compress(Bitmap.CompressFormat.PNG, 100, out)
+        }
+
+        return imageFile
     }
 }

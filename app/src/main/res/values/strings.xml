@@ -79,4 +79,6 @@
     <string name="total_time_spent">⌛ You spent: %1$d hours and %2$d minutes</string>
     <string name="days_spent_message">🗓️ You completed all quizzes in %1$d days!</string>
     <string name="challenge_yourself_again">Challenge Yourself Again</string>
+    <string name="accomplishment_message">🎉😇 I completed all quizzes on QuizzyBee!\nTime Spent: %1$d hours and %2$d minutes\nDays Spent: %3$d days</string>
+    <string name="celebration_icon">Celebration Icon</string>
 </resources>

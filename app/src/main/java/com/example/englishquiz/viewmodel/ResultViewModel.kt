@@ -42,6 +42,7 @@ class ResultViewModel
             viewModelScope.launch {
                 questionRepository.resetAllQuestions()
                 preferenceManager.saveCurrentLevel(1)
+                preferenceManager.clearStreakDates()
             }
         }
     }
