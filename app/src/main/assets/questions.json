@@ -18,5 +18,25 @@
       "goes"
     ],
     "correctAnswer": "go"
+  },
+  {
+    "questionText": "Who helps sick people?",
+    "options": [
+      "Driver",
+      "Teacher",
+      "Doctor",
+      "Pilot"
+    ],
+    "correctAnswer": "Doctor"
+  },
+  {
+    "questionText": "Select the correct spelling:",
+    "options": [
+      "Ninety",
+      "Nintey",
+      "Nintee",
+      "Ninty"
+    ],
+    "correctAnswer": "Ninety"
   }
 ]
