@@ -22,10 +22,8 @@ import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 
 enum class Theme {
-    CLASSIC,
     DARK,
     NATURE,
-    OCEAN,
 }
 
 class DialogManager
@@ -42,8 +40,8 @@ class DialogManager
         fun showSettingsDialog(
             onAudioChanged: (Boolean) -> Unit,
             onMusicChanged: (Boolean) -> Unit,
-            onThemeSelected: (Theme) -> Unit,
-        ) {
+            onDarkModeChanged: (Boolean) -> Unit,
+        ): Dialog {
             val dialog = Dialog(context, R.style.FullWidthDialog)
 
             dialog.setCancelable(false)
@@ -53,116 +51,37 @@ class DialogManager
             val binding = DialogSettingsBinding.inflate(LayoutInflater.from(context))
             dialog.setContentView(binding.root)
 
-            val soundButton = binding.buttonSound
-            val musicButton = binding.buttonMusic
+            val switchSound = binding.switchSound
+            val switchMusic = binding.switchMusic
+            val switchDarkTheme = binding.switchDarkTheme
+            val btnClose = binding.btnCloseSettings
 
-            val themeClassic = binding.themeClassic
-            val themeDark = binding.themeDark
-            val themeNature = binding.themeNature
-            val themeOcean = binding.themeOcean
+            switchSound.isChecked = preferenceManager.isSoundEnabled()
+            switchMusic.isChecked = preferenceManager.isMusicEnabled()
+            switchDarkTheme.isChecked = preferenceManager.isDarkModeEnabled()
 
-            val selectedTheme = preferenceManager.getSelectedThemeFromPreferences()
-
-            // Map themes to their respective views
-            val themeViews =
-                mapOf(
-                    Theme.CLASSIC to Pair(binding.themeClassic, binding.checkmarkClassic),
-                    Theme.DARK to Pair(binding.themeDark, binding.checkmarkDark),
-                    Theme.NATURE to Pair(binding.themeNature, binding.checkmarkNature),
-                    Theme.OCEAN to Pair(binding.themeOcean, binding.checkmarkOcean),
-                )
-
-            // Add checkmark to the currently selected theme
-            // Update UI for the selected theme
-            fun updateSelectedTheme(theme: Theme) {
-                themeViews.forEach { (key, value) ->
-                    val checkmarkView = value.second // Access the checkmark directly
-                    checkmarkView.visibility = if (key == theme) View.VISIBLE else View.GONE
-                }
+            switchSound.setOnCheckedChangeListener { _, isChecked ->
+                preferenceManager.setSoundEnabled(isChecked)
+                onAudioChanged(isChecked)
             }
 
-            // Initialize the selected theme
-            updateSelectedTheme(selectedTheme)
-
-            // Set up click listeners for themes
-            themeViews.forEach { (theme, value) ->
-                val themeView = value.first // Access the theme view directly
-                themeView.setOnClickListener {
-                    onThemeSelected(theme)
-                    updateSelectedTheme(theme)
-                    preferenceManager.saveSelectedThemeToPreferences(theme)
-                }
+            switchMusic.setOnCheckedChangeListener { _, isChecked ->
+                preferenceManager.setMusicEnabled(isChecked)
+                onMusicChanged(isChecked)
             }
 
-            // Initially, assume both sound and music are enabled
-            var isSoundEnabled = preferenceManager.isSoundEnabled()
-            var isMusicEnabled = preferenceManager.isMusicEnabled()
-            soundButton.setImageResource(if (isSoundEnabled) R.drawable.ic_sound_on else R.drawable.ic_sound_off)
-            musicButton.setImageResource(if (isMusicEnabled) R.drawable.ic_music_on else R.drawable.ic_music_off)
-
-            soundButton.setOnClickListener {
-                soundManager.playButtonClickSound()
-                isSoundEnabled = !isSoundEnabled
-                soundButton.setImageResource(if (isSoundEnabled) R.drawable.ic_sound_on else R.drawable.ic_sound_off)
-                onAudioChanged(isSoundEnabled)
-                preferenceManager.setSoundEnabled(isSoundEnabled)
+            switchDarkTheme.setOnCheckedChangeListener { _, isChecked ->
+                preferenceManager.saveThemePreference(isChecked)
+                onDarkModeChanged(isChecked)
             }
 
-            musicButton.setOnClickListener {
-                soundManager.playButtonClickSound()
-                isMusicEnabled = !isMusicEnabled
-                musicButton.setImageResource(if (isMusicEnabled) R.drawable.ic_music_on else R.drawable.ic_music_off)
-                onMusicChanged(isMusicEnabled)
-                preferenceManager.setMusicEnabled(isMusicEnabled)
-            }
-
-            // ------------------------- Theme controls -------------------------------
-
-            themeClassic.setOnClickListener {
-                soundManager.playButtonClickSound()
-
-                onThemeSelected(Theme.CLASSIC)
-                updateSelectedTheme(Theme.CLASSIC)
-                preferenceManager.saveSelectedThemeToPreferences(Theme.CLASSIC)
-                dialog.dismiss()
-            }
-
-            themeDark.setOnClickListener {
-                soundManager.playButtonClickSound()
-
-                onThemeSelected(Theme.DARK)
-                updateSelectedTheme(Theme.DARK)
-                preferenceManager.saveSelectedThemeToPreferences(Theme.DARK) // Save the selection
-                dialog.dismiss()
-            }
-
-            themeNature.setOnClickListener {
-                soundManager.playButtonClickSound()
-
-                onThemeSelected(Theme.NATURE)
-                updateSelectedTheme(Theme.NATURE)
-                preferenceManager.saveSelectedThemeToPreferences(Theme.NATURE) // Save the selection
-                dialog.dismiss()
-            }
-
-            themeOcean.setOnClickListener {
-                soundManager.playButtonClickSound()
-
-                onThemeSelected(Theme.OCEAN)
-                updateSelectedTheme(Theme.OCEAN)
-                preferenceManager.saveSelectedThemeToPreferences(Theme.OCEAN) // Save the selection
-
-                dialog.dismiss()
-            }
-
-            val closeButton = binding.buttonCloseSettings
-
-            closeButton.setOnClickListener {
+            btnClose.setOnClickListener {
                 soundManager.playButtonClickSound()
                 dialog.dismiss()
             }
 
             dialog.show()
+            return dialog
         }
 
         fun showPauseDialog(

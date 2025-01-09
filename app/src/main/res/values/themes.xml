@@ -1,114 +1,85 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources>
+    <style name="AppTheme" parent="Theme.Material3.Light.NoActionBar">
+        <!--        custom theme-->
+        <item name="timerColorDefault">?attr/colorOnBackground</item>
+        <item name="timerColorWarning">@color/red</item>
 
-    <style name="SplashTheme" parent="Theme.SplashScreen">
-        <item name="windowSplashScreenBackground">@color/splash_background</item>
-        <item name="windowSplashScreenAnimatedIcon">@mipmap/ic_launcher_foreground</item>
-        <item name="postSplashScreenTheme">@style/AppTheme</item>
+
+        <!--       Material style -->
+        <item name="colorPrimary">@color/md_theme_primary</item>
+        <item name="colorOnPrimary">@color/md_theme_onPrimary</item>
+        <item name="colorPrimaryContainer">@color/md_theme_primaryContainer</item>
+        <item name="colorOnPrimaryContainer">@color/md_theme_onPrimaryContainer</item>
+        <item name="colorSecondary">@color/md_theme_secondary</item>
+        <item name="colorOnSecondary">@color/md_theme_onSecondary</item>
+        <item name="colorSecondaryContainer">@color/md_theme_secondaryContainer</item>
+        <item name="colorOnSecondaryContainer">@color/md_theme_onSecondaryContainer</item>
+        <item name="colorTertiary">@color/md_theme_tertiary</item>
+        <item name="colorOnTertiary">@color/md_theme_onTertiary</item>
+        <item name="colorTertiaryContainer">@color/md_theme_tertiaryContainer</item>
+        <item name="colorOnTertiaryContainer">@color/md_theme_onTertiaryContainer</item>
+        <item name="colorError">@color/md_theme_error</item>
+        <item name="colorOnError">@color/md_theme_onError</item>
+        <item name="colorErrorContainer">@color/md_theme_errorContainer</item>
+        <item name="colorOnErrorContainer">@color/md_theme_onErrorContainer</item>
+        <item name="android:colorBackground">@color/md_theme_background</item>
+        <item name="colorOnBackground">@color/md_theme_onBackground</item>
+        <item name="colorSurface">@color/md_theme_surface</item>
+        <item name="colorOnSurface">@color/md_theme_onSurface</item>
+        <item name="colorSurfaceVariant">@color/md_theme_surfaceVariant</item>
+        <item name="colorOnSurfaceVariant">@color/md_theme_onSurfaceVariant</item>
+        <item name="colorOutline">@color/md_theme_outline</item>
+        <item name="colorOutlineVariant">@color/md_theme_outlineVariant</item>
+        <item name="colorSurfaceInverse">@color/md_theme_inverseSurface</item>
+        <item name="colorOnSurfaceInverse">@color/md_theme_inverseOnSurface</item>
+        <item name="colorPrimaryInverse">@color/md_theme_inversePrimary</item>
+        <item name="colorPrimaryFixed">@color/md_theme_primaryFixed</item>
+        <item name="colorOnPrimaryFixed">@color/md_theme_onPrimaryFixed</item>
+        <item name="colorPrimaryFixedDim">@color/md_theme_primaryFixedDim</item>
+        <item name="colorOnPrimaryFixedVariant">@color/md_theme_onPrimaryFixedVariant</item>
+        <item name="colorSecondaryFixed">@color/md_theme_secondaryFixed</item>
+        <item name="colorOnSecondaryFixed">@color/md_theme_onSecondaryFixed</item>
+        <item name="colorSecondaryFixedDim">@color/md_theme_secondaryFixedDim</item>
+        <item name="colorOnSecondaryFixedVariant">@color/md_theme_onSecondaryFixedVariant</item>
+        <item name="colorTertiaryFixed">@color/md_theme_tertiaryFixed</item>
+        <item name="colorOnTertiaryFixed">@color/md_theme_onTertiaryFixed</item>
+        <item name="colorTertiaryFixedDim">@color/md_theme_tertiaryFixedDim</item>
+        <item name="colorOnTertiaryFixedVariant">@color/md_theme_onTertiaryFixedVariant</item>
+        <item name="colorSurfaceDim">@color/md_theme_surfaceDim</item>
+        <item name="colorSurfaceBright">@color/md_theme_surfaceBright</item>
+        <item name="colorSurfaceContainerLowest">@color/md_theme_surfaceContainerLowest</item>
+        <item name="colorSurfaceContainerLow">@color/md_theme_surfaceContainerLow</item>
+        <item name="colorSurfaceContainer">@color/md_theme_surfaceContainer</item>
+        <item name="colorSurfaceContainerHigh">@color/md_theme_surfaceContainerHigh</item>
+        <item name="colorSurfaceContainerHighest">@color/md_theme_surfaceContainerHighest</item>
+        
+        <!--       custom style -->
+        <item name="materialButtonOutlinedStyle">@style/CustomOutlinedButton</item>
     </style>
 
-    <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.Material3.DayNight.NoActionBar">
-        <item name="timerColorWarning">@color/timer_warning</item>
-        <item name="android:statusBarColor">@color/classic_primary</item>
+    <!-- Splash Theme -->
+    <style name="SplashTheme" parent="Theme.Material3.Light.NoActionBar">
+        <item name="android:windowBackground">@drawable/splash_screen</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
         <item name="android:windowFullscreen">true</item>
     </style>
 
-    <!-- Classic -->
-    <style name="AppTheme.classic" parent="AppTheme">
-        <item name="colorPrimary">@color/classic_primary</item>
-        <item name="colorSecondary">@color/classic_secondary</item>
-        <item name="android:windowBackground">@color/classic_background</item>
-        <item name="android:textColor">@color/classic_text</item>
-        <item name="colorAccent">@color/classic_accent</item>
-        <item name="buttonStyle">@style/ButtonStyle</item>
-
-        <item name="timerColorDefault">@color/classic_text</item>
-        <item name="colorOnBackground">@color/classic_OnBackground</item>
+    <!-- MaterialOutlinedButton Style -->
+    <style name="CustomOutlinedButton" parent="Widget.Material3.Button.OutlinedButton">
+        <item name="android:textSize">18sp</item>
     </style>
 
-    <!-- Dark -->
-    <style name="AppTheme.dark" parent="AppTheme">
-        <item name="colorPrimary">@color/dark_primary</item>
-        <item name="colorSecondary">@color/dark_secondary</item>
-        <item name="android:windowBackground">@color/dark_background</item>
-        <item name="android:textColor">@color/dark_text</item>
-        <item name="colorAccent">@color/dark_accent</item>
-        <item name="buttonStyle">@style/ButtonStyle</item>
-
-        <item name="timerColorDefault">@color/dark_text</item>
-
+    <!--  Question options styles -->
+    <style name="Button.DefaultOption" parent="Widget.Material3.Button.OutlinedButton">
+        <item name="backgroundTint">@android:color/transparent</item>
+        <item name="android:textSize">18sp</item>
     </style>
 
-    <!-- Nature -->
-    <style name="AppTheme.nature" parent="AppTheme">
-        <item name="colorPrimary">@color/nature_primary</item>
-        <item name="colorSecondary">@color/nature_secondary</item>
-        <item name="android:windowBackground">@color/nature_background</item>
-        <item name="backgroundColor">@color/nature_background</item>
-        <item name="android:textColor">@color/nature_text</item>
-        <item name="colorOnPrimary">@color/nature_OnPrimary</item>
-        <item name="colorAccent">@color/nature_accent</item>
-        <item name="buttonStyle">@style/ButtonStyle</item>
-
-        <item name="timerColorDefault">@color/nature_text</item>
-
-    </style>
-
-    <!-- Ocean -->
-    <style name="AppTheme.ocean" parent="AppTheme">
-        <item name="colorPrimary">@color/ocean_primary</item>
-        <item name="colorSecondary">@color/ocean_secondary</item>
-        <item name="android:windowBackground">@color/ocean_background</item>
-        <item name="android:textColor">@color/ocean_text</item>
-        <item name="colorAccent">@color/ocean_accent</item>
-        <item name="buttonStyle">@style/ButtonStyle</item>
-
-        <item name="timerColorDefault">@color/ocean_text</item>
-    </style>
-
-    <style name="DialogBaseLayout">
-        <item name="android:padding">16dp</item>
-        <item name="android:background">@drawable/dialog_background</item>
-    </style>
-
-    <style name="FullWidthDialog" parent="Theme.AppCompat.Dialog">
+<!--     Dialog styles -->
+    <style name="FullWidthDialog" parent="Theme.Material3.DayNight.Dialog">
         <item name="android:windowMinWidthMajor">60%</item> <!-- Landscape -->
         <item name="android:windowMinWidthMinor">100%</item> <!-- Portrait -->
         <item name="android:maxWidth">600dp</item> <!-- Cap width for tablets -->
         <item name="android:padding">16dp</item>
     </style>
-
-<!--    quiz activity control image button style -->
-    <style name="CircularImageButtonStyle" parent="Widget.AppCompat.ImageButton">
-        <item name="android:tint">?attr/android:textColor</item>
-        <item name="android:background">@drawable/circular_background</item>
-        <item name="android:padding">12dp</item>
-        <item name="android:layout_width">64dp</item>
-        <item name="android:layout_height">64dp</item>
-        <item name="android:layout_gravity">center</item>
-    </style>
-
-    <style name="OutlinedOptionButton" parent="Widget.MaterialComponents.Button.OutlinedButton">
-        <item name="strokeColor">@color/light_gray</item> <!-- Border color -->
-        <item name="strokeWidth">1dp</item> <!-- Border thickness -->
-        <item name="android:textColor">?attr/android:textColor</item> <!-- Text color -->
-        <item name="android:textSize">18sp</item> <!-- Adjust text size if needed -->
-        <item name="cornerRadius">24dp</item> <!-- Rounded corners -->
-        <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:padding">8dp</item>
-        <item name="android:textStyle"> normal </item>
-    </style>
-
-    <!-- Button Style -->
-    <style name="ButtonStyle" parent="Widget.Material3.Button">
-        <item name="android:backgroundTint">?attr/colorPrimary </item>
-        <item name="android:textSize">24sp</item>
-        <item name="android:padding">8dp</item>
-        <item name="android:textStyle">normal</item>
-        <item name="android:textColor">?attr/colorOnPrimary</item>
-        <item name="android:layout_width">wrap_content </item>
-        <item name="android:layout_height">wrap_content </item>
-    </style>
-
 </resources>

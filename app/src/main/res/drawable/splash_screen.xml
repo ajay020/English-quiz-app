@@ -1,0 +1,8 @@
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:drawable="@color/yellow" />
+    <item>
+        <bitmap
+            android:gravity="center"
+            android:src="@drawable/winner_bee" />
+    </item>
+</layer-list>

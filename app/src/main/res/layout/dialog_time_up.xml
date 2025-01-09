@@ -30,8 +30,8 @@
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnBuyMoreTime"
-            style="@style/ButtonStyle"
             android:layout_width="220dp"
+            android:layout_height="wrap_content"
             android:drawableTint="?attr/colorOnPrimary"
             android:text="Use Timer"
             app:drawableRightCompat="@drawable/ic_timer" />
@@ -42,8 +42,8 @@
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnRestartLevel"
-            style="@style/OutlinedOptionButton"
             android:layout_width="220dp"
+            android:layout_height="wrap_content"
             android:drawablePadding="8dp"
             android:drawableTint="?attr/colorOnPrimary"
             android:text="@string/retry"

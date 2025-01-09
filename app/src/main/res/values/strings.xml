@@ -81,4 +81,7 @@
     <string name="challenge_yourself_again">Challenge Yourself Again</string>
     <string name="accomplishment_message">🎉😇 I completed all quizzes on QuizzyBee!\nTime Spent: %1$d hours and %2$d minutes\nDays Spent: %3$d days</string>
     <string name="celebration_icon">Celebration Icon</string>
+    <string name="play_image">play image</string>
+    <string name="coin_icon">coin icon</string>
+    <string name="music">Music</string>
 </resources>

@@ -6,18 +6,18 @@
     android:orientation="horizontal"
     android:gravity="center_vertical">
 
-    <ImageView
+    <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/coinImage"
         android:layout_width="24dp"
         android:layout_height="24dp"
-        android:backgroundTint="@color/dark_accent"
         android:src="@drawable/ic_diamond"
         android:contentDescription="@string/coin_image" />
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/coinCount"
         style="@style/BodyTextViewStyle"
-        tools:text="100"
+        android:textColor="@color/red"
+        android:text="200"
         android:layout_marginStart="8dp" />
 
 </LinearLayout>

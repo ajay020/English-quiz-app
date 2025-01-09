@@ -7,6 +7,7 @@ import com.example.englishquiz.data.preferences.PreferenceManager
 import com.example.englishquiz.data.repository.QuestionRepository
 import com.example.englishquiz.data.repository.QuestionRepositoryImpl
 import com.example.englishquiz.utils.managers.SoundManager
+import com.example.englishquiz.utils.managers.ThemeManager
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -41,4 +42,8 @@ object AppModule {
     fun providePreferenceManager(
         @ApplicationContext context: Context,
     ): PreferenceManager = PreferenceManager(context)
+
+    @Singleton
+    @Provides
+    fun provideThemeManager(preferenceManager: PreferenceManager): ThemeManager = ThemeManager(preferenceManager)
 }

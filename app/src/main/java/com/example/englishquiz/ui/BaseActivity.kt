@@ -3,18 +3,17 @@ package com.example.englishquiz.ui
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.example.englishquiz.data.preferences.PreferenceManager
-import com.example.englishquiz.utils.ThemeUtils
+import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
+@AndroidEntryPoint
 open class BaseActivity : AppCompatActivity() {
+    @Inject
     lateinit var preferenceManager: PreferenceManager
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        // Apply theme
-        preferenceManager = PreferenceManager(this)
-        val selectedTheme = preferenceManager.getSelectedThemeFromPreferences()
-        setTheme(ThemeUtils.getSelectedThemeResourceId(selectedTheme.name))
-
         super.onCreate(savedInstanceState)
+
         preferenceManager.saveFirstLaunchDate()
     }
 }

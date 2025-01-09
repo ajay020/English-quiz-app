@@ -2,26 +2,26 @@ package com.example.englishquiz.ui
 
 import android.app.Dialog
 import android.content.Intent
+import android.content.res.ColorStateList
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.util.TypedValue
 import android.view.View
-import android.widget.Button
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
-import androidx.core.content.ContextCompat
 import androidx.lifecycle.lifecycleScope
 import com.example.englishquiz.R
 import com.example.englishquiz.data.Question
 import com.example.englishquiz.data.preferences.PreferenceManager
 import com.example.englishquiz.databinding.ActivityQuizBinding
 import com.example.englishquiz.databinding.DialogRecoveryBinding
-import com.example.englishquiz.utils.AnimationUtility
 import com.example.englishquiz.utils.managers.DialogManager
 import com.example.englishquiz.utils.managers.SoundManager
 import com.example.englishquiz.viewmodel.QuizViewModel
+import com.google.android.material.button.MaterialButton
+import com.google.android.material.color.MaterialColors
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -31,7 +31,7 @@ import javax.inject.Inject
 class QuizActivity : BaseActivity() {
     private lateinit var binding: ActivityQuizBinding
     private val viewModel: QuizViewModel by viewModels()
-    private lateinit var optionButtons: List<Button>
+    private lateinit var optionButtons: List<MaterialButton>
 
     @Inject
     lateinit var dialogManager: DialogManager
@@ -65,12 +65,13 @@ class QuizActivity : BaseActivity() {
                 binding.btnOption2,
                 binding.btnOption3,
                 binding.btnOption4,
-            ).shuffled()
+            ) as List<MaterialButton>
 
         optionButtons.forEach { button ->
             button.setOnClickListener {
                 handleOptionClick(button)
             }
+            button.setTextAppearance(R.style.CustomOutlinedButton)
         }
 
         binding.btnPause.setOnClickListener {
@@ -145,7 +146,7 @@ class QuizActivity : BaseActivity() {
         resetOptions()
     }
 
-    private fun handleOptionClick(selectedButton: Button) {
+    private fun handleOptionClick(selectedButton: MaterialButton) {
         optionButtons.forEach { it.isEnabled = false }
         viewModel.checkAnswer(selectedButton.text.toString())
 
@@ -156,24 +157,23 @@ class QuizActivity : BaseActivity() {
             if (currentQuestion?.correctAnswer == selectedButton.text) {
                 // Play sound for correct option
                 soundManager.playCorrectAnswerSound()
-                AnimationUtility.animateButtonColor(
-                    this@QuizActivity,
-                    selectedButton,
-                    android.R.color.transparent,
-                    R.color.green,
-                )
-                delay(700) // Wait for 1 second
+                // Update button for correct answer
+//                selectedButton.setTextColor(getColor(R.color.green))
+                selectedButton.strokeColor = ColorStateList.valueOf(getColor(R.color.green))
+                selectedButton.strokeWidth = 3
+
+                delay(700)
                 viewModel.onNextQuestion()
             } else {
                 // Play sound for incorrect answer
                 soundManager.playIncorrectAnswerSound()
-                AnimationUtility.animateButtonColor(
-                    this@QuizActivity,
-                    selectedButton,
-                    android.R.color.transparent,
-                    R.color.colorError,
-                )
-                delay(700) // Wait for 1 second
+
+                // Update button for incorrect answer
+//                selectedButton.setTextColor(getColor(R.color.red))
+                selectedButton.strokeColor = ColorStateList.valueOf(getColor(R.color.red))
+                selectedButton.strokeWidth = 3
+
+                delay(700)
                 showRecoveryDialog()
             }
         }
@@ -183,7 +183,17 @@ class QuizActivity : BaseActivity() {
         optionButtons.forEach { button ->
             button.isEnabled = true
             button.visibility = View.VISIBLE
-            button.setBackgroundColor(ContextCompat.getColor(this, android.R.color.transparent))
+
+            // Reset colors
+            val strokeColor =
+                MaterialColors.getColor(
+                    this,
+                    com.google.android.material.R.attr.colorOnSurface,
+                    Color.BLACK,
+                )
+//            button.setTextColor(ColorStateList.valueOf(strokeColor))
+            button.strokeColor = ColorStateList.valueOf(strokeColor)
+            button.strokeWidth = 1
         }
     }
 
@@ -223,7 +233,7 @@ class QuizActivity : BaseActivity() {
     }
 
     private fun showRecoveryDialog() {
-        val dialog = Dialog(this, R.style.FullWidthDialog)
+        val dialog = Dialog(this)
         dialog.setCancelable(false)
         dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
 

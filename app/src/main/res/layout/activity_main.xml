@@ -1,84 +1,77 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center"
     android:layout_gravity="center"
+    android:gravity="center"
     android:orientation="vertical">
 
-    <Toolbar
-        android:id="@+id/toolbar"
-        android:padding="16dp"
+    <!-- AppBar with Toolbar -->
+    <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/tv_title"
-            style="@style/HeaderTextViewStyle"
-            android:text="@string/quizzybee"
-            android:layout_gravity="center" />
-        <ImageButton
-            android:id="@+id/btn_settings"
-            android:src="@drawable/ic_settings2"
-            android:contentDescription="@string/setting_icon"
-            android:layout_width="wrap_content"
-            android:layout_gravity="start"
-            android:padding="12dp"
-            android:background="@color/transparent"
-            android:layout_height="wrap_content"/>
-        <com.example.englishquiz.views.CoinDisplayView
-            android:id="@+id/coinDisplay"
-            android:layout_gravity="end"
-            android:padding="12dp"
-            android:layout_marginEnd="12dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-    </Toolbar>
+        android:layout_height="wrap_content"
+        android:fitsSystemWindows="true">
 
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            app:title="@string/quizzybee"
+            app:menu="@menu/menu_main" />
+    </com.google.android.material.appbar.AppBarLayout>
 
+    <!-- Spacer for content -->
     <Space
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1" />
 
-<!--    streak tracker-->
+    <!-- Streak Tracker -->
     <LinearLayout
-        android:background="@drawable/rounded_border"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="16dp"
         android:layout_gravity="center"
-        android:padding="16dp"
+        android:layout_marginHorizontal="16dp"
+        android:background="@drawable/rounded_border"
         android:gravity="center"
-        >
+        android:padding="16dp">
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/streak_recycler_view"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content" />
     </LinearLayout>
 
+    <!-- Spacer for content -->
     <Space
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1" />
 
+    <!-- Bee Image -->
     <androidx.appcompat.widget.AppCompatImageView
         android:layout_width="200dp"
         android:layout_height="200dp"
         android:src="@drawable/bee_play"
-        />
+        android:contentDescription="@string/play_image"
+        android:layout_gravity="center" />
 
-    <com.google.android.material.button.MaterialButton
+    <!-- Start Quiz Button -->
+    <Button
         android:id="@+id/btn_start_quiz"
-        style="@style/ButtonStyle"
-        android:layout_width="250dp"
-        android:layout_marginHorizontal="16dp"
-        android:layout_gravity="center"
+        style="@style/Widget.Material3.Button"
+        android:layout_width="220dp"
+        android:layout_height="wrap_content"
+        android:elevation="4dp"
         android:padding="16dp"
-        android:textSize="24sp"
-        android:text="@string/play"/>
+        android:text="@string/play"
+        android:textSize="18sp"
+        android:layout_gravity="center" />
+
+    <!-- Spacer for content -->
     <Space
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1" />
-
 </LinearLayout>

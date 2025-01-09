@@ -1,8 +1,61 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
+
     <style name="SplashTheme" parent="Theme.SplashScreen">
+<!--        <item name="windowSplashScreenBackground">@color/splash_background</item>-->
         <item name="windowSplashScreenAnimatedIcon">@mipmap/ic_launcher_foreground</item>
-        <item name="android:windowSplashScreenBrandingImage">@drawable/brand_image</item>
         <item name="postSplashScreenTheme">@style/AppTheme</item>
     </style>
+
+    <!-- Base application theme. -->
+<!--    <style name="AppTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar">-->
+<!--        <item name="timerColorWarning">@color/md_theme_error</item>-->
+
+<!--    </style>-->
+
+<!--    <style name="DialogBaseLayout">-->
+<!--        <item name="android:padding">16dp</item>-->
+<!--        <item name="android:background">@drawable/dialog_background</item>-->
+<!--    </style>-->
+
+<!--    <style name="FullWidthDialog" parent="Theme.MaterialComponents.DayNight.NoActionBar">-->
+<!--        <item name="android:windowMinWidthMajor">60%</item> &lt;!&ndash; Landscape &ndash;&gt;-->
+<!--        <item name="android:windowMinWidthMinor">100%</item> &lt;!&ndash; Portrait &ndash;&gt;-->
+<!--        <item name="android:maxWidth">600dp</item> &lt;!&ndash; Cap width for tablets &ndash;&gt;-->
+<!--        <item name="android:padding">16dp</item>-->
+<!--    </style>-->
+
+<!--    &lt;!&ndash;    quiz activity control image button style &ndash;&gt;-->
+<!--    <style name="CircularImageButtonStyle" parent="Widget.Material3.Button.IconButton">-->
+<!--        <item name="android:tint">?attr/android:textColor</item>-->
+<!--        <item name="android:background">@drawable/circular_background</item>-->
+<!--        <item name="android:padding">12dp</item>-->
+<!--        <item name="android:layout_width">64dp</item>-->
+<!--        <item name="android:layout_height">64dp</item>-->
+<!--        <item name="android:layout_gravity">center</item>-->
+<!--    </style>-->
+
+<!--    <style name="OutlinedOptionButton" parent="Widget.Material3.Button.OutlinedButton">-->
+<!--&lt;!&ndash;        <item name="strokeColor">@color/light_gray</item> &lt;!&ndash; Border color &ndash;&gt;&ndash;&gt;-->
+<!--        <item name="strokeWidth">1dp</item> &lt;!&ndash; Border thickness &ndash;&gt;-->
+<!--        <item name="android:textColor">?attr/android:textColor</item> &lt;!&ndash; Text color &ndash;&gt;-->
+<!--        <item name="android:textSize">18sp</item> &lt;!&ndash; Adjust text size if needed &ndash;&gt;-->
+<!--        <item name="cornerRadius">24dp</item> &lt;!&ndash; Rounded corners &ndash;&gt;-->
+<!--        <item name="android:layout_width">match_parent</item>-->
+<!--        <item name="android:layout_height">wrap_content</item>-->
+<!--        <item name="android:padding">8dp</item>-->
+<!--        <item name="android:textStyle"> normal </item>-->
+<!--    </style>-->
+
+<!--    &lt;!&ndash; Button Style &ndash;&gt;-->
+<!--    <style name="ButtonStyle" parent="Widget.Material3.Button">-->
+<!--        <item name="backgroundTint">?attr/colorPrimary</item>-->
+<!--        <item name="android:textSize">16sp</item>-->
+<!--        <item name="android:textStyle">normal</item>-->
+<!--        <item name="android:textColor">?attr/colorOnPrimary</item>-->
+<!--        <item name="android:layout_width">wrap_content</item>-->
+<!--        <item name="android:layout_height">wrap_content</item>-->
+<!--        <item name="cornerRadius">8dp</item>-->
+<!--    </style>-->
+
+
 </resources>

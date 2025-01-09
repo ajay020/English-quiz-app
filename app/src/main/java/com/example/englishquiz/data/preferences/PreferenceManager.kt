@@ -1,7 +1,6 @@
 package com.example.englishquiz.data.preferences
 
 import android.content.Context
-import com.example.englishquiz.utils.managers.Theme
 import javax.inject.Inject
 
 class PreferenceManager
@@ -23,16 +22,17 @@ class PreferenceManager
             const val TOTAL_TIME_SPENT = "total_time_spent"
             private const val KEY_FIRST_LAUNCH_DATE = "first_launch_date"
             private const val KEY_QUIZ_COMPLETION_DATE = "quiz_completion_date"
+            private const val IS_DARK_MODE_KEY = "is_dark_mode"
         }
 
         // theme functions
-        fun getSelectedThemeFromPreferences(): Theme {
-            val themeName = sharedPreferences.getString(SELECTED_THEME_KEY, Theme.CLASSIC.name)
-            return Theme.valueOf(themeName ?: Theme.CLASSIC.name)
+
+        fun saveThemePreference(isDarkMode: Boolean) {
+            sharedPreferences.edit().putBoolean(IS_DARK_MODE_KEY, isDarkMode).apply()
         }
 
-        fun saveSelectedThemeToPreferences(theme: Theme) {
-            sharedPreferences.edit().putString(SELECTED_THEME_KEY, theme.name).apply()
+        fun isDarkModeEnabled(): Boolean {
+            return sharedPreferences.getBoolean(IS_DARK_MODE_KEY, false) // Default is Light mode
         }
 
         fun saveStreakDates(dates: Set<String>) {

@@ -1,172 +1,119 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    style="@style/DialogBaseLayout"
     android:id="@+id/dialog_settings"
+    style="@style/DialogBaseLayout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:background="@drawable/dialog_background"
     android:orientation="vertical"
-    android:layout_gravity="center"
-    android:gravity="center">
+    android:padding="24dp">
 
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/tv_settings"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingVertical="8dp"
-        android:textAlignment="center"
-        android:text="@string/settings"
-        android:textStyle="bold"
-        android:textSize="18sp" />
-
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/tv_sound_music"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingVertical="8dp"
-        android:text="Sound / Music"
-        android:textSize="16sp" />
-
-    <!-- Sound and Music Controls -->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:baselineAligned="false"
-        android:orientation="horizontal"
-        android:paddingVertical="4dp">
-
-        <androidx.appcompat.widget.AppCompatImageButton
-            android:id="@+id/button_sound"
-            android:layout_marginEnd="16dp"
-            style="@style/CircularImageButtonStyle"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:contentDescription="Toggle Sound"
-            android:src="@drawable/ic_sound_on" />
-
-        <androidx.appcompat.widget.AppCompatImageButton
-            android:id="@+id/button_music"
-            style="@style/CircularImageButtonStyle"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:contentDescription="@string/toggle_music"
-            android:src="@drawable/ic_music_on" />
-    </LinearLayout>
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="24dp" />
-
-    <!-- Theme Selection -->
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/tv_theme"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingVertical="8dp"
-        android:text="Select Theme"
-        android:textSize="16sp" />
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp">
-
-        <FrameLayout
-            android:id="@+id/themeClassic"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:layout_marginEnd="12dp">
-
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:contentDescription="Classic Theme"
-                android:src="@drawable/theme_circle_classic" />
-
-            <ImageView
-                android:id="@+id/checkmarkClassic"
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:layout_gravity="center"
-                android:src="@drawable/ic_check"
-                android:visibility="gone" />
-        </FrameLayout>
-
-        <FrameLayout
-            android:id="@+id/themeDark"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:layout_marginEnd="12dp">
-
-            <androidx.appcompat.widget.AppCompatImageView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:contentDescription="Dark Theme"
-                android:src="@drawable/theme_circle_dark" />
-
-            <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/checkmarkDark"
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:layout_gravity="center"
-                android:src="@drawable/ic_check"
-                android:visibility="gone" />
-        </FrameLayout>
-
-        <FrameLayout
-            android:id="@+id/themeNature"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:layout_marginEnd="12dp">
-
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:contentDescription="Nature Theme"
-                android:src="@drawable/theme_circle_nature" />
-
-            <ImageView
-                android:id="@+id/checkmarkNature"
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:layout_gravity="center"
-                android:src="@drawable/ic_check"
-                android:visibility="gone" />
-        </FrameLayout>
-
-        <FrameLayout
-            android:id="@+id/themeOcean"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:layout_marginEnd="12dp">
-
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:contentDescription="Ocean Theme"
-                android:src="@drawable/theme_circle_ocean" />
-
-            <ImageView
-                android:id="@+id/checkmarkOcean"
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:layout_gravity="center"
-                android:src="@drawable/ic_check"
-                android:visibility="gone" />
-        </FrameLayout>
-    </LinearLayout>
-
-
-    <View
+    <!-- Dialog Title -->
+    <TextView
+        android:id="@+id/tvSettingsTitle"
         android:layout_width="wrap_content"
-        android:layout_height="24dp" />
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:paddingBottom="16dp"
+        android:text="Settings"
+        android:textAppearance="?attr/textAppearanceHeadline6" />
+
+    <!-- Sound Toggle -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingVertical="8dp">
+
+        <TextView
+            android:id="@+id/tvSound"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Sound"
+            android:textAppearance="?attr/textAppearanceBody1" />
+
+        <com.google.android.material.materialswitch.MaterialSwitch
+            android:id="@+id/switchSound"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true" />
+    </LinearLayout>
+
+    <!-- Music Toggle -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingVertical="8dp">
+
+        <TextView
+            android:id="@+id/tvMusic"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/music"
+            android:textAppearance="?attr/textAppearanceBody1" />
+
+        <com.google.android.material.materialswitch.MaterialSwitch
+            android:id="@+id/switchMusic"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true" />
+    </LinearLayout>
+
+    <!-- Dark Theme Toggle -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingVertical="8dp">
+
+        <TextView
+            android:id="@+id/tvDarkTheme"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Dark Theme"
+            android:textAppearance="?attr/textAppearanceBody1" />
+
+        <com.google.android.material.materialswitch.MaterialSwitch
+            android:id="@+id/switchDarkTheme"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true" />
+    </LinearLayout>
+
+    <!-- Notifications Toggle -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingVertical="8dp">
+
+        <TextView
+            android:id="@+id/tvNotifications"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Notifications"
+            android:textAppearance="?attr/textAppearanceBody1" />
+
+        <com.google.android.material.materialswitch.MaterialSwitch
+            android:id="@+id/switchNotifications"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true" />
+    </LinearLayout>
 
     <!-- Close Button -->
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/button_close_settings"
-        style="@style/ButtonStyle"
+    <Button
+        android:id="@+id/btnCloseSettings"
+        style="?attr/materialButtonOutlinedStyle"
         android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
         android:text="@string/close" />
+    />
 </LinearLayout>
 
