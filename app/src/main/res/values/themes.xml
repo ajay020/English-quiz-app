@@ -1,4 +1,5 @@
 <resources>
+
     <style name="AppTheme" parent="Theme.Material3.Light.NoActionBar">
         <!--        custom theme-->
         <item name="timerColorDefault">?attr/colorOnBackground</item>
@@ -52,7 +53,7 @@
         <item name="colorSurfaceContainer">@color/md_theme_surfaceContainer</item>
         <item name="colorSurfaceContainerHigh">@color/md_theme_surfaceContainerHigh</item>
         <item name="colorSurfaceContainerHighest">@color/md_theme_surfaceContainerHighest</item>
-        
+
         <!--       custom style -->
         <item name="materialButtonOutlinedStyle">@style/CustomOutlinedButton</item>
     </style>
@@ -75,11 +76,16 @@
         <item name="android:textSize">18sp</item>
     </style>
 
-<!--     Dialog styles -->
+    <!--     Dialog styles -->
     <style name="FullWidthDialog" parent="Theme.Material3.DayNight.Dialog">
         <item name="android:windowMinWidthMajor">60%</item> <!-- Landscape -->
         <item name="android:windowMinWidthMinor">100%</item> <!-- Portrait -->
         <item name="android:maxWidth">600dp</item> <!-- Cap width for tablets -->
         <item name="android:padding">16dp</item>
+    </style>
+
+    <style name="DialogBaseLayout">
+        <item name="android:padding">16dp</item>
+        <item name="android:background">@drawable/dialog_background</item>
     </style>
 </resources>
