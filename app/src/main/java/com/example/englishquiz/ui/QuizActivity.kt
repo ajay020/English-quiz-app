@@ -99,11 +99,14 @@ class QuizActivity : BaseActivity() {
             val warningColor = resolveColorAttribute(R.attr.timerColorWarning)
             val defaultColor = resolveColorAttribute(R.attr.timerColorDefault)
             binding.tvTimer.setTextColor(if (seconds <= 5) warningColor else defaultColor)
+
+            binding.progressBar.progress = seconds.toInt()
+            binding.timerText.text = "$seconds"
         }
 
         viewModel.showTimeUpDialog.observe(this) { show ->
             if (show) {
-                showTimeUpDialog()
+//                showTimeUpDialog()
             }
         }
 
@@ -158,7 +161,7 @@ class QuizActivity : BaseActivity() {
                 // Play sound for correct option
                 soundManager.playCorrectAnswerSound()
                 // Update button for correct answer
-//                selectedButton.setTextColor(getColor(R.color.green))
+                selectedButton.setTextColor(getColor(R.color.green))
                 selectedButton.strokeColor = ColorStateList.valueOf(getColor(R.color.green))
                 selectedButton.strokeWidth = 3
 
@@ -169,12 +172,12 @@ class QuizActivity : BaseActivity() {
                 soundManager.playIncorrectAnswerSound()
 
                 // Update button for incorrect answer
-//                selectedButton.setTextColor(getColor(R.color.red))
+                selectedButton.setTextColor(getColor(R.color.red))
                 selectedButton.strokeColor = ColorStateList.valueOf(getColor(R.color.red))
                 selectedButton.strokeWidth = 3
 
                 delay(700)
-                showRecoveryDialog()
+                viewModel.onNextQuestion()
             }
         }
     }
@@ -191,7 +194,7 @@ class QuizActivity : BaseActivity() {
                     com.google.android.material.R.attr.colorOnSurface,
                     Color.BLACK,
                 )
-//            button.setTextColor(ColorStateList.valueOf(strokeColor))
+            button.setTextColor(ColorStateList.valueOf(strokeColor))
             button.strokeColor = ColorStateList.valueOf(strokeColor)
             button.strokeWidth = 1
         }
@@ -203,16 +206,20 @@ class QuizActivity : BaseActivity() {
                 Toast.makeText(this, event.message, Toast.LENGTH_SHORT).show()
             }
 
-            is QuizViewModel.NavigationEvent.ShowLevelComplete -> {
+            is QuizViewModel.NavigationEvent.ShowQuizComplete -> {
                 soundManager.playLevelCompleteSound()
 
-                dialogManager.showLevelCompleteDialog(
+                dialogManager.showQuizCompleteDialog(
                     event.level,
+                    event.correctQuestions,
+                    event.totalQuestions,
                     event.isStreakCompleted,
                     onCoinsUpdated = { amount ->
                         viewModel.addCoins(amount)
                     },
                     onStartNextLevel = { viewModel.generateLevel() },
+                    onRetry = { viewModel.restartLevel() },
+                    saveSolvedQuestions = { viewModel.saveSolvedQuestions() },
                 )
             }
 

@@ -38,5 +38,15 @@
       "Ninty"
     ],
     "correctAnswer": "Ninety"
+  },
+  {
+    "questionText": "What does 'piece of cake' mean?",
+    "options": [
+      "A dessert",
+      "Very easy",
+      "Something broken",
+      "Very hard"
+    ],
+    "correctAnswer": "Very easy"
   }
 ]

@@ -20,25 +20,57 @@
         tools:ignore="MissingConstraints">
 
         <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/tvLevelComplete"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:gravity="center"
-            android:text="Level Completed!!"
-            android:textSize="20sp"
-            android:textStyle="bold" />
-
-        <com.google.android.material.textview.MaterialTextView
             android:id="@+id/tvCoins"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:gravity="center"
+            android:layout_gravity="end"
+            android:gravity="end"
+            android:drawableStart="@drawable/ic_diamond"
             android:paddingBottom="16dp"
-            android:text="120"
+            tools:text="120"
             android:textSize="20sp"
             android:textStyle="bold" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp"
+            android:gravity="center_horizontal">
+
+            <!-- ImageView for Result Image -->
+            <ImageView
+                android:id="@+id/result_image"
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:layout_marginBottom="16dp"
+                android:src="@drawable/winner_bee"
+                android:contentDescription="@string/result_image_description" />
+
+            <!-- TextView for Result percentage -->
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/percentage_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:text="80%"
+                android:gravity="center"
+                android:layout_marginBottom="8dp"
+                />
+
+            <!-- TextView for Result Message -->
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/result_message"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:text="Amazing! Greate job"
+                android:gravity="center"
+                />
+
+        </LinearLayout>
 
         <!-- Streak Reward Section -->
         <LinearLayout
@@ -57,14 +89,14 @@
                 android:layout_width="48dp"
                 android:layout_height="48dp"
                 android:contentDescription="@string/coins_icon"
-                android:src="@drawable/ic_coin" />
+                android:src="@drawable/ic_diamond" />
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/tvStreakRewardMessage"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="You've completed a 7-day streak! \n\n You've earned 50 coins!"
+                android:text="@string/streak_message"
                 android:textSize="16sp" />
         </LinearLayout>
 
@@ -73,15 +105,15 @@
             android:layout_height="0dp"
             android:layout_weight="1" />
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/btnStartNextLevel"
-            android:layout_width="match_parent"
+        <!-- Button for Retry/Next -->
+        <Button
+            android:id="@+id/action_button"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="20dp"
-            android:layout_marginBottom="32dp"
-            android:padding="16dp"
-            android:text="Start Next Level"
-            android:textStyle="bold" />
+            android:text="@string/action"
+            android:layout_gravity="center"
+            android:paddingHorizontal="32dp"
+            android:paddingVertical="12dp" />
     </LinearLayout>
 </FrameLayout>
 

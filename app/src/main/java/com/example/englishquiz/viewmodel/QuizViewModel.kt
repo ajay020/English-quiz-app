@@ -17,6 +17,8 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 import kotlin.math.ceil
 
+const val QUESTION_NUMBER_PER_QUIZ = 3
+
 @HiltViewModel
 class QuizViewModel
     @Inject
@@ -53,6 +55,7 @@ class QuizViewModel
         var questions: List<Question> = emptyList()
         var currentQuestionIndex = 0
         private var lastCoinValue = 0
+        val solvedQuestions = mutableListOf<Question>()
 
         init {
             initializeQuizState()
@@ -66,9 +69,14 @@ class QuizViewModel
         }
 
         fun generateLevel() {
+            // clear solved question list
+            solvedQuestions.clear()
+            currentQuestionIndex = 0
+
             viewModelScope.launch {
                 try {
-                    questions = questionRepository.getUnsolvedQuestions(3)
+                    questions = questionRepository.getUnsolvedQuestions(QUESTION_NUMBER_PER_QUIZ)
+                    solvedQuestions.addAll(questions)
                     _questionProgress.value = "${currentQuestionIndex + 1} / ${questions.size}"
                     displayCurrentQuestion()
                 } catch (e: Exception) {
@@ -92,6 +100,9 @@ class QuizViewModel
             _currentQuestion.value?.let { question ->
                 if (selectedAnswer == question.correctAnswer) {
                     addCoins(2)
+                    // mark current question as correct and add to solved list
+                    solvedQuestions[currentQuestionIndex] =
+                        solvedQuestions[currentQuestionIndex].copy(isSolved = true)
                 }
             }
         }
@@ -141,39 +152,46 @@ class QuizViewModel
             _questionProgress.value = "${currentQuestionIndex + 1} / ${questions.size}"
 
             if (currentQuestionIndex >= questions.size) {
-                handleLevelCompletion()
+                handleQuizCompletion()
             } else {
                 displayCurrentQuestion()
             }
         }
 
-        private fun handleLevelCompletion() {
+        private fun handleQuizCompletion() {
             currentQuestionIndex = 0
             _questionProgress.value = "0 / ${questions.size}"
-            val nextLevel = (currentLevel.value ?: 0) + 1
+            val currentLevel = currentLevel.value ?: 0
 
-            preferenceManager.saveCurrentLevel(nextLevel)
-
-            viewModelScope.launch {
-                questions.forEach { question ->
-                    questionRepository.markQuestionAsSolved(question.id)
-                }
-            }
+            saveSolvedQuestions()
 
             // Mark the current day as completed
             streakManager.markDayAsCompleted()
             val isStreakCompleted = streakManager.isStreakCompleted()
 
-            _currentLevel.value = nextLevel
+            val correctQuestions = solvedQuestions.count { it.isSolved }
+            val totalQuestions = solvedQuestions.size
 
             if (questions.isEmpty()) {
                 _navigationEvent.value = NavigationEvent.NavigateToResult
             } else {
                 _navigationEvent.value =
-                    NavigationEvent.ShowLevelComplete(
-                        level = nextLevel,
+                    NavigationEvent.ShowQuizComplete(
+                        level = currentLevel,
+                        correctQuestions = correctQuestions,
+                        totalQuestions = totalQuestions,
                         isStreakCompleted = isStreakCompleted,
                     )
+            }
+        }
+
+        fun saveSolvedQuestions() {
+            viewModelScope.launch {
+                solvedQuestions.forEach { question ->
+                    if (question.isSolved) {
+                        questionRepository.markQuestionAsSolved(question.id)
+                    }
+                }
             }
         }
 
@@ -188,6 +206,13 @@ class QuizViewModel
                 },
                 onFinish = {
                     _showTimeUpDialog.value = true
+                    _navigationEvent.value =
+                        NavigationEvent.ShowQuizComplete(
+                            level = _currentLevel.value ?: 0,
+                            correctQuestions = solvedQuestions.count { it.isSolved },
+                            totalQuestions = solvedQuestions.size,
+                            isStreakCompleted = streakManager.isStreakCompleted(),
+                        )
                     disableAnswerButtons()
                 },
             )
@@ -217,9 +242,11 @@ class QuizViewModel
             currentQuestionIndex = 0
             _questionProgress.value = "0 / ${questions.size}"
             _showTimeUpDialog.value = false
-            generateLevel()
+            solvedQuestions.clear()
+            solvedQuestions.addAll(questions)
             startQuestionTimer()
             enableAnswerButtons()
+            displayCurrentQuestion()
         }
 
         private fun disableAnswerButtons() {
@@ -288,8 +315,10 @@ class QuizViewModel
                 val message: String,
             ) : NavigationEvent()
 
-            data class ShowLevelComplete(
+            data class ShowQuizComplete(
                 val level: Int,
+                val correctQuestions: Int,
+                val totalQuestions: Int,
                 val isStreakCompleted: Boolean,
             ) : NavigationEvent()
 

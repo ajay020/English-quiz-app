@@ -146,11 +146,15 @@ class DialogManager
             dialog.show()
         }
 
-        fun showLevelCompleteDialog(
+        fun showQuizCompleteDialog(
             level: Int,
+            correctQuestions: Int,
+            totalQuestions: Int,
             isStreakCompleted: Boolean,
             onStartNextLevel: () -> Unit,
             onCoinsUpdated: (Int) -> Unit,
+            onRetry: () -> Unit,
+            saveSolvedQuestions: () -> Unit,
         ) {
             val dialog = Dialog(context)
             dialog.setCancelable(false)
@@ -186,20 +190,16 @@ class DialogManager
                             Color.CYAN,
                             Color.BLUE,
                         ),
-                    emitter = Emitter(duration = 5, TimeUnit.SECONDS).max(500).perSecond(100),
+                    emitter = Emitter(duration = 5, TimeUnit.SECONDS).max(500).perSecond(50),
                     position = Position.Relative(0.5, 0.5), // Center of the screen
                 ),
             )
-
-            // Set dialog text
-            binding.btnStartNextLevel.text = "Start Level $level"
 
             val preferenceManager = PreferenceManager(context)
             binding.tvCoins.animateNumberChange(
                 startValue = 0,
                 endValue = preferenceManager.getCoins(),
                 duration = 700L,
-                prefix = "Coins ",
             )
 
             // Show streak reward if streak is completed
@@ -223,12 +223,58 @@ class DialogManager
                 binding.streakRewardSection.visibility = View.GONE
             }
 
-            // Handle button click
-            binding.btnStartNextLevel.setOnClickListener {
-                soundManager.playButtonClickSound()
+            // Get Views
+            val resultImage = binding.resultImage
+            val resultMessage = binding.resultMessage
+            val actionButton = binding.actionButton
 
-                onStartNextLevel()
-                dialog.dismiss()
+            // Calculate Percentage
+            val percentage = (correctQuestions * 100) / totalQuestions
+
+            // Set Percentage Text
+            binding.percentageText.text = context.getString(R.string.score_percentage_text, percentage)
+
+            when {
+                correctQuestions == totalQuestions -> {
+                    resultImage.setImageResource(R.drawable.bee_main)
+                    resultMessage.text = context.getString(R.string.perfect_score_message)
+                    actionButton.text = context.getString(R.string.next_level, level + 1)
+                    // Save next level
+                    preferenceManager.saveCurrentLevel(level + 1)
+                    // save solved questions
+                    saveSolvedQuestions()
+
+                    actionButton.setOnClickListener {
+                        dialog.dismiss()
+                        onStartNextLevel()
+                    }
+                }
+
+                (correctQuestions == totalQuestions - 1) && correctQuestions > 0 -> {
+                    resultImage.setImageResource(R.drawable.bee_think)
+                    resultMessage.text = context.getString(R.string.great_job_message)
+                    actionButton.text = context.getString(R.string.next_level, level + 1)
+                    // Save next level
+                    preferenceManager.saveCurrentLevel(level + 1)
+                    // save solved questions
+                    saveSolvedQuestions()
+
+                    actionButton.setOnClickListener {
+                        dialog.dismiss()
+                        onStartNextLevel()
+                    }
+                }
+
+                else -> {
+                    resultImage.setImageResource(R.drawable.bee_rude)
+                    resultMessage.text = context.getString(R.string.try_again_message)
+                    actionButton.text = context.getString(R.string.retry)
+
+                    actionButton.setOnClickListener {
+                        dialog.dismiss()
+                        onRetry()
+                    }
+                }
             }
 
             // Show the dialog

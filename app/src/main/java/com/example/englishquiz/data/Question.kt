@@ -9,5 +9,5 @@ data class Question(
     val questionText: String,
     val options: List<String>,
     val correctAnswer: String,
-    val isSolved: Boolean = false,
+    var isSolved: Boolean = false,
 )
