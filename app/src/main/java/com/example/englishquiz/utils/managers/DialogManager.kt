@@ -7,12 +7,15 @@ import android.graphics.drawable.ColorDrawable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.WindowManager
+import android.widget.LinearLayout
 import com.example.englishquiz.R
 import com.example.englishquiz.data.preferences.PreferenceManager
 import com.example.englishquiz.databinding.DialogLevelCompleteBinding
 import com.example.englishquiz.databinding.DialogPauseBinding
 import com.example.englishquiz.databinding.DialogSettingsBinding
 import com.example.englishquiz.databinding.DialogTimeUpBinding
+import com.example.englishquiz.notification.NotificationScheduler
+import com.example.englishquiz.utils.TimePickerUtil
 import com.example.englishquiz.utils.extensions.animateNumberChange
 import nl.dionsegijn.konfetti.core.Party
 import nl.dionsegijn.konfetti.core.Position
@@ -38,9 +41,11 @@ class DialogManager
         }
 
         fun showSettingsDialog(
+            notificationScheduler: NotificationScheduler,
             onAudioChanged: (Boolean) -> Unit,
             onMusicChanged: (Boolean) -> Unit,
             onDarkModeChanged: (Boolean) -> Unit,
+            onNotificationChanged: (Boolean) -> Unit,
         ): Dialog {
             val dialog = Dialog(context, R.style.FullWidthDialog)
 
@@ -54,11 +59,15 @@ class DialogManager
             val switchSound = binding.switchSound
             val switchMusic = binding.switchMusic
             val switchDarkTheme = binding.switchDarkTheme
+            val switchNotification = binding.switchNotifications
+            val layoutTimePicker: LinearLayout = binding.layoutTimePicker
+
             val btnClose = binding.btnCloseSettings
 
             switchSound.isChecked = preferenceManager.isSoundEnabled()
             switchMusic.isChecked = preferenceManager.isMusicEnabled()
             switchDarkTheme.isChecked = preferenceManager.isDarkModeEnabled()
+            switchNotification.isChecked = preferenceManager.isNotificationEnabled()
 
             switchSound.setOnCheckedChangeListener { _, isChecked ->
                 preferenceManager.setSoundEnabled(isChecked)
@@ -73,6 +82,26 @@ class DialogManager
             switchDarkTheme.setOnCheckedChangeListener { _, isChecked ->
                 preferenceManager.saveThemePreference(isChecked)
                 onDarkModeChanged(isChecked)
+            }
+
+            switchNotification.setOnCheckedChangeListener { _, isChecked ->
+                preferenceManager.setNotificationEnabled(isChecked)
+                onNotificationChanged(isChecked)
+                layoutTimePicker.visibility = if (isChecked) View.VISIBLE else View.GONE
+            }
+
+            // Retrieve selected time
+            val timePicker = binding.btnTimepicker
+            val (hour, minute) = preferenceManager.getNotificationTime()
+            timePicker.text = String.format("%02d:%02d", hour, minute)
+            layoutTimePicker.visibility = if (preferenceManager.isNotificationEnabled()) View.VISIBLE else View.GONE
+
+            timePicker.setOnClickListener {
+                TimePickerUtil.showTimePickerDialog(context) { hour, minute ->
+                    timePicker.text = String.format("%02d:%02d", hour, minute)
+                    preferenceManager.setNotificationTime(hour, minute)
+                    notificationScheduler.scheduleDailyNotification(hour, minute)
+                }
             }
 
             btnClose.setOnClickListener {

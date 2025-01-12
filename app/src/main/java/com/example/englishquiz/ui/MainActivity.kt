@@ -13,6 +13,7 @@ import androidx.appcompat.app.AppCompatDelegate
 import androidx.recyclerview.widget.RecyclerView
 import com.example.englishquiz.R
 import com.example.englishquiz.databinding.ActivityMainBinding
+import com.example.englishquiz.notification.NotificationScheduler
 import com.example.englishquiz.utils.managers.DialogManager
 import com.example.englishquiz.utils.managers.SoundManager
 import com.example.englishquiz.viewmodel.MainViewModel
@@ -23,10 +24,10 @@ import javax.inject.Inject
 
 @AndroidEntryPoint
 class MainActivity : BaseActivity() {
-    lateinit var binding: ActivityMainBinding
-
     // Hilt will automatically provide the ViewModel with injected dependencies
     val viewModel: MainViewModel by viewModels()
+
+    lateinit var binding: ActivityMainBinding
 
     @Inject
     lateinit var dialogManager: DialogManager
@@ -36,6 +37,9 @@ class MainActivity : BaseActivity() {
 
     @Inject
     lateinit var streakTracker: StreakTrackerView
+
+    @Inject
+    lateinit var notificationScheduler: NotificationScheduler
 
     private var settingsDialog: Dialog? = null
 
@@ -57,6 +61,14 @@ class MainActivity : BaseActivity() {
         }
         setUpToolbar()
         setUpViews()
+
+        // Schedule daily notification
+        if (preferenceManager.isNotificationEnabled()) {
+            val (hour, minute) = preferenceManager.getNotificationTime()
+            notificationScheduler.scheduleDailyNotification(hour, minute)
+        } else {
+            notificationScheduler.cancelDailyNotification()
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -101,6 +113,7 @@ class MainActivity : BaseActivity() {
 
         settingsDialog =
             dialogManager.showSettingsDialog(
+                notificationScheduler,
                 onAudioChanged = { isSoundEnabled ->
                     // Handle sound setting change
                 },
@@ -109,6 +122,14 @@ class MainActivity : BaseActivity() {
                 },
                 onDarkModeChanged = { isDarkModeEnabled ->
                     applyTheme(isDarkModeEnabled)
+                },
+                onNotificationChanged = { isNotificationEnabled ->
+                    if (isNotificationEnabled) {
+                        val (hour, minute) = preferenceManager.getNotificationTime()
+                        notificationScheduler.scheduleDailyNotification(hour, minute)
+                    } else {
+                        notificationScheduler.cancelDailyNotification()
+                    }
                 },
             )
     }

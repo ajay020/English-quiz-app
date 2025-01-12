@@ -6,6 +6,8 @@ import com.example.englishquiz.data.database.QuestionDao
 import com.example.englishquiz.data.preferences.PreferenceManager
 import com.example.englishquiz.data.repository.QuestionRepository
 import com.example.englishquiz.data.repository.QuestionRepositoryImpl
+import com.example.englishquiz.notification.NotificationHelper
+import com.example.englishquiz.notification.NotificationScheduler
 import com.example.englishquiz.utils.managers.SoundManager
 import com.example.englishquiz.utils.managers.ThemeManager
 import dagger.Module
@@ -42,6 +44,18 @@ object AppModule {
     fun providePreferenceManager(
         @ApplicationContext context: Context,
     ): PreferenceManager = PreferenceManager(context)
+
+    @Singleton
+    @Provides
+    fun provideNotificationHelper(
+        @ApplicationContext context: Context,
+    ): NotificationHelper = NotificationHelper(context)
+
+    @Singleton
+    @Provides
+    fun provideNotificationScheduler(
+        @ApplicationContext context: Context,
+    ) = NotificationScheduler(context)
 
     @Singleton
     @Provides

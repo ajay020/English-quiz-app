@@ -23,6 +23,8 @@ class PreferenceManager
             private const val KEY_FIRST_LAUNCH_DATE = "first_launch_date"
             private const val KEY_QUIZ_COMPLETION_DATE = "quiz_completion_date"
             private const val IS_DARK_MODE_KEY = "is_dark_mode"
+            private const val IS_NOTIFICATION_ENABLED_KEY = "is_notification_enabled"
+            private const val NOTIFICATION_TIME_KEY = "notification_time"
         }
 
         // theme functions
@@ -32,7 +34,7 @@ class PreferenceManager
         }
 
         fun isDarkModeEnabled(): Boolean {
-            return sharedPreferences.getBoolean(IS_DARK_MODE_KEY, false) // Default is Light mode
+            return sharedPreferences.getBoolean(IS_DARK_MODE_KEY, true) // Default is Light mode
         }
 
         fun saveStreakDates(dates: Set<String>) {
@@ -43,12 +45,6 @@ class PreferenceManager
 
         fun clearStreakDates() {
             sharedPreferences.edit().remove("streak_dates").apply()
-        }
-
-        // **Streak Data Functions**
-        fun getStreakData(): Set<Int> {
-            val streakData = sharedPreferences.getStringSet(STREAK_DATA_KEY, emptySet())
-            return streakData?.map { it.toInt() }?.toSet() ?: emptySet()
         }
 
         // **Reward Granted Function**
@@ -126,5 +122,25 @@ class PreferenceManager
             val completion = getQuizCompletionDate()
             val differenceInMillis = completion - firstLaunch
             return (differenceInMillis / (1000 * 60 * 60 * 24)).toInt()
+        }
+
+        fun isNotificationEnabled(): Boolean = sharedPreferences.getBoolean(IS_NOTIFICATION_ENABLED_KEY, true)
+
+        fun setNotificationEnabled(enabled: Boolean) {
+            sharedPreferences.edit().putBoolean(IS_NOTIFICATION_ENABLED_KEY, enabled).apply()
+        }
+
+        fun setNotificationTime(
+            selectedHour: Int,
+            selectedMinute: Int,
+        ) {
+            sharedPreferences.edit().putInt(NOTIFICATION_TIME_KEY, selectedHour * 60 + selectedMinute).apply()
+        }
+
+        fun getNotificationTime(): Pair<Int, Int> {
+            val notificationTime = sharedPreferences.getInt(NOTIFICATION_TIME_KEY, 18 * 60)
+            val hour = notificationTime / 60
+            val minute = notificationTime % 60
+            return Pair(hour, minute)
         }
     }

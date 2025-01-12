@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatDelegate
 import androidx.lifecycle.ProcessLifecycleOwner
 import com.example.englishquiz.data.database.AppDatabase
 import com.example.englishquiz.data.preferences.PreferenceManager
+import com.example.englishquiz.notification.NotificationHelper
 import com.example.englishquiz.utils.AppTimeTrackerObserver
 import com.example.englishquiz.utils.QuestionLoadingScript
 import dagger.hilt.android.HiltAndroidApp
@@ -31,5 +32,8 @@ class QuizApplication : Application() {
         QuestionLoadingScript.importQuestionsFromJson(this, database)
         val appTimeTracker = AppTimeTrackerObserver(preferenceManager)
         ProcessLifecycleOwner.get().lifecycle.addObserver(appTimeTracker)
+
+        // create channel for notification
+        NotificationHelper(this).createNotificationChannels()
     }
 }
