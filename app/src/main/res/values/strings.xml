@@ -95,7 +95,7 @@
     <string name="great_job_message">👏 Great job! You’re moving forward with confidence!</string>
 
     <!-- Try Again -->
-    <string name="try_again_message">💪 Keep trying! To move to the next level, you need 80%% or more.</string>
+    <string name="try_again_message">💪 Don\'t give up! Practice makes perfect!</string>
 
     <!-- Score Percentage -->
     <string name="score_percentage_text">You scored %1$d%%</string>

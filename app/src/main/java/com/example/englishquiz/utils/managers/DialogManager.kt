@@ -203,7 +203,7 @@ class DialogManager
             }
 
             val konfettiView: KonfettiView = binding.konfettiView
-            konfettiView.start(
+            val party =
                 Party(
                     speed = 0f,
                     maxSpeed = 50f,
@@ -213,16 +213,13 @@ class DialogManager
                         listOf(
                             Color.YELLOW,
                             Color.GREEN,
-                            Color.MAGENTA,
-                            Color.BLUE,
+                            Color.BLACK,
                             Color.RED,
-                            Color.CYAN,
                             Color.BLUE,
                         ),
-                    emitter = Emitter(duration = 5, TimeUnit.SECONDS).max(500).perSecond(50),
+                    emitter = Emitter(duration = 5, TimeUnit.SECONDS).max(200).perSecond(20),
                     position = Position.Relative(0.5, 0.5), // Center of the screen
-                ),
-            )
+                )
 
             val preferenceManager = PreferenceManager(context)
             binding.tvCoins.animateNumberChange(
@@ -265,13 +262,16 @@ class DialogManager
 
             when {
                 correctQuestions == totalQuestions -> {
-                    resultImage.setImageResource(R.drawable.bee_main)
+                    resultImage.setImageResource(R.drawable.bee_amazing)
                     resultMessage.text = context.getString(R.string.perfect_score_message)
                     actionButton.text = context.getString(R.string.next_level, level + 1)
                     // Save next level
                     preferenceManager.saveCurrentLevel(level + 1)
                     // save solved questions
                     saveSolvedQuestions()
+
+                    // display celebration flowers
+                    konfettiView.start(party)
 
                     actionButton.setOnClickListener {
                         dialog.dismiss()
@@ -280,13 +280,15 @@ class DialogManager
                 }
 
                 (correctQuestions == totalQuestions - 1) && correctQuestions > 0 -> {
-                    resultImage.setImageResource(R.drawable.bee_think)
+                    resultImage.setImageResource(R.drawable.bee_great_job)
                     resultMessage.text = context.getString(R.string.great_job_message)
                     actionButton.text = context.getString(R.string.next_level, level + 1)
                     // Save next level
                     preferenceManager.saveCurrentLevel(level + 1)
                     // save solved questions
                     saveSolvedQuestions()
+                    // display celebration flowers
+                    konfettiView.start(party)
 
                     actionButton.setOnClickListener {
                         dialog.dismiss()
@@ -295,7 +297,7 @@ class DialogManager
                 }
 
                 else -> {
-                    resultImage.setImageResource(R.drawable.bee_rude)
+                    resultImage.setImageResource(R.drawable.bee_dont_give_up)
                     resultMessage.text = context.getString(R.string.try_again_message)
                     actionButton.text = context.getString(R.string.retry)
 
