@@ -158,6 +158,15 @@ class MainActivity : BaseActivity() {
 
         // Update the coin display
         updateCoinCount(viewModel.getCoins())
+
+        if (viewModel.isMusicEnabled.value == true) {
+            viewModel.startMusic() // Resume music when the app comes to the foreground
+        }
+    }
+
+    override fun onPause() {
+        super.onPause()
+        soundManager.stopMusic() // Stop music when the app goes into the background
     }
 
     override fun onDestroy() {
