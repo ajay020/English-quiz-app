@@ -66,7 +66,7 @@ class PreferenceManager
             sharedPreferences.edit().putInt(COINS_KEY, amount).apply()
         }
 
-        fun getCoins() = sharedPreferences.getInt(COINS_KEY, 200)
+        fun getCoins() = sharedPreferences.getInt(COINS_KEY, 100)
 
         // **Data Loaded Function**
         fun isDataLoaded(): Boolean = sharedPreferences.getBoolean(IS_DATA_LOADED_KEY, false)

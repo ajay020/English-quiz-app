@@ -101,5 +101,8 @@
     <string name="score_percentage_text">You scored %1$d%%</string>
 
     <string name="next_level">Level %1$d</string>
+    <string name="pause">pause</string>
+    <string name="level_text">Level %1$d</string>
+    <string name="time_format">Time- %1$d</string>
 
 </resources>

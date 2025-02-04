@@ -1,10 +1,8 @@
 package com.example.englishquiz.ui
 
-import android.app.Dialog
 import android.content.Intent
 import android.content.res.ColorStateList
 import android.graphics.Color
-import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.util.TypedValue
 import android.view.View
@@ -16,7 +14,8 @@ import com.example.englishquiz.R
 import com.example.englishquiz.data.Question
 import com.example.englishquiz.data.preferences.PreferenceManager
 import com.example.englishquiz.databinding.ActivityQuizBinding
-import com.example.englishquiz.databinding.DialogRecoveryBinding
+import com.example.englishquiz.utils.constants.AppConstants.HINT_COST
+import com.example.englishquiz.utils.constants.AppConstants.TIMER_BOOST_COST
 import com.example.englishquiz.utils.managers.DialogManager
 import com.example.englishquiz.utils.managers.SoundManager
 import com.example.englishquiz.viewmodel.QuizViewModel
@@ -91,9 +90,25 @@ class QuizActivity : BaseActivity() {
         }
     }
 
+    private fun updateBoostAndHintAvailability(totalCoins: Int) {
+        val hintCount = totalCoins / HINT_COST
+        val timerBoostCount = totalCoins / TIMER_BOOST_COST
+
+        // Update badge visibility and count
+        binding.badgeHint.text = hintCount.toString()
+        binding.badgeHint.visibility = if (hintCount > 0) View.VISIBLE else View.GONE
+
+        binding.badgeTimerBooster.text = timerBoostCount.toString()
+        binding.badgeTimerBooster.visibility = if (timerBoostCount > 0) View.VISIBLE else View.GONE
+
+        // Enable/disable buttons based on availability
+        binding.btnHint.isEnabled = hintCount > 0
+        binding.btnTimerBooster.isEnabled = timerBoostCount > 0
+    }
+
     private fun setupObservers() {
         viewModel.timeLeft.observe(this) { seconds ->
-            binding.tvTimer.text = "Time: $seconds s"
+            binding.tvTimer.text = getString(R.string.time_format, seconds)
 
             // Change color to red when time is running out
             val warningColor = resolveColorAttribute(R.attr.timerColorWarning)
@@ -101,13 +116,6 @@ class QuizActivity : BaseActivity() {
             binding.tvTimer.setTextColor(if (seconds <= 5) warningColor else defaultColor)
 
             binding.progressBar.progress = seconds.toInt()
-            binding.timerText.text = "$seconds"
-        }
-
-        viewModel.showTimeUpDialog.observe(this) { show ->
-            if (show) {
-//                showTimeUpDialog()
-            }
         }
 
         viewModel.areAnswerButtonsEnabled.observe(this) { enabled ->
@@ -119,7 +127,7 @@ class QuizActivity : BaseActivity() {
         }
 
         viewModel.currentLevel.observe(this) { level ->
-            binding.tvLevel.text = "Level $level"
+            binding.tvLevel.text = getString(R.string.level_text, level)
         }
 
         viewModel.coins.observe(this) { coins ->
@@ -131,8 +139,7 @@ class QuizActivity : BaseActivity() {
                 duration = 200L,
             )
 
-            // Enable/disable hint button
-            binding.btnHint.isEnabled = coins >= 5
+            updateBoostAndHintAvailability(coins)
         }
 
         viewModel.navigationEvent.observe(this) { event ->
@@ -145,7 +152,6 @@ class QuizActivity : BaseActivity() {
         optionButtons.forEachIndexed { index, button ->
             button.text = "${question.options[index]}"
         }
-        binding.btnHint.isEnabled = true
         resetOptions()
     }
 
@@ -230,42 +236,6 @@ class QuizActivity : BaseActivity() {
                 finish()
             }
         }
-    }
-
-    private fun showTimeUpDialog() {
-        dialogManager.showTimeUpDialog(
-            onBuyMoreTime = { viewModel.buyMoreTime() },
-            onRestartLevel = { viewModel.restartLevel() },
-        )
-    }
-
-    private fun showRecoveryDialog() {
-        val dialog = Dialog(this)
-        dialog.setCancelable(false)
-        dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-
-        val binding = DialogRecoveryBinding.inflate(layoutInflater)
-        dialog.setContentView(binding.root)
-
-        // Handle recovery button
-        binding.btnRecover.setOnClickListener {
-            if (viewModel.hasEnoughCoins(10)) {
-                viewModel.deductCoins(10)
-                resetOptions()
-                dialog.dismiss()
-            } else {
-                Toast.makeText(this, "Not enough coins!", Toast.LENGTH_SHORT).show()
-            }
-        }
-
-        // Handle restart button
-        binding.btnRestart.setOnClickListener {
-            viewModel.restartLevel()
-            resetOptions()
-            dialog.dismiss()
-        }
-
-        dialog.show()
     }
 
     private fun resolveColorAttribute(attr: Int): Int {

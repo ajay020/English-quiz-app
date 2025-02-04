@@ -10,6 +10,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.englishquiz.data.Question
 import com.example.englishquiz.data.preferences.PreferenceManager
 import com.example.englishquiz.data.repository.QuestionRepository
+import com.example.englishquiz.utils.constants.AppConstants
 import com.example.englishquiz.utils.managers.StreakManager
 import com.example.englishquiz.utils.managers.TimerManager
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -116,19 +117,20 @@ class QuizViewModel
         }
 
         fun useHint(optionButtons: List<Button>) {
-            val hintCost = 5
+            val hintCost = AppConstants.HINT_COST
 
             _coins.value?.let { currentCoins ->
                 if (currentCoins >= hintCost) {
                     val currentQuestion = currentQuestion.value ?: return
                     val incorrectOptions =
-                        optionButtons.filter { it.text != currentQuestion.correctAnswer }
+                        optionButtons.filter {
+                            it.text != currentQuestion.correctAnswer && it.visibility == View.VISIBLE
+                        }
 
-                    // Calculate how many incorrect options to hide (round up for odd numbers)
                     val optionsToHideCount = ceil(incorrectOptions.size / 2.0).toInt()
 
-                    if (optionsToHideCount > 1) {
-                        // Randomly pick half of the incorrect options to hide
+                    // Ensure at least 2 incorrect options remain before applying a hint
+                    if (optionsToHideCount >= 1) {
                         val optionsToHide =
                             incorrectOptions
                                 .shuffled()
@@ -137,8 +139,8 @@ class QuizViewModel
                         // Hide the selected options
                         optionsToHide.forEach { it.visibility = View.INVISIBLE }
 
-                        // Deduct 5 coins
-                        deductCoins(5)
+                        // Deduct coins
+                        deductCoins(hintCost)
                     }
                 } else {
                     _navigationEvent.value = NavigationEvent.ShowToast("Not enough coins for a hint!")
@@ -224,7 +226,7 @@ class QuizViewModel
 
         fun buyMoreTime() {
             val extraTime = 10000L
-            val timeCost = 5
+            val timeCost = AppConstants.TIMER_BOOST_COST
 
             _coins.value?.let { currentCoins ->
                 if (currentCoins >= timeCost) {
@@ -265,7 +267,7 @@ class QuizViewModel
 
         fun hasEnoughCoins(coinAmount: Int): Boolean = coinAmount <= coins.value!!
 
-        fun deductCoins(amount: Int = 5) {
+        fun deductCoins(amount: Int = 20) {
             _coins.value?.let { currentCoins ->
                 if (currentCoins >= amount) {
                     val newCoins = currentCoins - amount

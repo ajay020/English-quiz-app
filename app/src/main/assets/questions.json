@@ -1,25 +1,5 @@
 [
   {
-    "questionText": "Choose a word similar to 'smart':",
-    "options": [
-      "Dull",
-      "Clever",
-      "Lazy",
-      "Slow"
-    ],
-    "correctAnswer": "Clever"
-  },
-  {
-    "questionText": "She ___ to the store every Saturday.",
-    "options": [
-      "go",
-      "going",
-      "went",
-      "goes"
-    ],
-    "correctAnswer": "go"
-  },
-  {
     "questionText": "Who helps sick people?",
     "options": [
       "Driver",
@@ -48,5 +28,956 @@
       "Very hard"
     ],
     "correctAnswer": "Very easy"
+  },
+  {
+    "questionText": "I ___ my homework in the morning. (Present tense)",
+    "options": [
+      "do",
+      "did",
+      "doing",
+      "does"
+    ],
+    "correctAnswer": "do"
+  },
+  {
+    "questionText": "What is the opposite of 'fast'?",
+    "options": [
+      "Quick",
+      "Slow",
+      "Sharp",
+      "Bright"
+    ],
+    "correctAnswer": "Slow"
+  },
+  {
+    "questionText": "Who takes care of teeth?",
+    "options": [
+      "Doctor",
+      "Dentist",
+      "Pilot",
+      "Chef"
+    ],
+    "correctAnswer": "Dentist"
+  },
+  {
+    "questionText": "Choose the correct spelling:",
+    "options": [
+      "Calender",
+      "Calandar",
+      "Calendar",
+      "Calandar"
+    ],
+    "correctAnswer": "Calendar"
+  },
+  {
+    "questionText": "What does 'under the weather' mean?",
+    "options": [
+      "Outside in rain",
+      "Feeling sick",
+      "Under a tree",
+      "Very happy"
+    ],
+    "correctAnswer": "Feeling sick"
+  },
+  {
+    "questionText": "Choose a word similar to 'fast':",
+    "options": [
+      "Slow",
+      "Quick",
+      "Heavy",
+      "Lazy"
+    ],
+    "correctAnswer": "Quick"
+  },
+  {
+    "questionText": "Select the correct spelling:",
+    "options": [
+      "Febuary",
+      "Februery",
+      "February",
+      "Februari"
+    ],
+    "correctAnswer": "February"
+  },
+  {
+    "questionText": "What does 'break the ice' mean?",
+    "options": [
+      "Start a conversation",
+      "Fall on ice",
+      "Break something",
+      "Cool down"
+    ],
+    "correctAnswer": "Start a conversation"
+  },
+  {
+    "questionText": "What is the opposite of 'happy'?",
+    "options": [
+      "Excited",
+      "Sad",
+      "Joyful",
+      "Angry"
+    ],
+    "correctAnswer": "Sad"
+  },
+  {
+    "questionText": "Who flies an airplane?",
+    "options": [
+      "Driver",
+      "Pilot",
+      "Chef",
+      "Farmer"
+    ],
+    "correctAnswer": "Pilot"
+  },
+  {
+    "questionText": "Choose the correct spelling:",
+    "options": [
+      "Occurence",
+      "Occurrence",
+      "Ocurence",
+      "Occurrance"
+    ],
+    "correctAnswer": "Occurrence"
+  },
+  {
+    "questionText": "What is the plural of 'Goose'?",
+    "options": [
+      "Gooses",
+      "Geese",
+      "Goos",
+      "Goosen"
+    ],
+    "correctAnswer": "Geese"
+  },
+  {
+    "questionText": "What does 'spill the beans' mean?",
+    "options": [
+      "Drop food",
+      "Reveal a secret",
+      "Make a mess",
+      "Cook beans"
+    ],
+    "correctAnswer": "Reveal a secret"
+  }
+,
+  {
+    "questionText": "What is the synonym of 'happy'?",
+    "options": [
+      "Sad",
+      "Joyful",
+      "Angry",
+      "Fearful"
+    ],
+    "correctAnswer": "Joyful"
+  },
+  {
+    "questionText": "What is the antonym of 'ancient'?",
+    "options": [
+      "Modern",
+      "Old",
+      "Historic",
+      "Traditional"
+    ],
+    "correctAnswer": "Modern"
+  },
+  {
+    "questionText": "What is the synonym of 'quick'?",
+    "options": [
+      "Slow",
+      "Rapid",
+      "Lazy",
+      "Steady"
+    ],
+    "correctAnswer": "Rapid"
+  },
+  {
+    "questionText": "What is the antonym of 'weak'?",
+    "options": [
+      "Strong",
+      "Fragile",
+      "Brittle",
+      "Delicate"
+    ],
+    "correctAnswer": "Strong"
+  },
+  {
+    "questionText": "What is the synonym of 'beautiful'?",
+    "options": [
+      "Ugly",
+      "Gorgeous",
+      "Plain",
+      "Horrible"
+    ],
+    "correctAnswer": "Gorgeous"
+  },
+  {
+    "questionText": "What is the antonym of 'full'?",
+    "options": [
+      "Empty",
+      "Packed",
+      "Heavy",
+      "Overflowing"
+    ],
+    "correctAnswer": "Empty"
+  },
+  {
+    "questionText": "What is the synonym of 'large'?",
+    "options": [
+      "Tiny",
+      "Huge",
+      "Small",
+      "Little"
+    ],
+    "correctAnswer": "Huge"
+  },
+  {
+    "questionText": "What is the synonym of 'angry'?",
+    "options": [
+      "Calm",
+      "Furious",
+      "Happy",
+      "Peaceful"
+    ],
+    "correctAnswer": "Furious"
+  },
+  {
+    "questionText": "What is the antonym of 'low'?",
+    "options": [
+      "High",
+      "Deep",
+      "Shallow",
+      "Short"
+    ],
+    "correctAnswer": "High"
+  },
+  {
+    "questionText": "Select the correctly spelled word:",
+    "options": [
+      "Recieve",
+      "Receive",
+      "Recive",
+      "Reciave"
+    ],
+    "correctAnswer": "Receive"
+  },
+  {
+    "questionText": "Which of these is the correct spelling of a word meaning 'extremely tired'?",
+    "options": [
+      "Exausted",
+      "Exhausted",
+      "Exhorted",
+      "Exosted"
+    ],
+    "correctAnswer": "Exhausted"
+  },
+  {
+    "questionText": "Select the correctly spelled word:",
+    "options": [
+      "Recieve",
+      "Receive",
+      "Recive",
+      "Reciave"
+    ],
+    "correctAnswer": "Receive"
+  },
+  {
+    "questionText": "Identify the correct spelling of a word meaning 'happening by chance':",
+    "options": [
+      "Accidental",
+      "Accedental",
+      "Accidantal",
+      "Acidental"
+    ],
+    "correctAnswer": "Accidental"
+  },
+  {
+    "questionText": "Which spelling is correct for a word meaning 'to bring to an end'?",
+    "options": [
+      "Terminate",
+      "Terminnate",
+      "Termiknate",
+      "Termynate"
+    ],
+    "correctAnswer": "Terminate"
+  },
+  {
+    "questionText": "Choose the correctly spelled word:",
+    "options": [
+      "Seperate",
+      "Separate",
+      "Seprate",
+      "Separeate"
+    ],
+    "correctAnswer": "Separate"
+  },
+  {
+    "questionText": "What is the antonym of 'diligent'?",
+    "options": [
+      "Lazy",
+      "Hardworking",
+      "Attentive",
+      "Focused"
+    ],
+    "correctAnswer": "Lazy"
+  },
+  {
+    "questionText": "What is the synonym of 'courageous'?",
+    "options": [
+      "Cowardly",
+      "Brave",
+      "Timid",
+      "Fearful"
+    ],
+    "correctAnswer": "Brave"
+  },
+  {
+    "questionText": "Choose the correctly spelled word:",
+    "options": [
+      "Occurence",
+      "Occurrence",
+      "Ocurence",
+      "Occurrance"
+    ],
+    "correctAnswer": "Occurrence"
+  },
+  {
+    "questionText": "What is the antonym of 'expand'?",
+    "options": [
+      "Enlarge",
+      "Extend",
+      "Shrink",
+      "Grow"
+    ],
+    "correctAnswer": "Shrink"
+  },
+  {
+    "questionText": "Select the synonym of 'joyful':",
+    "options": [
+      "Sad",
+      "Gloomy",
+      "Happy",
+      "Melancholy"
+    ],
+    "correctAnswer": "Happy"
+  },
+  {
+    "questionText": "Identify the correctly spelled word:",
+    "options": [
+      "Definately",
+      "Definitely",
+      "Definitley",
+      "Definitly"
+    ],
+    "correctAnswer": "Definitely"
+  },
+  {
+    "questionText": "Which word means 'a place where birds are kept'?",
+    "options": [
+      "Aviary",
+      "Apiary",
+      "Sanctuary",
+      "Terrarium"
+    ],
+    "correctAnswer": "Aviary"
+  },
+  {
+    "questionText": "What does the idiom 'a blessing in disguise' mean?",
+    "options": [
+      "A hidden advantage",
+      "A terrible curse",
+      "A sudden failure",
+      "An obvious benefit"
+    ],
+    "correctAnswer": "A hidden advantage"
+  },
+  {
+    "questionText": "Choose the correct plural form of 'Child':",
+    "options": [
+      "Childs",
+      "Childes",
+      "Children",
+      "Childies"
+    ],
+    "correctAnswer": "Children"
+  },
+  {
+    "questionText": "Which word means 'a person who loves books'?",
+    "options": [
+      "Bibliophile",
+      "Lexicographer",
+      "Biographer",
+      "Typographer"
+    ],
+    "correctAnswer": "Bibliophile"
+  },
+  {
+    "questionText": "What is the antonym of 'prosperity'?",
+    "options": [
+      "Wealth",
+      "Success",
+      "Poverty",
+      "Growth"
+    ],
+    "correctAnswer": "Poverty"
+  },
+  {
+    "questionText": "Select the synonym of 'fragile':",
+    "options": [
+      "Strong",
+      "Delicate",
+      "Tough",
+      "Solid"
+    ],
+    "correctAnswer": "Delicate"
+  },
+  {
+    "questionText": "Identify the correct spelling of a word meaning 'to make something smaller':",
+    "options": [
+      "Minimze",
+      "Minimize",
+      "Minimaize",
+      "Minamize"
+    ],
+    "correctAnswer": "Minimize"
+  },
+  {
+    "questionText": "What does the idiom 'hit the sack' mean?",
+    "options": [
+      "To start a fight",
+      "To go to bed",
+      "To give up",
+      "To celebrate"
+    ],
+    "correctAnswer": "To go to bed"
+  },
+  {
+    "questionText": "What is the antonym of 'accept'?",
+    "options": [
+      "Approve",
+      "Deny",
+      "Agree",
+      "Acknowledge"
+    ],
+    "correctAnswer": "Deny"
+  },
+  {
+    "questionText": "Which spelling is correct for a word meaning 'a person who writes dictionaries'?",
+    "options": [
+      "Lexecographer",
+      "Lexicographer",
+      "Lexcographer",
+      "Lexicografer"
+    ],
+    "correctAnswer": "Lexicographer"
+  },
+  {
+    "questionText": "Choose the synonym of 'ancient':",
+    "options": [
+      "Modern",
+      "New",
+      "Old",
+      "Recent"
+    ],
+    "correctAnswer": "Old"
+  },
+  {
+    "questionText": "What does the idiom 'break the ice' mean?",
+    "options": [
+      "To start a conversation",
+      "To destroy something",
+      "To celebrate",
+      "To fail at something"
+    ],
+    "correctAnswer": "To start a conversation"
+  },
+  {
+    "questionText": "What is the plural of 'Cactus'?",
+    "options": [
+      "Cactuses",
+      "Cacti",
+      "Cactus'",
+      "Cactusses"
+    ],
+    "correctAnswer": "Cacti"
+  },
+  {
+    "questionText": "Which word means 'a government by the wealthy'?",
+    "options": [
+      "Democracy",
+      "Oligarchy",
+      "Aristocracy",
+      "Plutocracy"
+    ],
+    "correctAnswer": "Plutocracy"
+  },
+  {
+    "questionText": "What is the antonym of 'victory'?",
+    "options": [
+      "Success",
+      "Defeat",
+      "Triumph",
+      "Glory"
+    ],
+    "correctAnswer": "Defeat"
+  },
+  {
+    "questionText": "Choose the synonym of 'brave':",
+    "options": [
+      "Cowardly",
+      "Fearful",
+      "Courageous",
+      "Timid"
+    ],
+    "correctAnswer": "Courageous"
+  },
+  {
+    "questionText": "Who studies ancient objects?",
+    "options": [
+      "Botanist",
+      "Archaeologist",
+      "Zoologist",
+      "Geologist"
+    ],
+    "correctAnswer": "Archaeologist"
+  },
+  {
+    "questionText": "Select the correctly spelled word:",
+    "options": [
+      "Acheivement",
+      "Achievement",
+      "Achievment",
+      "Acheivment"
+    ],
+    "correctAnswer": "Achievement"
+  },
+  {
+    "questionText": "What does 'once in a blue moon' mean?",
+    "options": [
+      "Very rarely",
+      "Frequently",
+      "Every day",
+      "Never"
+    ],
+    "correctAnswer": "Very rarely"
+  },
+  {
+    "questionText": "What is the synonym of 'quick'?",
+    "options": [
+      "Slow",
+      "Fast",
+      "Steady",
+      "Lazy"
+    ],
+    "correctAnswer": "Fast"
+  },
+  {
+    "questionText": "What is the antonym of 'generous'?",
+    "options": [
+      "Kind",
+      "Selfish",
+      "Charitable",
+      "Friendly"
+    ],
+    "correctAnswer": "Selfish"
+  },
+  {
+    "questionText": "A place where bees are kept:",
+    "options": [
+      "Aviary",
+      "Apiary",
+      "Hatchery",
+      "Sanctuary"
+    ],
+    "correctAnswer": "Apiary"
+  },
+  {
+    "questionText": "Choose the correct plural of 'Analysis':",
+    "options": [
+      "Analysises",
+      "Analyses",
+      "Analysis'",
+      "Analys"
+    ],
+    "correctAnswer": "Analyses"
+  },
+  {
+    "questionText": "Identify the correctly spelled word:",
+    "options": [
+      "Maintainance",
+      "Maintenance",
+      "Maintanance",
+      "Mantainance"
+    ],
+    "correctAnswer": "Maintenance"
+  },
+  {
+    "questionText": "What is the opposite of 'happy'?",
+    "options": [
+      "Sad",
+      "Glad",
+      "Excited",
+      "Cheerful"
+    ],
+    "correctAnswer": "Sad"
+  },
+  {
+    "questionText": "Choose a word similar to 'fast':",
+    "options": [
+      "Quick",
+      "Slow",
+      "Lazy",
+      "Calm"
+    ],
+    "correctAnswer": "Quick"
+  },
+  {
+    "questionText": "Who teaches students?",
+    "options": [
+      "Doctor",
+      "Teacher",
+      "Driver",
+      "Pilot"
+    ],
+    "correctAnswer": "Teacher"
+  },
+  {
+    "questionText": "Select the correct spelling:",
+    "options": [
+      "Frend",
+      "Friend",
+      "Freind",
+      "Frind"
+    ],
+    "correctAnswer": "Friend"
+  },
+  {
+    "questionText": "What does 'break the ice' mean?",
+    "options": [
+      "Start a conversation",
+      "Break something",
+      "Stay quiet",
+      "Be angry"
+    ],
+    "correctAnswer": "Start a conversation"
+  },
+  {
+    "questionText": "What is the opposite of 'hot'?",
+    "options": [
+      "Warm",
+      "Cold",
+      "Boiling",
+      "Dry"
+    ],
+    "correctAnswer": "Cold"
+  },
+  {
+    "questionText": "Who flies an airplane?",
+    "options": [
+      "Pilot",
+      "Teacher",
+      "Chef",
+      "Farmer"
+    ],
+    "correctAnswer": "Pilot"
+  },
+  {
+    "questionText": "Choose the correct spelling:",
+    "options": [
+      "Bautiful",
+      "Beautiful",
+      "Beatiful",
+      "Beutiful"
+    ],
+    "correctAnswer": "Beautiful"
+  },
+  {
+    "questionText": "What is the plural of 'Apple'?",
+    "options": [
+      "Apples",
+      "Applis",
+      "Appls",
+      "Applus"
+    ],
+    "correctAnswer": "Apples"
+  },
+  {
+    "questionText": "What does 'once in a blue moon' mean?",
+    "options": [
+      "Every day",
+      "Very rarely",
+      "Often",
+      "Never"
+    ],
+    "correctAnswer": "Very rarely"
+  },
+  {
+    "questionText": "What is the opposite of 'big'?",
+    "options": [
+      "Small",
+      "Tall",
+      "Wide",
+      "Heavy"
+    ],
+    "correctAnswer": "Small"
+  },
+  {
+    "questionText": "Choose a word similar to 'cold':",
+    "options": [
+      "Hot",
+      "Warm",
+      "Chilly",
+      "Bright"
+    ],
+    "correctAnswer": "Chilly"
+  },
+  {
+    "questionText": "Who takes care of sick people?",
+    "options": [
+      "Teacher",
+      "Doctor",
+      "Chef",
+      "Driver"
+    ],
+    "correctAnswer": "Doctor"
+  },
+  {
+    "questionText": "Select the correct spelling:",
+    "options": [
+      "Succes",
+      "Success",
+      "Sucess",
+      "Sucses"
+    ],
+    "correctAnswer": "Success"
+  },
+  {
+    "questionText": "What does 'piece of cake' mean?",
+    "options": [
+      "A dessert",
+      "Something easy",
+      "Something hard",
+      "A small part"
+    ],
+    "correctAnswer": "Something easy"
+  },
+  {
+    "questionText": "What is the opposite of 'light'?",
+    "options": [
+      "Bright",
+      "Heavy",
+      "Dark",
+      "Soft"
+    ],
+    "correctAnswer": "Dark"
+  },
+  {
+    "questionText": "Who cooks food in a restaurant?",
+    "options": [
+      "Driver",
+      "Chef",
+      "Pilot",
+      "Painter"
+    ],
+    "correctAnswer": "Chef"
+  },
+  {
+    "questionText": "Choose the correct spelling:",
+    "options": [
+      "Famly",
+      "Famely",
+      "Family",
+      "Fammily"
+    ],
+    "correctAnswer": "Family"
+  },
+  {
+    "questionText": "What is the plural of 'Child'?",
+    "options": [
+      "Childs",
+      "Children",
+      "Childes",
+      "Childies"
+    ],
+    "correctAnswer": "Children"
+  },
+  {
+    "questionText": "What does 'under the weather' mean?",
+    "options": [
+      "Feeling sick",
+      "Feeling happy",
+      "Feeling angry",
+      "Feeling excited"
+    ],
+    "correctAnswer": "Feeling sick"
+  },
+  {
+    "questionText": "What is the opposite of 'up'?",
+    "options": [
+      "Down",
+      "Left",
+      "Right",
+      "Above"
+    ],
+    "correctAnswer": "Down"
+  },
+  {
+    "questionText": "Choose a word similar to 'happy':",
+    "options": [
+      "Sad",
+      "Joyful",
+      "Angry",
+      "Lazy"
+    ],
+    "correctAnswer": "Joyful"
+  },
+  {
+    "questionText": "Who fixes cars?",
+    "options": [
+      "Chef",
+      "Doctor",
+      "Mechanic",
+      "Teacher"
+    ],
+    "correctAnswer": "Mechanic"
+  },
+  {
+    "questionText": "Select the correct spelling:",
+    "options": [
+      "Tomatoe",
+      "Tomato",
+      "Tomatto",
+      "Tomate"
+    ],
+    "correctAnswer": "Tomato"
+  },
+  {
+    "questionText": "What does 'hit the sack' mean?",
+    "options": [
+      "Start sleeping",
+      "Work hard",
+      "Get angry",
+      "Eat food"
+    ],
+    "correctAnswer": "Start sleeping"
+  },
+  {
+    "questionText": "What is the opposite of 'hard'?",
+    "options": [
+      "Soft",
+      "Rough",
+      "Smooth",
+      "Sharp"
+    ],
+    "correctAnswer": "Soft"
+  },
+  {
+    "questionText": "Who grows crops on a farm?",
+    "options": [
+      "Driver",
+      "Farmer",
+      "Pilot",
+      "Baker"
+    ],
+    "correctAnswer": "Farmer"
+  },
+  {
+    "questionText": "Choose the correct spelling:",
+    "options": [
+      "Bussiness",
+      "Busines",
+      "Business",
+      "Buisness"
+    ],
+    "correctAnswer": "Business"
+  },
+  {
+    "questionText": "What is the plural of 'Mouse'?",
+    "options": [
+      "Mouses",
+      "Mousees",
+      "Mice",
+      "Mous"
+    ],
+    "correctAnswer": "Mice"
+  },
+  {
+    "questionText": "What does 'cold feet' mean?",
+    "options": [
+      "Feeling nervous",
+      "Feeling happy",
+      "Feeling tired",
+      "Feeling strong"
+    ],
+    "correctAnswer": "Feeling nervous"
+  },
+  {
+    "questionText": "What is the opposite of 'early'?",
+    "options": [
+      "Late",
+      "Quick",
+      "Soon",
+      "Fast"
+    ],
+    "correctAnswer": "Late"
+  },
+  {
+    "questionText": "Who drives a bus?",
+    "options": [
+      "Pilot",
+      "Driver",
+      "Chef",
+      "Teacher"
+    ],
+    "correctAnswer": "Driver"
+  },
+  {
+    "questionText": "What does 'once in a blue moon' mean?",
+    "options": [
+      "Very rarely",
+      "Every day",
+      "Often",
+      "Never"
+    ],
+    "correctAnswer": "Very rarely"
+  },
+  {
+    "questionText": "Who takes care of animals?",
+    "options": [
+      "Doctor",
+      "Veterinarian",
+      "Farmer",
+      "Driver"
+    ],
+    "correctAnswer": "Veterinarian"
+  },
+  {
+    "questionText": "Choose the correct spelling:",
+    "options": [
+      "Diffrent",
+      "Diferent",
+      "Different",
+      "Diferrent"
+    ],
+    "correctAnswer": "Different"
+  },
+  {
+    "questionText": "What is the plural of 'Tooth'?",
+    "options": [
+      "Tooths",
+      "Teeth",
+      "Toothes",
+      "Toeth"
+    ],
+    "correctAnswer": "Teeth"
+  },
+  {
+    "questionText": "What does 'on cloud nine' mean?",
+    "options": [
+      "Very sad",
+      "Very happy",
+      "Very tired",
+      "Very angry"
+    ],
+    "correctAnswer": "Very happy"
   }
 ]

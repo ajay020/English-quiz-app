@@ -15,8 +15,9 @@
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/coinCount"
-        style="@style/BodyTextViewStyle"
-        android:textColor="@color/red"
+        style="@style/MaterialAlertDialog.Material3.Body.Text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:text="200"
         android:layout_marginStart="8dp" />
 
