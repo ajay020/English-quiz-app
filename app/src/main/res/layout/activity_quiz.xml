@@ -57,14 +57,13 @@
         <com.google.android.material.progressindicator.LinearProgressIndicator
             android:id="@+id/progress_bar"
             android:layout_width="0dp"
+            android:max="100"
+            app:trackCornerRadius="12dp"
             android:layout_weight="1"
             android:layout_height="wrap_content"
-            android:max="25"
-            app:trackThickness="8dp" />
+            app:trackThickness="12dp" />
 
     </LinearLayout>
-
-
 
     <Space
         android:layout_width="match_parent"

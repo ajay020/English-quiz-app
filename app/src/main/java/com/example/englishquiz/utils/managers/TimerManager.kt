@@ -7,12 +7,12 @@ class TimerManager(
 ) {
     private var countDownTimer: CountDownTimer? = null
     private var timeLeftInMillis: Long = 0
-    private var onTick: ((Long) -> Unit)? = null
+    private var onTick: ((Long, Float) -> Unit)? = null
     private var onFinish: (() -> Unit)? = null
 
     fun startTimer(
         duration: Long? = null,
-        onTick: (Long) -> Unit,
+        onTick: (Long, Float) -> Unit,
         onFinish: () -> Unit,
     ) {
         this.onTick = onTick // Store callbacks
@@ -24,10 +24,13 @@ class TimerManager(
         countDownTimer?.cancel()
 
         countDownTimer =
-            object : CountDownTimer(timeLeftInMillis, 1000) {
+            object : CountDownTimer(timeLeftInMillis, 16L) {
                 override fun onTick(millisUntilFinished: Long) {
                     timeLeftInMillis = millisUntilFinished
-                    onTick(millisUntilFinished / 1000) // Convert to seconds
+                    val secondsLeft = (millisUntilFinished / 1000)
+
+                    val progress = (millisUntilFinished.toFloat() / timerDuration.toFloat())
+                    onTick(secondsLeft, progress) // Convert to seconds
                 }
 
                 override fun onFinish() {
@@ -39,12 +42,16 @@ class TimerManager(
     fun addTimeDuration(extraTimeInMillis: Long) {
         countDownTimer?.cancel() // Cancel existing timer
         timeLeftInMillis += extraTimeInMillis // Update remaining time
+        val totalTimeDuration = timeLeftInMillis
 
         countDownTimer =
-            object : CountDownTimer(timeLeftInMillis, 1000) {
+            object : CountDownTimer(timeLeftInMillis, 16L) {
                 override fun onTick(millisUntilFinished: Long) {
                     timeLeftInMillis = millisUntilFinished
-                    this@TimerManager.onTick?.invoke(millisUntilFinished / 1000) // Invoke tick callback
+                    val secondsLeft = (millisUntilFinished / 1000)
+                    val progress = (millisUntilFinished.toFloat() / totalTimeDuration.toFloat())
+
+                    this@TimerManager.onTick?.invoke(secondsLeft, progress) // Invoke tick callback
                 }
 
                 override fun onFinish() {
@@ -58,9 +65,4 @@ class TimerManager(
     }
 
     fun getTimeLeft() = timeLeftInMillis
-
-    fun resetTimer() {
-        stopTimer() // Stop the timer
-        timeLeftInMillis = timerDuration // Reset to the initial duration
-    }
 }

@@ -44,6 +44,9 @@ class QuizViewModel
         private val _timeLeft = MutableLiveData<Long>()
         val timeLeft: LiveData<Long> = _timeLeft
 
+        private val _smoothProgress = MutableLiveData<Float>()
+        val smoothProgress: LiveData<Float> = _smoothProgress
+
         private val _questionProgress = MutableLiveData<String>("")
         val questionProgress: LiveData<String> = _questionProgress
 
@@ -129,7 +132,7 @@ class QuizViewModel
 
                     val optionsToHideCount = ceil(incorrectOptions.size / 2.0).toInt()
 
-                    // Ensure at least 2 incorrect options remain before applying a hint
+                    // Ensure at least 1 incorrect options remain before applying a hint
                     if (optionsToHideCount >= 1) {
                         val optionsToHide =
                             incorrectOptions
@@ -203,8 +206,9 @@ class QuizViewModel
 
         private fun startQuestionTimer() {
             timerManager.startTimer(
-                onTick = { seconds ->
+                onTick = { seconds, progress ->
                     _timeLeft.value = seconds
+                    _smoothProgress.value = progress
                 },
                 onFinish = {
                     _showTimeUpDialog.value = true
@@ -265,8 +269,6 @@ class QuizViewModel
             stopTimer()
         }
 
-        fun hasEnoughCoins(coinAmount: Int): Boolean = coinAmount <= coins.value!!
-
         fun deductCoins(amount: Int = 20) {
             _coins.value?.let { currentCoins ->
                 if (currentCoins >= amount) {
@@ -301,8 +303,10 @@ class QuizViewModel
             val remainingTime = timerManager.getTimeLeft()
             timerManager.startTimer(
                 duration = remainingTime,
-                onTick = { seconds ->
+                onTick = { seconds, progress ->
                     _timeLeft.value = seconds
+                    // Calculate smooth progress: (remainingTime / totalTime) * maxProgress
+                    _smoothProgress.value = progress.toFloat()
                 },
                 onFinish = {
                     _showTimeUpDialog.value = true

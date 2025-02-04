@@ -49,6 +49,9 @@ class QuizActivity : BaseActivity() {
         soundManager = SoundManager(preferenceManager, this)
         dialogManager = DialogManager(this, soundManager, preferenceManager)
 
+        // Initialize the progress bar
+        binding.progressBar.max = 100
+
         setupViews()
         setupObservers()
     }
@@ -114,8 +117,10 @@ class QuizActivity : BaseActivity() {
             val warningColor = resolveColorAttribute(R.attr.timerColorWarning)
             val defaultColor = resolveColorAttribute(R.attr.timerColorDefault)
             binding.tvTimer.setTextColor(if (seconds <= 5) warningColor else defaultColor)
+        }
 
-            binding.progressBar.progress = seconds.toInt()
+        viewModel.smoothProgress.observe(this) { progress ->
+            binding.progressBar.progress = (progress * 100).toInt()
         }
 
         viewModel.areAnswerButtonsEnabled.observe(this) { enabled ->
