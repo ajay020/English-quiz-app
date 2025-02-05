@@ -27,6 +27,7 @@ class SoundManager
         private var incorrectAnswerSoundId: Int = 0
         private var buttonClickSoundId: Int = 0
         private var levelCompleteSoundId: Int = 0
+        private var hintSoundId = 0
 
         init {
             // Set up SoundPool with appropriate audio attributes
@@ -55,12 +56,20 @@ class SoundManager
             incorrectAnswerSoundId = soundPool.load(context, R.raw.incorrect_answer, 1)
             buttonClickSoundId = soundPool.load(context, R.raw.button_click, 1)
             levelCompleteSoundId = soundPool.load(context, R.raw.level_complete, 1)
+            hintSoundId = soundPool.load(context, R.raw.hint_sound, 1)
         }
 
         // Play click sound
         fun playClickSound() {
             if (preferenceManager.isSoundEnabled()) {
                 soundPool.play(clickSoundId, 1f, 1f, 1, 0, 1f)
+            }
+        }
+
+        // Play hint sound
+        fun playHintSound() {
+            if (preferenceManager.isSoundEnabled()) {
+                soundPool.play(hintSoundId, 1f, 1f, 1, 0, 1f)
             }
         }
 

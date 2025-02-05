@@ -77,6 +77,7 @@ class QuizActivity : BaseActivity() {
         }
 
         binding.btnPause.setOnClickListener {
+            soundManager.playButtonClickSound()
             viewModel.pauseGame()
             dialogManager.showPauseDialog(
                 onResume = { viewModel.resumeGame() },
@@ -85,10 +86,12 @@ class QuizActivity : BaseActivity() {
         }
 
         binding.btnHint.setOnClickListener {
+            soundManager.playHintSound()
             viewModel.useHint(optionButtons)
         }
 
         binding.btnTimerBooster.setOnClickListener {
+            soundManager.playHintSound()
             viewModel.buyMoreTime()
         }
     }
