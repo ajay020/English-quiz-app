@@ -34,7 +34,7 @@
             android:textSize="16sp"
             tools:text="Time: 25" />
 
-        <com.example.englishquiz.views.CoinDisplayView
+        <com.example.quizzybee.views.CoinDisplayView
             android:id="@+id/coinDisplay"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

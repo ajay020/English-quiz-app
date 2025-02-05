@@ -7,17 +7,17 @@ plugins {
 }
 
 android {
-    namespace = "com.example.englishquiz"
+    namespace = "com.example.quizzybee"
     compileSdk = 35
 
     defaultConfig {
-        applicationId = "com.example.englishquiz"
+        applicationId = "com.example.quizzybee"
         minSdk = 24
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"
 
-        testInstrumentationRunner = "com.example.englishquiz.CustomTestRunner"
+        testInstrumentationRunner = "com.example.quizzybee.CustomTestRunner"
     }
 
     buildTypes {
