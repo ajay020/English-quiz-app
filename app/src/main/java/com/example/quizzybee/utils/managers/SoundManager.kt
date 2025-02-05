@@ -107,15 +107,18 @@ class SoundManager
 
         // Start background music
         open fun startMusic() {
-            if (mediaPlayer == null) {
-                mediaPlayer =
-                    MediaPlayer.create(context, R.raw.bg_music).apply {
-                        isLooping = true
-                        start()
+            if (preferenceManager.isMusicEnabled())
+                {
+                    if (mediaPlayer == null) {
+                        mediaPlayer =
+                            MediaPlayer.create(context, R.raw.bg_music).apply {
+                                isLooping = true
+                                start()
+                            }
+                    } else if (!mediaPlayer!!.isPlaying) {
+                        mediaPlayer?.start() // Resume playback if the media player exists but isn't playing
                     }
-            } else if (!mediaPlayer!!.isPlaying) {
-                mediaPlayer?.start() // Resume playback if the media player exists but isn't playing
-            }
+                }
         }
 
         // Stop background music

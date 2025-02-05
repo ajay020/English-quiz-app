@@ -50,9 +50,6 @@ class QuizViewModel
         private val _questionProgress = MutableLiveData<String>("")
         val questionProgress: LiveData<String> = _questionProgress
 
-        private val _showTimeUpDialog = MutableLiveData<Boolean>()
-        val showTimeUpDialog: LiveData<Boolean> = _showTimeUpDialog
-
         private val _areAnswerButtonsEnabled = MutableLiveData(true)
         val areAnswerButtonsEnabled: LiveData<Boolean> = _areAnswerButtonsEnabled
 
@@ -211,7 +208,6 @@ class QuizViewModel
                     _smoothProgress.value = progress
                 },
                 onFinish = {
-                    _showTimeUpDialog.value = true
                     _navigationEvent.value =
                         NavigationEvent.ShowQuizComplete(
                             level = _currentLevel.value ?: 0,
@@ -235,7 +231,6 @@ class QuizViewModel
             _coins.value?.let { currentCoins ->
                 if (currentCoins >= timeCost) {
                     deductCoins(timeCost)
-                    _showTimeUpDialog.value = false
                     addTime(extraTime)
                     enableAnswerButtons()
                 } else {
@@ -247,7 +242,6 @@ class QuizViewModel
         fun restartLevel() {
             currentQuestionIndex = 0
             _questionProgress.value = "0 / ${questions.size}"
-            _showTimeUpDialog.value = false
             solvedQuestions.clear()
             solvedQuestions.addAll(questions)
             startQuestionTimer()
@@ -309,7 +303,6 @@ class QuizViewModel
                     _smoothProgress.value = progress.toFloat()
                 },
                 onFinish = {
-                    _showTimeUpDialog.value = true
                     disableAnswerButtons()
                 },
             )

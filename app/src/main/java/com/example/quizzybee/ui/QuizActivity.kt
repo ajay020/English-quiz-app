@@ -52,6 +52,11 @@ class QuizActivity : BaseActivity() {
         // Initialize the progress bar
         binding.progressBar.max = 100
 
+        if (preferenceManager.isMusicEnabled())
+            {
+                soundManager.startMusic()
+            }
+
         setupViews()
         setupObservers()
     }
@@ -250,5 +255,15 @@ class QuizActivity : BaseActivity() {
         val typedValue = TypedValue()
         theme.resolveAttribute(attr, typedValue, true)
         return typedValue.data
+    }
+
+    override fun onPause() {
+        super.onPause()
+        soundManager.stopMusic()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        soundManager.startMusic()
     }
 }
