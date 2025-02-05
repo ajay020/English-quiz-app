@@ -30,16 +30,6 @@
     "correctAnswer": "Very easy"
   },
   {
-    "questionText": "I ___ my homework in the morning. (Present tense)",
-    "options": [
-      "do",
-      "did",
-      "doing",
-      "does"
-    ],
-    "correctAnswer": "do"
-  },
-  {
     "questionText": "What is the opposite of 'fast'?",
     "options": [
       "Quick",
@@ -158,8 +148,7 @@
       "Cook beans"
     ],
     "correctAnswer": "Reveal a secret"
-  }
-,
+  },
   {
     "questionText": "What is the synonym of 'happy'?",
     "options": [
@@ -979,5 +968,1135 @@
       "Very angry"
     ],
     "correctAnswer": "Very happy"
+  },
+  {
+    "questionText": "Which of these is a mammal?",
+    "options": [
+      "Shark",
+      "Snake",
+      "Cat",
+      "Frog"
+    ],
+    "correctAnswer": "Cat"
+  },
+  {
+    "questionText": "Which spelling is correct?",
+    "options": [
+      "Accomodation",
+      "Accommodation",
+      "Acommodation",
+      "Accommadation"
+    ],
+    "correctAnswer": "Accommodation"
+  },
+  {
+    "questionText": "Choose the correct spelling of the word meaning 'necessary'.",
+    "options": [
+      "Nesessary",
+      "Necessary",
+      "Neccessary",
+      "Necesary"
+    ],
+    "correctAnswer": "Necessary"
+  },
+  {
+    "questionText": "Select the correct spelling of the word meaning 'a type of business'.",
+    "options": [
+      "Entrepreneur",
+      "Enterprenuer",
+      "Entrepeneur",
+      "Enterprenur"
+    ],
+    "correctAnswer": "Entrepreneur"
+  },
+  {
+    "questionText": "What is the correct spelling?",
+    "options": [
+      "Definately",
+      "Definitely",
+      "Definetely",
+      "Definitley"
+    ],
+    "correctAnswer": "Definitely"
+  },
+  {
+    "questionText": "Choose the correct plural form of 'child'.",
+    "options": [
+      "Childs",
+      "Children",
+      "Childes",
+      "Childrens"
+    ],
+    "correctAnswer": "Children"
+  },
+  {
+    "questionText": "What is the plural of 'tooth'?",
+    "options": [
+      "Toothes",
+      "Teeth",
+      "Tooths",
+      "Teeths"
+    ],
+    "correctAnswer": "Teeth"
+  },
+  {
+    "questionText": "Choose the correct plural form of 'ox'.",
+    "options": [
+      "Oxes",
+      "Oxs",
+      "Oxen",
+      "Oxies"
+    ],
+    "correctAnswer": "Oxen"
+  },
+  {
+    "questionText": "Which is the correct plural of 'cactus'?",
+    "options": [
+      "Cactuses",
+      "Cactii",
+      "Cacti",
+      "Cactus"
+    ],
+    "correctAnswer": "Cacti"
+  },
+  {
+    "questionText": "What is the correct plural of 'knife'?",
+    "options": [
+      "Knifes",
+      "Knivess",
+      "Knive",
+      "Knives"
+    ],
+    "correctAnswer": "Knives"
+  },
+  {
+    "questionText": "Which sentence uses the correct form of 'their', 'there', or 'they’re'?",
+    "options": [
+      "Their going to the park.",
+      "There going to the park.",
+      "They’re going to the park.",
+      "Their is going to the park."
+    ],
+    "correctAnswer": "They’re going to the park."
+  },
+  {
+    "questionText": "Which word means 'a person who studies the stars and planets'?",
+    "options": [
+      "Astronaut",
+      "Astronomer",
+      "Astrologer",
+      "Meteorologist"
+    ],
+    "correctAnswer": "Astronomer"
+  },
+  {
+    "questionText": "Which spelling is correct?",
+    "options": [
+      "Embarass",
+      "Embarrass",
+      "Embarras",
+      "Embaras"
+    ],
+    "correctAnswer": "Embarrass"
+  },
+  {
+    "questionText": "Choose the correct plural form of 'mouse'.",
+    "options": [
+      "Mouses",
+      "Mice",
+      "Mousees",
+      "Mices"
+    ],
+    "correctAnswer": "Mice"
+  },
+  {
+    "questionText": "Which spelling is correct?",
+    "options": [
+      "Occasion",
+      "Ocassion",
+      "Occassion",
+      "Ocasion"
+    ],
+    "correctAnswer": "Occasion"
+  },
+  {
+    "questionText": "Choose the correct plural form of 'leaf'.",
+    "options": [
+      "Leafs",
+      "Leaves",
+      "Leafes",
+      "Leavs"
+    ],
+    "correctAnswer": "Leaves"
+  },
+  {
+    "questionText": "Which word means 'a place where books are kept'?",
+    "options": [
+      "Library",
+      "Bookstore",
+      "Museum",
+      "Archive"
+    ],
+    "correctAnswer": "Library"
+  },
+  {
+    "questionText": "Identify the correctly spelled word.",
+    "options": [
+      "Septembar",
+      "September",
+      "Septmber",
+      "Saptember"
+    ],
+    "correctAnswer": "September"
+  },
+  {
+    "questionText": "What is the plural of 'deer'?",
+    "options": [
+      "Deers",
+      "Deeres",
+      "Deer",
+      "Deerses"
+    ],
+    "correctAnswer": "Deer"
+  },
+  {
+    "questionText": "What is the antonym of 'noisy'?",
+    "options": [
+      "Loud",
+      "Silent",
+      "Talkative",
+      "Echoing"
+    ],
+    "correctAnswer": "Silent"
+  },
+  {
+    "questionText": "Which word means 'a person who treats sick animals'?",
+    "options": [
+      "Dentist",
+      "Veterinarian",
+      "Surgeon",
+      "Pharmacist"
+    ],
+    "correctAnswer": "Veterinarian"
+  },
+  {
+    "questionText": "Which sentence uses the correct form of 'your' or 'you’re'?",
+    "options": [
+      "Your going to love this movie.",
+      "You’re my best friend.",
+      "I saw you’re book on the table.",
+      "Your very smart."
+    ],
+    "correctAnswer": "You’re my best friend."
+  },
+  {
+    "questionText": "Identify the correctly spelled word.",
+    "options": [
+      "Tommorrow",
+      "Tomorow",
+      "Tomorrow",
+      "Tommorow"
+    ],
+    "correctAnswer": "Tomorrow"
+  },
+  {
+    "questionText": "Which word means 'a doctor who performs operations'?",
+    "options": [
+      "Surgeon",
+      "Dentist",
+      "Pharmacist",
+      "Nurse"
+    ],
+    "correctAnswer": "Surgeon"
+  },
+  {
+    "questionText": "Which sentence uses the correct form of 'its' or 'it’s'?",
+    "options": [
+      "The cat lost it’s collar.",
+      "Its a beautiful day.",
+      "It’s going to rain later.",
+      "Its raining outside."
+    ],
+    "correctAnswer": "It’s going to rain later."
+  },
+  {
+    "questionText": "Which word means 'a person who teaches students'?",
+    "options": [
+      "Doctor",
+      "Pilot",
+      "Teacher",
+      "Engineer"
+    ],
+    "correctAnswer": "Teacher"
+  },
+  {
+    "questionText": "Which sentence uses the correct form of 'their', 'there', or 'they’re'?",
+    "options": [
+      "Their going to the mall.",
+      "Look over they’re!",
+      "There is a new restaurant nearby.",
+      "That is there house."
+    ],
+    "correctAnswer": "There is a new restaurant nearby."
+  },
+  {
+    "questionText": "A person who speaks many languages?",
+    "options": [
+      "Orator",
+      "Linguist",
+      "Philosopher",
+      "Grammarian"
+    ],
+    "correctAnswer": "Linguist"
+  },
+  {
+    "questionText": "What does the idiom 'cost an arm and a leg' mean?",
+    "options": [
+      "Be very expensive",
+      "Be very painful",
+      "Be very dangerous",
+      "Be very cheap"
+    ],
+    "correctAnswer": "Be very expensive"
+  },
+  {
+    "questionText": "Choose the correct meaning of the idiom 'barking up the wrong tree'.",
+    "options": [
+      "Making a wrong assumption",
+      "Looking at a tree",
+      "Being very angry",
+      "Searching for a dog"
+    ],
+    "correctAnswer": "Making a wrong assumption"
+  },
+  {
+    "questionText": "A person who translates spoken words into another language.",
+    "options": [
+      "Interpreter",
+      "Interprator",
+      "Interprater",
+      "Interpretter"
+    ],
+    "correctAnswer": "Interpreter"
+  },
+  {
+    "questionText": "A person who writes a newspaper article.",
+    "options": [
+      "Journelist",
+      "Jornalist",
+      "Jurnelist",
+      "Journalist"
+    ],
+    "correctAnswer": "Journalist"
+  },
+  {
+    "questionText": "A person who takes care of a museum?",
+    "options": [
+      "Curetor",
+      "Curater",
+      "Curator",
+      "Curaytor"
+    ],
+    "correctAnswer": "Curator"
+  },
+  {
+    "questionText": "A person who studies the stars and planets:",
+    "options": [
+      "Astronomer",
+      "Astronamer",
+      "Astornomer",
+      "Astronemer"
+    ],
+    "correctAnswer": "Astronomer"
+  },
+  {
+    "questionText": "A person who sells medicines:",
+    "options": [
+      "Pharmacist",
+      "Farmacist",
+      "Pharmasist",
+      "Pharmacyst"
+    ],
+    "correctAnswer": "Pharmacist"
+  },
+  {
+    "questionText": "A person who repairs water pipes:",
+    "options": [
+      "Plumber",
+      "Plomar",
+      "Plummber",
+      "Plumer"
+    ],
+    "correctAnswer": "Plumber"
+  },
+  {
+    "questionText": "A person who teaches at a university:",
+    "options": [
+      "Professor",
+      "Profeser",
+      "Proffesor",
+      "Professer"
+    ],
+    "correctAnswer": "Professor"
+  },
+  {
+    "questionText": "Which preposition indicates 'in addition to'?",
+    "options": [
+      "Besides",
+      "Beside",
+      "Between",
+      "Among"
+    ],
+    "correctAnswer": "Besides"
+  },
+  {
+    "questionText": "Which of these is the correct spelling?",
+    "options": [
+      "Accomodate",
+      "Acommodate",
+      "Accommodate",
+      "Accommidate"
+    ],
+    "correctAnswer": "Accommodate"
+  },
+  {
+    "questionText": "The opposite of 'optimistic' is:",
+    "options": [
+      "Pessimistik",
+      "Pessimistic",
+      "Passimistic",
+      "Pessamistic"
+    ],
+    "correctAnswer": "Pessimistic"
+  },
+  {
+    "questionText": "Choose the correct synonym for 'eloquent':",
+    "options": [
+      "Fluent",
+      "Inarticulate",
+      "Stammering",
+      "Mumbling"
+    ],
+    "correctAnswer": "Fluent"
+  },
+  {
+    "questionText": "Which article is used before a vowel sound?",
+    "options": [
+      "A",
+      "An",
+      "The",
+      "None of the above"
+    ],
+    "correctAnswer": "An"
+  },
+  {
+    "questionText": "What is the past participle of 'to go'?",
+    "options": [
+      "Went",
+      "Gone",
+      "Going",
+      "Go"
+    ],
+    "correctAnswer": "Gone"
+  },
+  {
+    "questionText": "Which word is an antonym of 'generous'?",
+    "options": [
+      "Kind",
+      "Selfish",
+      "Charitable",
+      "Liberal"
+    ],
+    "correctAnswer": "Selfish"
+  },
+  {
+    "questionText": "I ______ to the store yesterday.",
+    "options": [
+      "Go",
+      "Went",
+      "Going",
+      "Gone"
+    ],
+    "correctAnswer": "Went"
+  },
+  {
+    "questionText": "What is the antonym of 'expand'?",
+    "options": [
+      "Contract",
+      "Enlarge",
+      "Stretch",
+      "Inflate"
+    ],
+    "correctAnswer": "Contract"
+  },
+  {
+    "questionText": "What is the antonym of 'gradual'?",
+    "options": [
+      "Slow",
+      "Steady",
+      "Sudden",
+      "Incremental"
+    ],
+    "correctAnswer": "Sudden"
+  },
+  {
+    "questionText": "Which word is an antonym of 'humble'?",
+    "options": [
+      "Modest",
+      "Arrogant",
+      "Meek",
+      "Unassuming"
+    ],
+    "correctAnswer": "Arrogant"
+  },
+  {
+    "questionText": "What does the idiom 'to hit the nail on the head' mean?",
+    "options": [
+      "To hammer a nail precisely",
+      "To be accurate or correct",
+      "To be clumsy",
+      "To be aggressive"
+    ],
+    "correctAnswer": "To be accurate or correct"
+  },
+  {
+    "questionText": "What does the idiom 'to let the cat out of the bag' mean?",
+    "options": [
+      "To release a cat",
+      "To reveal a secret",
+      "To make a mistake",
+      "To be careless"
+    ],
+    "correctAnswer": "To reveal a secret"
+  },
+  {
+    "questionText": "Which word is spelled correctly?",
+    "options": [
+      "Definte",
+      "Definate",
+      "Definite",
+      "Defenitive"
+    ],
+    "correctAnswer": "Definite"
+  },
+  {
+    "questionText": "Identify the misspelled word:",
+    "options": [
+      "Separate",
+      "Desperate",
+      "Temperature",
+      "Febuary"
+    ],
+    "correctAnswer": "Febuary"
+  },
+  {
+    "questionText": "What is the antonym of 'abundant'?",
+    "options": [
+      "Plentiful",
+      "Scarce",
+      "Ample",
+      "Copious"
+    ],
+    "correctAnswer": "Scarce"
+  },
+  {
+    "questionText": "Which word is an antonym of 'transparent'?",
+    "options": [
+      "Clear",
+      "Opaque",
+      "Lucid",
+      "Pellucid"
+    ],
+    "correctAnswer": "Opaque"
+  },
+  {
+    "questionText": "'To be in hot water' mean?",
+    "options": [
+      "To be literally in hot water",
+      "To be in trouble",
+      "To be comfortable",
+      "To be relaxed"
+    ],
+    "correctAnswer": "To be in trouble"
+  },
+  {
+    "questionText": "What does the idiom 'to pull someone's leg' mean?",
+    "options": [
+      "To physically pull someone's leg",
+      "To joke or tease someone",
+      "To help someone",
+      "To be serious"
+    ],
+    "correctAnswer": "To joke or tease someone"
+  },
+  {
+    "questionText": "Which word is spelled correctly?",
+    "options": [
+      "Exagerate",
+      "Exagerrate",
+      "Exaggeratte",
+      "Exaggerate"
+    ],
+    "correctAnswer": "Exaggerate"
+  },
+  {
+    "questionText": "Identify the misspelled word:",
+    "options": [
+      "Intelligence",
+      "Occasion",
+      "wondar",
+      "Believe"
+    ],
+    "correctAnswer": "Wondar"
+  },
+  {
+    "questionText": "What is the antonym of 'fragile'?",
+    "options": [
+      "Delicate",
+      "Sturdy",
+      "Weak",
+      "Brittle"
+    ],
+    "correctAnswer": "Sturdy"
+  },
+  {
+    "questionText": "Which word is an antonym of 'optimistic'?",
+    "options": [
+      "Passimistic",
+      "Pessimistic",
+      "Pessemistic",
+      "Pessimestic"
+    ],
+    "correctAnswer": "Pessimistic"
+  },
+  {
+    "questionText": "What does the idiom 'to be a piece of cake' mean?",
+    "options": [
+      "To be delicious",
+      "To be easy",
+      "To be difficult",
+      "To be complicated"
+    ],
+    "correctAnswer": "To be easy"
+  },
+  {
+    "questionText": "What does the idiom 'to miss the boat' mean?",
+    "options": [
+      "To miss a literal boat",
+      "To miss an opportunity",
+      "To be late",
+      "To be early"
+    ],
+    "correctAnswer": "To miss an opportunity"
+  },
+  {
+    "questionText": "Which word is spelled correctly?",
+    "options": [
+      "Commitee",
+      "Comittee",
+      "Committee",
+      "Committe"
+    ],
+    "correctAnswer": "Committee"
+  },
+  {
+    "questionText": "Identify the misspelled word:",
+    "options": [
+      "Guarantee",
+      "Gaurantee",
+      "Restaurant",
+      "Beautiful"
+    ],
+    "correctAnswer": "Gaurantee"
+  },
+  {
+    "questionText": "What is the antonym of 'voluntary'?",
+    "options": [
+      "Optional",
+      "Compulsory",
+      "Willing",
+      "Unforced"
+    ],
+    "correctAnswer": "Compulsory"
+  },
+  {
+    "questionText": "Which word is an antonym of 'domestic'?",
+    "options": [
+      "Foreign",
+      "Local",
+      "Home",
+      "Native"
+    ],
+    "correctAnswer": "Foreign"
+  },
+  {
+    "questionText": "What does the idiom 'to see eye to eye' mean?",
+    "options": [
+      "To have good eyesight",
+      "To agree with someone",
+      "To disagree with someone",
+      "To stare intensely"
+    ],
+    "correctAnswer": "To agree with someone"
+  },
+  {
+    "questionText": "What does the idiom 'to get cold feet' mean?",
+    "options": [
+      "To have literally cold feet",
+      "To be nervous or scared",
+      "To be excited",
+      "To be confident"
+    ],
+    "correctAnswer": "To be nervous or scared"
+  },
+  {
+    "questionText": "Identify the misspelled word:",
+    "options": [
+      "Environment",
+      "Goverment",
+      "Judgment",
+      "Development"
+    ],
+    "correctAnswer": "Goverment"
+  },
+  {
+    "questionText": "What is the antonym of 'rigid'?",
+    "options": [
+      "Stiff",
+      "Inflexible",
+      "Flexible",
+      "Strict"
+    ],
+    "correctAnswer": "Flexible"
+  },
+  {
+    "questionText": "Which word is an antonym of 'extroverted'?",
+    "options": [
+      "Outgoing",
+      "Introverted",
+      "Sociable",
+      "Gregarious"
+    ],
+    "correctAnswer": "Introverted"
+  },
+  {
+    "questionText": "What does the idiom 'to bite the bullet' mean?",
+    "options": [
+      "To literally bite a bullet",
+      "To endure a painful or unpleasant situation",
+      "To be stubborn",
+      "To give up"
+    ],
+    "correctAnswer": "To endure a painful or unpleasant situation"
+  },
+  {
+    "questionText": "What does the idiom 'to cut corners' mean?",
+    "options": [
+      "To literally cut corners",
+      "To do something badly or cheaply",
+      "To be efficient",
+      "To be thorough"
+    ],
+    "correctAnswer": "To do something badly or cheaply"
+  },
+  {
+    "questionText": "Which word is spelled correctly?",
+    "options": [
+      "Questionaire",
+      "Questionnair",
+      "Questionnaire",
+      "Questionnare"
+    ],
+    "correctAnswer": "Questionnaire"
+  },
+  {
+    "questionText": "Identify the misspelled word:",
+    "options": [
+      "Privilege",
+      "Convenience",
+      "Occurence",
+      "Existence"
+    ],
+    "correctAnswer": "Occurence"
+  },
+  {
+    "questionText": "What is the antonym of 'humble'?",
+    "options": [
+      "Modest",
+      "Arrogant",
+      "Meek",
+      "Unassuming"
+    ],
+    "correctAnswer": "Arrogant"
+  },
+  {
+    "questionText": "What does the idiom 'to add fuel to the fire' mean?",
+    "options": [
+      "To literally add fuel to a fire",
+      "To worsen a situation",
+      "To improve a situation",
+      "To be helpful"
+    ],
+    "correctAnswer": "To worsen a situation"
+  },
+  {
+    "questionText": "What does the idiom 'to bury the hatchet' mean?",
+    "options": [
+      "To literally bury a hatchet",
+      "To make peace",
+      "To start a fight",
+      "To be angry"
+    ],
+    "correctAnswer": "To make peace"
+  },
+  {
+    "questionText": "What is the meaning of the idiom 'to kick the bucket'?",
+    "options": [
+      "To literally kick a bucket",
+      "To start a fight",
+      "To die",
+      "To be happy"
+    ],
+    "correctAnswer": "To die"
+  },
+  {
+    "questionText": "What is the past tense of the verb 'run'?",
+    "options": [
+      "Ran",
+      "Runned",
+      "Running",
+      "Runs"
+    ],
+    "correctAnswer": "Ran"
+  },
+  {
+    "questionText": "Which of the following sentences is correct?",
+    "options": [
+      "She don't like apples.",
+      "She doesn't like apples.",
+      "She not like apples.",
+      "She doesn't likes apples."
+    ],
+    "correctAnswer": "She doesn't like apples."
+  },
+  {
+    "questionText": "Which of the following is a homophone for the word 'sea'?",
+    "options": [
+      "Sigh",
+      "See",
+      "Say",
+      "Sue"
+    ],
+    "correctAnswer": "See"
+  },
+  {
+    "questionText": "Choose the correct spelling:",
+    "options": [
+      "Definately",
+      "Definitely",
+      "Definately",
+      "Defanitely"
+    ],
+    "correctAnswer": "Definitely"
+  },
+  {
+    "questionText": "What is the antonym of the word 'ancient'?",
+    "options": [
+      "Old",
+      "Young",
+      "Modern",
+      "Ancient"
+    ],
+    "correctAnswer": "Modern"
+  },
+  {
+    "questionText": "Which of the following words is a verb?",
+    "options": [
+      "Quickly",
+      "Happiness",
+      "Run",
+      "Beautiful"
+    ],
+    "correctAnswer": "Run"
+  },
+  {
+    "questionText": "What does the idiom 'hit the nail on the head' mean?",
+    "options": [
+      "To literally hit a nail",
+      "To speak accurately",
+      "To start a project",
+      "To make a mistake"
+    ],
+    "correctAnswer": "To speak accurately"
+  },
+  {
+    "questionText": "Which of the following sentences uses the correct subject-verb agreement?",
+    "options": [
+      "The team are playing well.",
+      "The team is playing well.",
+      "The teams is playing well.",
+      "The team has playing well."
+    ],
+    "correctAnswer": "The team is playing well."
+  },
+  {
+    "questionText": "What does the prefix 'un-' mean in the word 'unhappy'?",
+    "options": [
+      "Very",
+      "Not",
+      "With",
+      "Under"
+    ],
+    "correctAnswer": "Not"
+  },
+  {
+    "questionText": "What is the past participle form of the verb 'eat'?",
+    "options": [
+      "Ate",
+      "Eats",
+      "Eating",
+      "Eaten"
+    ],
+    "correctAnswer": "Eaten"
+  },
+  {
+    "questionText": "Which of the following sentences is grammatically correct?",
+    "options": [
+      "She go to school every day.",
+      "She goes to school every day.",
+      "She going to school every day.",
+      "She went school every day."
+    ],
+    "correctAnswer": "She goes to school every day."
+  },
+  {
+    "questionText": "Which of the following words is an adjective?",
+    "options": [
+      "Quickly",
+      "Running",
+      "Beautiful",
+      "Sing"
+    ],
+    "correctAnswer": "Beautiful"
+  },
+  {
+    "questionText": "What does the phrase 'let the cat out of the bag' mean?",
+    "options": [
+      "To release a cat from a bag",
+      "To reveal a secret",
+      "To make a mistake",
+      "To catch a thief"
+    ],
+    "correctAnswer": "To reveal a secret"
+  },
+  {
+    "questionText": "What is the correct past tense of the verb 'write'?",
+    "options": [
+      "Writes",
+      "Wrote",
+      "Written",
+      "Writing"
+    ],
+    "correctAnswer": "Wrote"
+  },
+  {
+    "questionText": "What is the comparative form of the adjective 'good'?",
+    "options": [
+      "Gooder",
+      "More Good",
+      "Better",
+      "Best"
+    ],
+    "correctAnswer": "Better"
+  },
+  {
+    "questionText": "Which of the following is a pronoun?",
+    "options": [
+      "Run",
+      "Quick",
+      "He",
+      "Beauty"
+    ],
+    "correctAnswer": "He"
+  },
+  {
+    "questionText": "Which of the following words is a noun?",
+    "options": [
+      "Run",
+      "Quick",
+      "Beauty",
+      "He"
+    ],
+    "correctAnswer": "Beauty"
+  },
+  {
+    "questionText": "What is the superlative form of the adjective 'short'?",
+    "options": [
+      "Shorter",
+      "Shortest",
+      "Shorty",
+      "More short"
+    ],
+    "correctAnswer": "Shortest"
+  },
+  {
+    "questionText": "What is the meaning of the word 'meticulous'?",
+    "options": [
+      "Careless",
+      "Thorough",
+      "Quick",
+      "Easy"
+    ],
+    "correctAnswer": "Thorough"
+  },
+  {
+    "questionText": "What is the comparative form of the adjective 'easy'?",
+    "options": [
+      "Easyer",
+      "More easy",
+      "Easier",
+      "Easiest"
+    ],
+    "correctAnswer": "Easier"
+  },
+  {
+    "questionText": "Which of the following words is a homophone for 'bare'?",
+    "options": [
+      "Bear",
+      "Barely",
+      "Bar",
+      "Beer"
+    ],
+    "correctAnswer": "Bear"
+  },
+  {
+    "questionText": "Identify the misspelled word:",
+    "options": [
+      "Necessary",
+      "Supersede",
+      "Concious",
+      "Independent"
+    ],
+    "correctAnswer": "Concious"
+  },
+  {
+    "questionText": "Identify the misspelled word:",
+    "options": [
+      "Immediately",
+      "Accomodate",
+      "Receipt",
+      "Supersede"
+    ],
+    "correctAnswer": "Accomodate"
+  },
+  {
+    "questionText": "Identify the misspelled word:",
+    "options": [
+      "Nieghbor",
+      "Restaurant",
+      "Weird",
+      "Definitely"
+    ],
+    "correctAnswer": "Nieghbor"
+  },
+  {
+    "questionText": "Identify the misspelled word:",
+    "options": [
+      "Rhythm",
+      "Occurrance",
+      "Conscience",
+      "Separate"
+    ],
+    "correctAnswer": "Occurrance"
+  },
+  {
+    "questionText": "Identify the misspelled word:",
+    "options": [
+      "Harass",
+      "Acquaintance",
+      "Brocolli",
+      "Apparent"
+    ],
+    "correctAnswer": "Brocolli"
+  },
+  {
+    "questionText": "Identify the misspelled word:",
+    "options": [
+      "Calendar",
+      "Committee",
+      "Resistence",
+      "Existence"
+    ],
+    "correctAnswer": "Resistence"
+  },
+  {
+    "questionText": "Identify the misspelled word:",
+    "options": [
+      "Beginning",
+      "Acomodate",
+      "Necessary",
+      "Business"
+    ],
+    "correctAnswer": "Acomodate"
+  },
+  {
+    "questionText": "Identify the misspelled word:",
+    "options": [
+      "Friend",
+      "knowledgge",
+      "Tomorrow",
+      "Straight"
+    ],
+    "correctAnswer": "knowledgge"
+  },
+  {
+    "questionText": "Identify the misspelled word:",
+    "options": [
+      "Beautiful",
+      "Definitley",
+      "Garden",
+      "Bicycle"
+    ],
+    "correctAnswer": "Definitley"
+  },
+  {
+    "questionText": "Identify the misspelled word:",
+    "options": [
+      "Cerry",
+      "Library",
+      "Elephant",
+      "Mountain"
+    ],
+    "correctAnswer": "Cerry"
+  },
+  {
+    "questionText": "Identify the misspelled word:",
+    "options": [
+      "Hapiness",
+      "Birthday",
+      "Vacation",
+      "Favorite"
+    ],
+    "correctAnswer": "Hapiness"
+  },
+  {
+    "questionText": "Identify the misspelled word:",
+    "options": [
+      "Again",
+      "Usefull",
+      "Water",
+      "Interesting"
+    ],
+    "correctAnswer": "Usefull"
+  },
+  {
+    "questionText": "Identify the misspelled word:",
+    "options": [
+      "Addition",
+      "Misspell",
+      "Ocean",
+      "Resturant"
+    ],
+    "correctAnswer": "Resturant"
   }
 ]

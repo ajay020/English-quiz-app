@@ -86,12 +86,10 @@ class MainActivity : BaseActivity() {
                     openSettingsDialog()
                     true
                 }
-
                 R.id.menu_coin_display -> {
                     // Handle coin display click if needed
                     true
                 }
-
                 else -> false
             }
         }
