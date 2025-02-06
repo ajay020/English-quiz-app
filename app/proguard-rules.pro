@@ -19,3 +19,18 @@
 # If you keep the line number information, uncomment this to
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
+
+# Keep Room database classes
+-keep class com.example.englishquiz.data.** { *; }
+
+# If using Kotlin serialization
+-keep class kotlinx.serialization.** { *; }
+
+# Keep Moshi adapter classes
+-keep class com.squareup.moshi.** { *; }
+
+# Keep classes annotated with @JsonClass(generateAdapter = true)
+-keepclasseswithmembers class * {
+    @com.squareup.moshi.JsonClass <fields>;
+}
+

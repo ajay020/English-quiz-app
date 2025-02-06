@@ -128,7 +128,7 @@
                 android:layout_gravity="center"
                 android:layout_marginHorizontal="16dp"
                 android:padding="8dp"
-                android:text="Share"
+                android:text="@string/share"
                 android:textSize="16sp" />
         </LinearLayout>
 

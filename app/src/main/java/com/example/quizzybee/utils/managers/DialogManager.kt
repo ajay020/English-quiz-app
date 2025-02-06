@@ -21,6 +21,7 @@ import nl.dionsegijn.konfetti.core.Party
 import nl.dionsegijn.konfetti.core.Position
 import nl.dionsegijn.konfetti.core.emitter.Emitter
 import nl.dionsegijn.konfetti.xml.KonfettiView
+import java.util.Locale
 import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 
@@ -98,7 +99,7 @@ class DialogManager
 
             timePicker.setOnClickListener {
                 TimePickerUtil.showTimePickerDialog(context) { hour, minute ->
-                    timePicker.text = String.format("%02d:%02d", hour, minute)
+                    timePicker.text = String.format(Locale("en"), "%02d:%02d", hour, minute)
                     preferenceManager.setNotificationTime(hour, minute)
                     notificationScheduler.scheduleDailyNotification(hour, minute)
                 }

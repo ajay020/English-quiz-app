@@ -1,16 +1,17 @@
 package com.example.quizzybee.utils
 
 import androidx.room.TypeConverter
-import com.google.gson.Gson
-import com.google.gson.reflect.TypeToken
+import com.squareup.moshi.Moshi
+import com.squareup.moshi.Types
 
 class Converters {
-    @TypeConverter
-    fun fromString(value: String): List<String> {
-        val listType = object : TypeToken<List<String>>() {}.type
-        return Gson().fromJson(value, listType)
-    }
+    private val moshi: Moshi = Moshi.Builder().build()
+    private val listType = Types.newParameterizedType(List::class.java, String::class.java)
+    private val adapter = moshi.adapter<List<String>>(listType)
 
     @TypeConverter
-    fun fromList(list: List<String>): String = Gson().toJson(list)
+    fun fromString(value: String): List<String> = adapter.fromJson(value) ?: emptyList()
+
+    @TypeConverter
+    fun fromList(list: List<String>): String = adapter.toJson(list)
 }

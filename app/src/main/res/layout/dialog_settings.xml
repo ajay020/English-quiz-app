@@ -15,7 +15,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:paddingBottom="16dp"
-        android:text="Settings"
+        android:text="@string/settings"
         android:textAppearance="?attr/textAppearanceHeadline6" />
 
     <!-- Sound Toggle -->
@@ -30,7 +30,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Sound"
+            android:text="@string/sound"
             android:textAppearance="?attr/textAppearanceBody1" />
 
         <com.google.android.material.materialswitch.MaterialSwitch
@@ -74,7 +74,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Dark Theme"
+            android:text="@string/dark_theme"
             android:textAppearance="?attr/textAppearanceBody1" />
 
         <com.google.android.material.materialswitch.MaterialSwitch
@@ -96,7 +96,7 @@
             android:layout_height="wrap_content"
             android:layout_width="0dp"
             android:layout_weight="1"
-            android:text="Notifications"
+            android:text="@string/notifications"
             android:textAppearance="?attr/textAppearanceBody1" />
 
         <com.google.android.material.materialswitch.MaterialSwitch
@@ -118,7 +118,7 @@
             android:layout_height="wrap_content"
             android:layout_width="0dp"
             android:layout_weight="1"
-            android:text="Notification Time"
+            android:text="@string/notification_time"
             android:textAppearance="?attr/textAppearanceBody1" />
         <Button
             android:id="@+id/btn_timepicker"
@@ -136,6 +136,5 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
         android:text="@string/close" />
-    />
 </LinearLayout>
 

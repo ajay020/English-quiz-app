@@ -104,5 +104,10 @@
     <string name="pause">pause</string>
     <string name="level_text">Level %1$d</string>
     <string name="time_format">Time - %1$d</string>
+    <string name="sound">Sound</string>
+    <string name="dark_theme">Dark Theme</string>
+    <string name="notifications">Notifications</string>
+    <string name="notification_time">Notification Time</string>
+    <string name="share">Share</string>
 
 </resources>
