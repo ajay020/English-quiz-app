@@ -5,6 +5,7 @@ import android.util.Log
 import com.example.quizzybee.data.Question
 import com.example.quizzybee.data.database.AppDatabase
 import com.example.quizzybee.data.preferences.PreferenceManager
+import com.squareup.moshi.Json
 import com.squareup.moshi.JsonAdapter
 import com.squareup.moshi.JsonClass
 import com.squareup.moshi.Moshi
@@ -16,10 +17,9 @@ import kotlinx.coroutines.launch
 
 @JsonClass(generateAdapter = true)
 data class QuestionJson(
-    val questionText: String,
-    val options: List<String>,
-    val correctAnswer: String,
-    val isSolved: Boolean = false,
+    @Json(name = "questionText") val questionText: String,
+    @Json(name = "options") val options: List<String>,
+    @Json(name = "correctAnswer") val correctAnswer: String,
 )
 
 object QuestionLoadingScript {
@@ -76,7 +76,7 @@ object QuestionLoadingScript {
                 questionText = question.questionText,
                 options = question.options,
                 correctAnswer = question.correctAnswer,
-                isSolved = question.isSolved,
+                isSolved = false, // Initialize isSolved as false
             )
         }
 

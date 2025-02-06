@@ -33,4 +33,7 @@
 -keepclasseswithmembers class * {
     @com.squareup.moshi.JsonClass <fields>;
 }
-
+-keep @com.squareup.moshi.JsonClass class * { *; }
+-keep @com.squareup.moshi.JsonClass interface * { *; }
+-keep @com.squareup.moshi.JsonAdapter class * { *; }
+-keepattributes RuntimeVisibleAnnotations
