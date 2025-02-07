@@ -14,6 +14,7 @@ QuizzyBee is a fun and interactive English quiz app designed for **beginner to i
 ✅ **Level System** – Progress through levels by answering questions correctly.  
 ✅ **Coin Rewards** – Earn coins for correct answers and use them for hints.  
 ✅ **Streak Tracking** – Keep your daily learning streak going!   
+✅ **Theme** – Dark and light theme.  
 ✅ **Lightweight & Fast** – Optimized performance with Room database storage.  
 
 ## 📱 Tech Stack
@@ -24,3 +25,7 @@ QuizzyBee is a fun and interactive English quiz app designed for **beginner to i
 - **ProGuard & R8** (for app optimization)
 - **Moshi** (for JSON parsing)
 - **View Binding** (for UI interactions)
+
+## 🛠️ Future Improvements
+- **More Quiz Categories**
+- **Online Multiplayer Mode**
