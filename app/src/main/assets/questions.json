@@ -1,5 +1,285 @@
 [
   {
+    "questionText": "Which punctuation mark completes the sentence: 'What a beautiful day__'",
+    "options": [
+      ".",
+      "?",
+      "!",
+      ","
+    ],
+    "correctAnswer": "!"
+  },
+  {
+    "questionText": "Which word is most closely related to 'ocean'?",
+    "options": [
+      "Desert",
+      "River",
+      "Mountain",
+      "Forest"
+    ],
+    "correctAnswer": "River"
+  },
+  {
+    "questionText": "What does 'benevolent' mean?",
+    "options": [
+      "Kind and generous",
+      "Evil and malicious",
+      "Happy and cheerful",
+      "Sad and gloomy"
+    ],
+    "correctAnswer": "Kind and generous"
+  },
+  {
+    "questionText": "She is ___ than her sister.",
+    "options": [
+      "taller",
+      "tall",
+      "more tall",
+      "tallest"
+    ],
+    "correctAnswer": "taller"
+  },
+  {
+    "questionText": "Identify the misspelled word:",
+    "options": [
+      "Teacher",
+      "Favroite",
+      "School",
+      "Window"
+    ],
+    "correctAnswer": "Favrite"
+  },
+  {
+    "questionText": "Identify the misspelled word:",
+    "options": [
+      "Important",
+      "Morning",
+      "Beautifull",
+      "Delicious"
+    ],
+    "correctAnswer": "Beautifull"
+  },
+  {
+    "questionText": "Identify the misspelled word:",
+    "options": [
+      "Neighbor",
+      "Familly",
+      "Glasses",
+      "Pencil"
+    ],
+    "correctAnswer": "Familly"
+  },
+  {
+    "questionText": "Which word is different from the others?",
+    "options": [
+      "Cold",
+      "Chilly",
+      "Warm",
+      "Freezing"
+    ],
+    "correctAnswer": "Warm"
+  },
+  {
+    "questionText": "Which word does not belong to the group?",
+    "options": [
+      "Soft",
+      "Smooth",
+      "Rough",
+      "Silky"
+    ],
+    "correctAnswer": "Rough"
+  },
+  {
+    "questionText": "Find the odd word in the list:",
+    "options": [
+      "Round",
+      "Circular",
+      "Square",
+      "Oval"
+    ],
+    "correctAnswer": "Square"
+  },
+  {
+    "questionText": "Which word is different from the others?",
+    "options": [
+      "Happy",
+      "Joyful",
+      "Cheerful",
+      "Silent"
+    ],
+    "correctAnswer": "Silent"
+  },
+  {
+    "questionText": "Which word does not belong to the group?",
+    "options": [
+      "Huge",
+      "Tiny",
+      "Large",
+      "Big"
+    ],
+    "correctAnswer": "Tiny"
+  },
+  {
+    "questionText": "Identify the word that does not match the others:",
+    "options": [
+      "Bright",
+      "Dark",
+      "Shiny",
+      "Glowing"
+    ],
+    "correctAnswer": "Dark"
+  },
+  {
+    "questionText": "Which word is different?",
+    "options": [
+      "Serious",
+      "Boring",
+      "Amusing",
+      "Sad"
+    ],
+    "correctAnswer": "Amusing"
+  },
+  {
+    "questionText": "Which word means the same as 'safe'?",
+    "options": [
+      "Dangerous",
+      "Risky",
+      "Secure",
+      "Harmful"
+    ],
+    "correctAnswer": "Secure"
+  },
+  {
+    "questionText": "Which word is similar in meaning to 'funny'?",
+    "options": [
+      "Amusing",
+      "Serious",
+      "Boring",
+      "Sad"
+    ],
+    "correctAnswer": "Amusing"
+  },
+  {
+    "questionText": "A sudden feeling of fear?",
+    "options": [
+      "Pannic",
+      "Panick",
+      "Panic",
+      "Panik"
+    ],
+    "correctAnswer": "Panic"
+  },
+  {
+    "questionText": "Which word is similar in meaning to 'lazy'?",
+    "options": [
+      "Hardworking",
+      "Energetic",
+      "Busy",
+      "Idle"
+    ],
+    "correctAnswer": "Idle"
+  },
+  {
+    "questionText": "Which of these is the correct spelling of a word meaning 'able to wait patiently'?",
+    "options": [
+      "Patiente",
+      "Patiant",
+      "Paitient",
+      "Patient"
+    ],
+    "correctAnswer": "Patient"
+  },
+  {
+    "questionText": "Choose the correctly spelled word:",
+    "options": [
+      "Rhythm",
+      "Rythm",
+      "Rhithm",
+      "Rhytm"
+    ],
+    "correctAnswer": "Rhythm"
+  },
+  {
+    "questionText": "Identify the correct spelling of a word meaning 'a serious promise or vow':",
+    "options": [
+      "Garantee",
+      "Guarentee",
+      "Guarantee",
+      "Garrantee"
+    ],
+    "correctAnswer": "Guarantee"
+  },
+  {
+    "questionText": "Which spelling is correct?",
+    "options": [
+      "Embaras",
+      "Embarass",
+      "Embarrass",
+      "Embarras"
+    ],
+    "correctAnswer": "Embarrass"
+  },
+  {
+    "questionText": "Which word is spelled correctly?",
+    "options": [
+      "Necessary",
+      "Neccessary",
+      "Necesary",
+      "Nesessary"
+    ],
+    "correctAnswer": "Necessary"
+  },
+  {
+    "questionText": "Identify the correctly spelled word:",
+    "options": [
+      "Ocurred",
+      "Occured",
+      "Ocurred",
+      "Occurred"
+    ],
+    "correctAnswer": "Occurred"
+  },
+  {
+    "questionText": "Select the correct spelling of the word meaning 'extremely funny':",
+    "options": [
+      "Hillariuos",
+      "Hilarious",
+      "Hilariouse",
+      "Hilerious"
+    ],
+    "correctAnswer": "Hilarious"
+  },
+  {
+    "questionText": "Which of these spellings is correct for a word meaning 'to receive money for work'?",
+    "options": [
+      "Salery",
+      "Sallary",
+      "Salary",
+      "Sallery"
+    ],
+    "correctAnswer": "Salary"
+  },
+  {
+    "questionText": "A person who takes care of teeth:",
+    "options": [
+      "Dentest",
+      "Dantist",
+      "Dentast",
+      "Dentist"
+    ],
+    "correctAnswer": "Dentist"
+  },
+  {
+    "questionText": "A place where books are kept:",
+    "options": [
+      "Libary",
+      "Librery",
+      "Library",
+      "Librare"
+    ],
+    "correctAnswer": "Library"
+  },
+  {
     "questionText": "Who helps sick people?",
     "options": [
       "Driver",
