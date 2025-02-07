@@ -3,11 +3,9 @@
 QuizzyBee is a fun and interactive English quiz app designed for **beginner to intermediate** learners. It helps users improve their vocabulary and grammar through multiple-choice quizzes.
 
 ## 📸 Screenshots
-<img src="screenshots/home_light.png" width="250">
-<img src="screenshots/quiz_screen.png" width="250">
-<img src="screenshots/level_complete.png" width="250">
-<img src="screenshots/game_complete.png.png" width="250">
-<img src="screenshots/settings_screen.png.png" width="250">
+<img src="screenshots/home_light.png" width="250"> <img src="screenshots/quiz_screen.png" width="250"> <img src="screenshots/level_complete.png" width="250">
+
+<img src="screenshots/game_complete.png" width="250"> <img src="screenshots/settings_screen.png" width="250">
 
 
 ## ✨ Features
