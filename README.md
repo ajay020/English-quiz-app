@@ -5,7 +5,8 @@ QuizzyBee is a fun and interactive English quiz app designed for **beginner to i
 ## 📸 Screenshots
 <img src="screenshots/home_light.png" width="250"> <img src="screenshots/quiz_screen.png" width="250"> <img src="screenshots/level_complete.png" width="250">
 
-<img src="screenshots/game_complete.png" width="250"> <img src="screenshots/settings_screen.png" width="250">
+<img src="screenshots/home_dark.png.png" width="250"> <img src="screenshots/game_complete.png" width="250"> <img src="screenshots/settings_screen.png" width="250">
+
 
 
 ## ✨ Features
